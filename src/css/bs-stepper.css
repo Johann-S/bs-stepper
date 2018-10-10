@@ -1,0 +1,72 @@
+.bs-stepper {
+  counter-reset: section;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 1.5rem;
+  display: flex;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  position: relative;
+  list-style: none;
+  vertical-align: middle;
+  margin-bottom: 0;
+}
+
+.bs-stepper .bs-stepper-circle {
+  display: inline-block;
+  color: #fff;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  margin-right: 16px;
+  text-align: center;
+  line-height: 29px;
+  background-color: #6c757d;
+}
+
+.bs-stepper > li:not(:last-of-type) {
+  transition: margin-bottom .4s;
+}
+
+.bs-stepper li {
+  transition: .5s;
+  display: flex;
+  align-items: center;
+  -webkit-box-flex: 1;
+  flex: 1;
+}
+
+.bs-stepper li:hover {
+  background-color: rgba(0, 0, 0, .06);
+}
+
+.bs-stepper li a {
+  padding: 1.5rem;
+  text-align: center;
+  text-decoration: none;
+}
+
+.bs-stepper a .bs-stepper-label {
+  font-weight: 600;
+  color: #212529;
+  display: inline-block;
+}
+
+.bs-stepper li:not(:first-child):before,
+.bs-stepper li:not(:last-child):after {
+  content: "";
+  position: relative;
+  -webkit-box-flex: 1;
+  flex: 1;
+  height: 1px;
+  background-color: rgba(0, 0, 0, .1);
+}
+
+.bs-stepper li:not(:last-child):after {
+  content: "";
+  position: relative;
+  -webkit-box-flex: 1;
+  flex: 1;
+  height: 1px;
+  background-color: rgba(0, 0, 0, .1);
+}
