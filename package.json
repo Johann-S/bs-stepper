@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A stepper for Bootstrap 4",
   "author": "Johann-S <johann.servoire@gmail.com>",
-  "main": "dist/bs-stepper.js",
+  "main": "dist/js/bs-stepper.js",
   "bugs": {
     "url": "https://github.com/Johann-S/bs-stepper/issues"
   },
@@ -19,7 +19,8 @@
     "standard": "standard"
   },
   "files": [
-    "dist/*.{js,map}"
+    "dist/js/*.{js,map}",
+    "dist/css/*.css"
   ],
   "keywords": [
     "bootstrap",
