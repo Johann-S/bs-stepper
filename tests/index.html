@@ -13,29 +13,45 @@
       <div class="row">
         <div class="col-md-12 mt-5">
           <div class="bs-stepper">
-            <div class="step">
+            <div class="step" data-target="#test1">
               <a href="#">
                 <span class="bs-stepper-circle">1</span>
                 <span class="bs-stepper-label">First step</span>
               </a>
             </div>
             <div class="line"></div>
-            <div class="step">
+            <div class="step" data-target="#test2">
               <a href="#">
                 <span class="bs-stepper-circle">2</span>
                 <span class="bs-stepper-label">Second step</span>
               </a>
             </div>
             <div class="line"></div>
-            <div class="step">
+            <div class="step" data-target="#test3">
               <a href="#">
                 <span class="bs-stepper-circle">3</span>
                 <span class="bs-stepper-label">Third step</span>
               </a>
             </div>
+            <div id="test1" class="content">
+              <p class="text-center">test 1</p>
+            </div>
+            <div id="test2" class="content">
+              <p class="text-center">test 2</p>
+            </div>
+            <div id="test3" class="content">
+              <p class="text-center">test 3</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
+    <script src="dist/js/bs-stepper.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        var stepper = new bsStepper(document.querySelector('.bs-stepper'))
+        console.warn(stepper)
+      })
+    </script>
   </body>
 </html>

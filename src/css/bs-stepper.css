@@ -18,8 +18,20 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+.bs-stepper .step.active .bs-stepper-circle {
+  background-color: #007bff;
+}
+
 .bs-stepper .step:hover {
   background-color: rgba(0, 0, 0, .06);
+}
+
+.bs-stepper .content {
+  display: none;
+}
+
+.bs-stepper .content.active {
+  display: block;
 }
 
 .bs-stepper .bs-stepper-circle {
