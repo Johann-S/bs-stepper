@@ -1,8 +1,16 @@
 .bs-stepper {
   display: block;
+}
+
+.bs-stepper .bs-stepper-header {
   white-space: nowrap;
   display: flex;
   align-items: center;
+}
+
+.bs-stepper .bs-stepper-content {
+  overflow: hidden;
+  padding: 0 24px 24px 24px;
 }
 
 .bs-stepper .step {

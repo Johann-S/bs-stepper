@@ -33,7 +33,7 @@ const showContent = (content, contentList) => {
 }
 
 class bsStepper {
-  constructor(element) {
+  constructor (element) {
     this._element = element
     this._currentIndex = 0
     this._stepsContents = []
@@ -52,14 +52,14 @@ class bsStepper {
     }
   }
 
-  next() {
+  next () {
     this._currentIndex = (this._currentIndex + 1) <= this._steps.length - 1 ? this._currentIndex + 1 : 0
 
     showStep(this._steps[this._currentIndex], this._steps)
     showContent(this._stepsContents[this._currentIndex], this._stepsContents)
   }
 
-  destroy() {
+  destroy () {
     this._element = undefined
     this._currentIndex = undefined
     this._steps = undefined
