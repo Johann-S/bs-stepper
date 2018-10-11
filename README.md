@@ -4,7 +4,8 @@
 [![devDependencies Status](https://img.shields.io/david/dev/Johann-S/bs-stepper.svg)](https://david-dm.org/Johann-S/bs-stepper?type=dev)
 [![Build Status](https://img.shields.io/travis/Johann-S/bs-stepper/master.svg)](https://travis-ci.org/Johann-S/bs-stepper)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com/)
-[![JS gzip size](https://img.badgesize.io/Johann-S/bs-stepper/master/dist/bs-stepper.min.js?compression=gzip&label=JS+gzip+size)](https://github.com/Johann-S/bs-stepper/tree/master/dist/bs-stepper.min.js)
+[![JS gzip size](https://img.badgesize.io/Johann-S/bs-stepper/master/dist/js/bs-stepper.min.js?compression=gzip&label=JS+gzip+size)](https://github.com/Johann-S/bs-stepper/tree/master/dist/js/bs-stepper.min.js)
+[![CSS gzip size](https://img.badgesize.io/Johann-S/bs-stepper/master/dist/css/bs-stepper.min.css?compression=gzip&label=CSS+gzip+size)](https://github.com/Johann-S/bs-stepper/tree/master/dist/css/bs-stepper.min.css)
 
 A stepper plugin for Bootstrap 4.
 
