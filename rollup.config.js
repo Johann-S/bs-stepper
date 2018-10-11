@@ -37,7 +37,7 @@ if (buildDev) {
 }
 
 if (buildProd) {
-  conf.output.file = './dist/bs-stepper.min.js'
+  conf.output.file = './dist/js/bs-stepper.min.js'
   conf.plugins.push(uglify({
     compress: {
       typeofs: false
