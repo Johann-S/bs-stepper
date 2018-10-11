@@ -1,15 +1,25 @@
 .bs-stepper {
-  counter-reset: section;
-  overflow-y: auto;
-  overflow-x: hidden;
-  padding: 1.5rem;
+  display: block;
+  white-space: nowrap;
   display: flex;
-  -webkit-box-pack: justify;
-  justify-content: space-between;
+  align-items: center;
+}
+
+.bs-stepper .step {
+  display: flex;
+  height: 72px;
+  overflow: hidden;
+  align-items: center;
+  padding: 0 24px;
+  outline: 0;
+  cursor: pointer;
   position: relative;
-  list-style: none;
-  vertical-align: middle;
-  margin-bottom: 0;
+  box-sizing: content-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.bs-stepper .step:hover {
+  background-color: rgba(0, 0, 0, .06);
 }
 
 .bs-stepper .bs-stepper-circle {
@@ -24,49 +34,24 @@
   background-color: #6c757d;
 }
 
-.bs-stepper > li:not(:last-of-type) {
-  transition: margin-bottom .4s;
-}
-
-.bs-stepper li {
-  transition: .5s;
-  display: flex;
-  align-items: center;
-  -webkit-box-flex: 1;
-  flex: 1;
-}
-
-.bs-stepper li:hover {
-  background-color: rgba(0, 0, 0, .06);
-}
-
-.bs-stepper li a {
+.bs-stepper .step a {
   padding: 1.5rem;
   text-align: center;
   text-decoration: none;
 }
 
-.bs-stepper a .bs-stepper-label {
+.bs-stepper .step a .bs-stepper-label {
   font-weight: 600;
   color: #212529;
   display: inline-block;
 }
 
-.bs-stepper li:not(:first-child):before,
-.bs-stepper li:not(:last-child):after {
-  content: "";
-  position: relative;
-  -webkit-box-flex: 1;
-  flex: 1;
-  height: 1px;
-  background-color: rgba(0, 0, 0, .1);
-}
-
-.bs-stepper li:not(:last-child):after {
-  content: "";
-  position: relative;
-  -webkit-box-flex: 1;
-  flex: 1;
-  height: 1px;
-  background-color: rgba(0, 0, 0, .1);
+.bs-stepper .line {
+  border-top-width: 1px;
+  border-top-style: solid;
+  flex: auto;
+  height: 0;
+  margin: 0 -16px;
+  min-width: 32px;
+  border-top-color: rgba(0, 0, 0, 0.12);
 }
