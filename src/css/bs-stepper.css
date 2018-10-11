@@ -66,6 +66,10 @@
   display: inline-block;
 }
 
+.bs-stepper.linear .step:not(.active) a .bs-stepper-label {
+  color: rgba(0, 0, 0, .38);
+}
+
 .bs-stepper .line {
   border-top-width: 1px;
   border-top-style: solid;

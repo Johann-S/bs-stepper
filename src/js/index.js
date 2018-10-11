@@ -96,6 +96,8 @@ class bsStepper {
         step.querySelector(Selectors.LINK)
           .addEventListener('click', clickStepListener)
       })
+    } else {
+      this._element.classList.add('linear')
     }
   }
 
