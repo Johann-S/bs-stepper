@@ -14,6 +14,7 @@ You can use it on React and Angular too because this plugin is written with the 
 Features:
 
 - Linear stepper
+- Non linear stepper
 - Works with Bootstrap 4
 - Works without *dependencies* and **jQuery**
 - Built in UMD to be used everywhere
@@ -115,6 +116,23 @@ This library is UMD ready so you can use it everywhere.
 
 ## Methods
 
+## constructor
+
+Create an instance of `bsStepper`, accept two parameters.
+
+#### Parameters
+
+- `element`
+  - type: `DOMElement`
+
+Pass your `bsStepper` DOMElement
+
+- `options`
+  - default value: `{ linear: true }`
+  - type: `Object`
+
+  Allows you to choose if you want a linear stepper or not
+
 ### next
 
 Will navigate to the next step of your stepper
@@ -126,7 +144,7 @@ stepper.next()
 
 ### destroy
 
-Remove stored data relative to your stepper.
+Remove stored data relative to your stepper and listeners.
 
 ## Support me
 
