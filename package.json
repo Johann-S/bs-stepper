@@ -13,7 +13,7 @@
   "scripts": {
     "build": "npm run build-js && npm run build-css",
     "build-js": "rollup -c && rollup -c --environment PROD",
-    "build-css": "postcss src/css/bs-stepper.css --use autoprefixer -d dist/css && npm run css-minify",
+    "build-css": "postcss src/css/bs-stepper.css -m --use autoprefixer -d dist/css && npm run css-minify",
     "css-minify": "cleancss --level 1 --format breaksWith=lf --source-map --source-map-inline-sources --output dist/css/bs-stepper.min.css dist/css/bs-stepper.css",
     "dev": "rollup --environment DEV -c -w",
     "test": "npm run standard && npm run build",
