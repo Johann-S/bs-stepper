@@ -51,7 +51,7 @@
   },
   "standard": {
     "ignore": [
-      "dist/*.js"
+      "dist/js/*.js"
     ]
   }
 }
