@@ -7,7 +7,8 @@ const Selectors = {
 }
 
 const ClassName = {
-  ACTIVE: 'active'
+  ACTIVE: 'active',
+  LINEAR: 'linear'
 }
 
 const DEFAULT_OPTIONS = {
@@ -97,7 +98,7 @@ class bsStepper {
           .addEventListener('click', clickStepListener)
       })
     } else {
-      this._element.classList.add('linear')
+      this._element.classList.add(ClassName.LINEAR)
     }
   }
 
