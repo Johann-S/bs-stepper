@@ -40,11 +40,17 @@ npm install bs-stepper --save
 CDN | Link
 ------------ | -------------
 unpkg | [`https://unpkg.com/bs-stepper`](https://unpkg.com/bs-stepper)
-unpkg, minified | [`https://unpkg.com/bs-stepper/dist/bs-stepper.min.js`](https://unpkg.com/bs-stepper/dist/bs-stepper.min.js)
+unpkg, js minified | [`https://unpkg.com/bs-stepper/dist/js/bs-stepper.min.js`](https://unpkg.com/bs-stepper/dist/js/bs-stepper.min.js)
+unpkg, css minified | [`https://unpkg.com/bs-stepper/dist/css/bs-stepper.min.css`](https://unpkg.com/bs-stepper/dist/css/bs-stepper.min.css)
 
 ## How to use it
 
 ### HTML markup
+
+CSS
+```html
+<link rel="stylesheet" href="bs-stepper.min.css">
+```
 
 ```html
 <div class="bs-stepper">
@@ -74,6 +80,19 @@ unpkg, minified | [`https://unpkg.com/bs-stepper/dist/bs-stepper.min.js`](https:
 
 ### JavaScript
 
+In HTML before the end of the `<body>` tag
+```html
+<script src="bs-stepper.min.js"></script>
+```
+
+Or with npm
+
+```js
+import bsStepper from 'bs-stepper'
+```
+
+### Create a stepper
+
 You should wait for the document ready event and create a new instance of `bsStepper`.
 
 Vanilla JS
@@ -88,12 +107,6 @@ With jQuery
 $(document).ready(function () {
   var stepper = new bsStepper($('.bs-stepper')[0])
 })
-```
-
-Use it with npm
-
-```js
-import bsStepper from 'bs-stepper'
 ```
 
 For more examples check out [this file](https://github.com/Johann-S/bs-stepper/blob/master/tests/index.html).
