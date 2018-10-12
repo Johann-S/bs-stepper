@@ -20,6 +20,8 @@ Features:
 - Built in UMD to be used everywhere
 - Small, only **2kb** and less if you gzip it
 
+[Demo](https://johann-s.github.io/bs-stepper/)
+
 ## Table of contents
 
 - [Install](#install)
@@ -122,7 +124,7 @@ This library is UMD ready so you can use it everywhere.
 
 ## Methods
 
-## constructor
+### constructor
 
 Create an instance of `bsStepper`, accept two parameters.
 
