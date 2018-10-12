@@ -18,7 +18,7 @@
     "css-minify": "cleancss --level 1 --format breaksWith=lf --source-map --source-map-inline-sources --output dist/css/bs-stepper.min.css dist/css/bs-stepper.css",
     "dev": "rollup --environment DEV -c -w",
     "test": "npm run standard && npm run build",
-    "standard": "standard",
+    "standard": "standard src/js/*",
     "deploy": "gh-pages -d docs",
     "docs-build": "npm run build && npm run copy-docs",
     "docs-copy": "shx mkdir -p docs/dist/ && shx cp -r dist/css/ docs/dist/ && shx cp -r dist/js/ docs/dist/",
