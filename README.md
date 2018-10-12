@@ -48,10 +48,13 @@ unpkg, css minified | [`https://unpkg.com/bs-stepper/dist/css/bs-stepper.min.css
 
 ### HTML markup
 
-CSS
+Include the CSS file:
+
 ```html
 <link rel="stylesheet" href="bs-stepper.min.css">
 ```
+
+Add the following HTML:
 
 ```html
 <div class="bs-stepper">
@@ -82,6 +85,7 @@ CSS
 ### JavaScript
 
 In HTML before the end of the `<body>` tag
+
 ```html
 <script src="bs-stepper.min.js"></script>
 ```
@@ -97,6 +101,7 @@ import bsStepper from 'bs-stepper'
 You should wait for the document ready event and create a new instance of `bsStepper`.
 
 Vanilla JS
+
 ```js
 document.addEventListener('DOMContentLoaded', function () {
   var stepper = new bsStepper(document.querySelector('.bs-stepper'))
@@ -104,6 +109,7 @@ document.addEventListener('DOMContentLoaded', function () {
 ```
 
 With jQuery
+
 ```js
 $(document).ready(function () {
   var stepper = new bsStepper($('.bs-stepper')[0])
@@ -123,7 +129,7 @@ Create an instance of `bsStepper`, accept two parameters.
 #### Parameters
 
 - `element`
-  - type: `DOMElement`
+- type: `DOMElement`
 
 Pass your `bsStepper` DOMElement
 
