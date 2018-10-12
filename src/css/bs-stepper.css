@@ -18,7 +18,6 @@
   height: 72px;
   overflow: hidden;
   align-items: center;
-  padding: 0 24px;
   outline: 0;
   cursor: pointer;
   position: relative;
@@ -55,7 +54,6 @@
 }
 
 .bs-stepper .step a {
-  padding: 1.5rem;
   text-align: center;
   text-decoration: none;
 }
@@ -75,7 +73,83 @@
   border-top-style: solid;
   flex: auto;
   height: 0;
-  margin: 0 -16px;
   min-width: 32px;
   border-top-color: rgba(0, 0, 0, 0.12);
+}
+
+
+@media (max-width: 575px) {
+  .bs-stepper .step {
+    padding: 0 5px;
+    overflow: initial;
+  }
+
+  .bs-stepper .bs-stepper-circle {
+    margin-right: 4px;
+  }
+
+  .bs-stepper .step a .bs-stepper-label {
+    font-weight: 400;
+  }
+
+  .bs-stepper .line {
+    min-width: 15px;
+  }
+}
+
+/** Bootstrap v4 last breakpoint */
+@media (min-width: 576px) {
+  .bs-stepper .step {
+    padding: 0 10px;
+  }
+
+  .bs-stepper .step a {
+    padding: 0.5rem;
+  }
+
+  .bs-stepper .line {
+    margin: 0 -10px;
+  }
+}
+
+@media (min-width: 768px) {
+  .bs-stepper .step {
+    padding: 0 24px;
+  }
+
+  .bs-stepper .step a {
+    padding: 1.5rem;
+  }
+
+  .bs-stepper .line {
+    margin: 0 -16px;
+  }
+}
+
+@media (min-width: 992px) {
+  .bs-stepper .step {
+    padding: 0 24px;
+  }
+
+  .bs-stepper .step a {
+    padding: 1.5rem;
+  }
+
+  .bs-stepper .line {
+    margin: 0 -16px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .bs-stepper .step {
+    padding: 0 24px;
+  }
+
+  .bs-stepper .step a {
+    padding: 1.5rem;
+  }
+
+  .bs-stepper .line {
+    margin: 0 -16px;
+  }
 }
