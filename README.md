@@ -148,6 +148,10 @@ var stepper = new bsStepper(document.querySelector('.bs-stepper'))
 stepper.next()
 ```
 
+### previous
+
+Will navigate to the previous step of your stepper
+
 ### destroy
 
 Remove stored data relative to your stepper and listeners.

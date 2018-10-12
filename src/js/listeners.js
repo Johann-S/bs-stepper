@@ -14,6 +14,7 @@ function clickStepNonLinearListener (event) {
     const stepper = stepperNode[customProperty]
 
     const stepIndex = stepper._steps.indexOf(step)
+    stepper._currentIndex = stepIndex
     showStep(step, stepper._steps)
     showContent(stepper._stepsContents[stepIndex], stepper._stepsContents)
   }

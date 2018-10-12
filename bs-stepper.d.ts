@@ -5,6 +5,7 @@ declare type bsStepperOptions = {
 declare class bsStepper {
   constructor(element: Element, _options: bsStepperOptions);
   next(): void;
+  previous(): void;
   destroy(): void;
 }
 

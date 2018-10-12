@@ -20,7 +20,7 @@
     "test": "npm run standard && npm run build",
     "standard": "standard src/js/*",
     "deploy": "gh-pages -d docs",
-    "docs-build": "npm run build && npm run copy-docs",
+    "docs-build": "npm run build && npm run docs-copy",
     "docs-copy": "shx mkdir -p docs/dist/ && shx cp -r dist/css/ docs/dist/ && shx cp -r dist/js/ docs/dist/",
     "docs-serve": "http-server docs/ -c-1 -o"
   },
