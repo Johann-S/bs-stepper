@@ -12,100 +12,131 @@
         text-decoration: none !important;
       }
     </style>
-    <title>bsStepper</title>
+    <title>bsStepper - Bootstrap 4 stepper</title>
   </head>
   <body class="d-flex flex-column h-100">
-    <header class="bg-dark text-white py-2 shadow-sm mb-3">
-      <div class="container d-flex align-items-center">
-        <h1 class="mb-0 h5 mr-auto py-1">bsStepper</h1>
+    <nav class="navbar navbar-dark bg-dark navbar-expand-sm text-white py-2 shadow-sm mb-3">
+      <div class="container">
+        <h1 class="mb-0 h5 py-1">bsStepper</h1>
+        <div class="navbar-nav-scroll">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="https://github.com/Johann-S/bs-stepper/blob/master/README.md#how-to-use-it">Documentation</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://github.com/Johann-S/bs-stepper/blob/master/README.md#install">Download</a>
+            </li>
+          </ul>
+        </div>
         <a href="https://github.com/Johann-S/bs-stepper" class="text-white ml-3 py-1 no-underline" title="View project on GitHub">
           <span class="fab fa-github fa-lg d-block" aria-hidden="true"></span>
         </a>
       </div>
-    </header>
+    </nav>
     <div class="container flex-grow-1 flex-shrink-0">
       <div class="row">
-        <div class="col-md-12 mt-5">
-          <h2>Linear stepper</h2>
+        <div>
+          <h2>Examples</h2>
+        </div>
+        <div class="col-md-12 mt-4">
+          <h3>Linear stepper</h3>
           <div id="stepper1" class="bs-stepper">
             <div class="bs-stepper-header">
               <div class="step" data-target="#test-l-1">
                 <a href="#">
                   <span class="bs-stepper-circle">1</span>
-                  <span class="bs-stepper-label">First step</span>
+                  <span class="bs-stepper-label">Email</span>
                 </a>
               </div>
               <div class="line"></div>
               <div class="step" data-target="#test-l-2">
                 <a href="#">
                   <span class="bs-stepper-circle">2</span>
-                  <span class="bs-stepper-label">Second step</span>
+                  <span class="bs-stepper-label">Password</span>
                 </a>
               </div>
               <div class="line"></div>
               <div class="step" data-target="#test-l-3">
                 <a href="#">
                   <span class="bs-stepper-circle">3</span>
-                  <span class="bs-stepper-label">Third step</span>
+                  <span class="bs-stepper-label">Validate</span>
                 </a>
               </div>
             </div>
             <div class="bs-stepper-content">
-              <div id="test-l-1" class="content">
-                <p class="text-center">test 1</p>
-                <button class="btn btn-primary" onclick="stepper1.next()">Next</button>
-              </div>
-              <div id="test-l-2" class="content">
-                <p class="text-center">test 2</p>
-                <button class="btn btn-primary" onclick="stepper1.next()">Next</button>
-              </div>
-              <div id="test-l-3" class="content">
-                <p class="text-center">test 3</p>
-                <button class="btn btn-primary" onclick="stepper1.next()">Next</button>
-                <button class="btn btn-primary" onclick="stepper1.previous()">Previous</button>
-              </div>
+              <form onSubmit="return false">
+                <div id="test-l-1" class="content">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                  </div>
+                  <button class="btn btn-primary" onclick="stepper1.next()">Next</button>
+                </div>
+                <div id="test-l-2" class="content">
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                  </div>
+                  <button class="btn btn-primary" onclick="stepper1.next()">Next</button>
+                </div>
+                <div id="test-l-3" class="content text-center">
+                  <button type="submit" class="btn btn-primary mt-5">Submit</button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
         <div class="col-md-12 mt-5">
-          <h2>Non linear stepper</h2>
+          <h3>Non linear stepper</h3>
           <div id="stepper2" class="bs-stepper">
             <div class="bs-stepper-header">
               <div class="step" data-target="#test-nl-1">
                 <a href="#">
-                  <span class="bs-stepper-circle">1</span>
-                  <span class="bs-stepper-label">First step</span>
+                  <span class="bs-stepper-circle">
+                    <span class="fas fa-user" aria-hidden="true"></span>
+                  </span>
+                  <span class="bs-stepper-label">Name</span>
                 </a>
               </div>
               <div class="line"></div>
               <div class="step" data-target="#test-nl-2">
                 <a href="#">
-                  <span class="bs-stepper-circle">2</span>
-                  <span class="bs-stepper-label">Second step</span>
+                  <span class="bs-stepper-circle">
+                    <span class="fas fa-map-marked" aria-hidden="true"></span>
+                  </span>
+                  <span class="bs-stepper-label">Address</span>
                 </a>
               </div>
               <div class="line"></div>
               <div class="step" data-target="#test-nl-3">
                 <a href="#">
-                  <span class="bs-stepper-circle">3</span>
-                  <span class="bs-stepper-label">Third step</span>
+                  <span class="bs-stepper-circle">
+                    <span class="fas fa-save" aria-hidden="true"></span>
+                  </span>
+                  <span class="bs-stepper-label">Submit</span>
                 </a>
               </div>
             </div>
             <div class="bs-stepper-content">
-              <div id="test-nl-1" class="content">
-                <p class="text-center">test 3</p>
-                <button class="btn btn-primary" onclick="stepper2.next()">Next</button>
-              </div>
-              <div id="test-nl-2" class="content">
-                <p class="text-center">test 4</p>
-                <button class="btn btn-primary" onclick="stepper2.next()">Next</button>
-              </div>
-              <div id="test-nl-3" class="content">
-                <p class="text-center">test 5</p>
-                <button class="btn btn-primary" onclick="stepper2.next()">Next</button>
-                <button class="btn btn-primary" onclick="stepper2.previous()">Previous</button>
-              </div>
+              <form onSubmit="return false">
+                <div id="test-nl-1" class="content">
+                  <div class="form-group">
+                    <label for="exampleInputName1">Name</label>
+                    <input type="email" class="form-control" id="exampleInputName1" placeholder="Enter your name">
+                  </div>
+                  <button class="btn btn-primary" onclick="stepper2.next()">Next</button>
+                </div>
+                <div id="test-nl-2" class="content">
+                  <div class="form-group">
+                    <label for="exampleInpuAddress1">Address</label>
+                    <input type="email" class="form-control" id="exampleInpuAddress1" placeholder="Enter your address">
+                  </div>
+                  <button class="btn btn-primary" onclick="stepper2.next()">Next</button>
+                </div>
+                <div id="test-nl-3" class="content text-center">
+                  <button type="submit" class="btn btn-primary mt-5">Submit</button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
