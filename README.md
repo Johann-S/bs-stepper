@@ -1,5 +1,6 @@
 # bs-stepper
 
+[![npm version](https://img.shields.io/npm/v/bs-stepper.svg)](https://www.npmjs.com/package/bs-stepper)
 [![dependencies Status](https://img.shields.io/david/Johann-S/bs-stepper.svg)](https://david-dm.org/Johann-S/bs-stepper)
 [![devDependencies Status](https://img.shields.io/david/dev/Johann-S/bs-stepper.svg)](https://david-dm.org/Johann-S/bs-stepper?type=dev)
 [![Build Status](https://img.shields.io/travis/Johann-S/bs-stepper/master.svg)](https://travis-ci.org/Johann-S/bs-stepper)
@@ -9,7 +10,9 @@
 
 A stepper plugin for Bootstrap 4.
 
-You can use it on React and Angular too because this plugin is written with the most used JavaScript framework: [VanillaJS](http://vanilla-js.com/).
+You can use it on [React](https://stackblitz.com/edit/bs-stepper-react) and [Angular](https://stackblitz.com/edit/bs-stepper-angular) too because this plugin is written with the most used JavaScript framework: [VanillaJS](http://vanilla-js.com/).
+
+[Demo](https://johann-s.github.io/bs-stepper/)
 
 Features:
 
@@ -19,8 +22,6 @@ Features:
 - Works without *dependencies* and **jQuery**
 - Built in UMD to be used everywhere
 - Small, only **2kb** and less if you gzip it
-
-[Demo](https://johann-s.github.io/bs-stepper/)
 
 ## Table of contents
 
