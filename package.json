@@ -19,7 +19,10 @@
     "dev": "rollup --environment DEV -c -w",
     "test": "npm run standard && npm run build",
     "standard": "standard",
-    "deploy": "gh-pages --dist ./ --src \"dist/**\""
+    "deploy": "gh-pages -d docs",
+    "docs-build": "npm run build && npm run copy-docs",
+    "docs-copy": "shx mkdir -p docs/dist/ && shx cp -r dist/css/ docs/dist/ && shx cp -r dist/js/ docs/dist/",
+    "docs-serve": "http-server docs/ -c-1 -o"
   },
   "files": [
     "dist/js/*.{js,map}",
@@ -47,10 +50,12 @@
     "bootstrap": "^4.1.3",
     "clean-css-cli": "^4.2.1",
     "gh-pages": "^2.0.1",
+    "http-server": "^0.11.1",
     "postcss-cli": "^6.0.0",
     "rollup": "^0.66.6",
     "rollup-plugin-babel": "^4.0.3",
     "rollup-plugin-uglify": "^6.0.0",
+    "shx": "^0.3.2",
     "standard": "^12.0.1"
   },
   "standard": {
