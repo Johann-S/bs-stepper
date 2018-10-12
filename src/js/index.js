@@ -5,7 +5,7 @@ const DEFAULT_OPTIONS = {
   linear: true
 }
 
-class bsStepper {
+class Stepper {
   constructor (element, _options) {
     this._element = element
     this._currentIndex = 0
@@ -90,4 +90,4 @@ class bsStepper {
   }
 }
 
-export default bsStepper
+export default Stepper

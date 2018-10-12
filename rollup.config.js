@@ -19,7 +19,7 @@ const conf = {
  */`,
     file: './dist/js/bs-stepper.js',
     format: 'umd',
-    name: 'bsStepper',
+    name: 'Stepper',
     sourcemap: true
   },
   plugins: [

@@ -95,18 +95,18 @@ In HTML before the end of the `<body>` tag
 Or with npm
 
 ```js
-import bsStepper from 'bs-stepper'
+import Stepper from 'bs-stepper'
 ```
 
 ### Create a stepper
 
-You should wait for the document ready event and create a new instance of `bsStepper`.
+You should wait for the document ready event and create a new instance of `Stepper`.
 
 Vanilla JS
 
 ```js
 document.addEventListener('DOMContentLoaded', function () {
-  var stepper = new bsStepper(document.querySelector('.bs-stepper'))
+  var stepper = new Stepper(document.querySelector('.bs-stepper'))
 })
 ```
 
@@ -114,7 +114,7 @@ With jQuery
 
 ```js
 $(document).ready(function () {
-  var stepper = new bsStepper($('.bs-stepper')[0])
+  var stepper = new Stepper($('.bs-stepper')[0])
 })
 ```
 
@@ -126,14 +126,14 @@ This library is UMD ready so you can use it everywhere.
 
 ### constructor
 
-Create an instance of `bsStepper`, accept two parameters.
+Create an instance of `Stepper`, accept two parameters.
 
 #### Parameters
 
 - `element`
 - type: `DOMElement`
 
-Pass your `bsStepper` DOMElement
+Pass your `Stepper` DOMElement
 
 - `options`
   - default value: `{ linear: true }`
@@ -146,7 +146,7 @@ Pass your `bsStepper` DOMElement
 Will navigate to the next step of your stepper
 
 ```js
-var stepper = new bsStepper(document.querySelector('.bs-stepper'))
+var stepper = new Stepper(document.querySelector('.bs-stepper'))
 stepper.next()
 ```
 
