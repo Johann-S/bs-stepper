@@ -6,7 +6,7 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
-  (global.bsStepper = factory());
+  (global.Stepper = factory());
 }(this, (function () { 'use strict';
 
   function _extends() {
@@ -122,10 +122,10 @@
     linear: true
   };
 
-  var bsStepper =
+  var Stepper =
   /*#__PURE__*/
   function () {
-    function bsStepper(element, _options) {
+    function Stepper(element, _options) {
       var _this = this;
 
       this._element = element;
@@ -159,7 +159,7 @@
     } // Private
 
 
-    var _proto = bsStepper.prototype;
+    var _proto = Stepper.prototype;
 
     _proto._setLinkListeners = function _setLinkListeners() {
       var _this2 = this;
@@ -210,10 +210,10 @@
       this._stepsContents = undefined;
     };
 
-    return bsStepper;
+    return Stepper;
   }();
 
-  return bsStepper;
+  return Stepper;
 
 })));
 //# sourceMappingURL=bs-stepper.js.map
