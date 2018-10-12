@@ -43,7 +43,11 @@ const showContent = (content, contentList) => {
   content.classList.add(ClassName.ACTIVE)
 }
 
-function clickStepListener (event) {
+function clickStepLinearListener (event) {
+  event.preventDefault()
+}
+
+function clickStepNonLinearListener (event) {
   event.preventDefault()
 
   const step = closest(event.target, Selectors.STEPS)
@@ -76,6 +80,10 @@ class bsStepper {
       ..._options
     }
 
+    if (this.options.linear) {
+      this._element.classList.add(ClassName.LINEAR)
+    }
+
     if (this._steps.length) {
       showStep(this._steps[this._currentIndex], this._steps)
       showContent(this._stepsContents[this._currentIndex], this._stepsContents)
@@ -92,14 +100,14 @@ class bsStepper {
   // Private
 
   _setLinkListeners () {
-    if (!this.options.linear) {
-      this._steps.forEach(step => {
-        step.querySelector(Selectors.LINK)
-          .addEventListener('click', clickStepListener)
-      })
-    } else {
-      this._element.classList.add(ClassName.LINEAR)
-    }
+    this._steps.forEach(step => {
+      const link = step.querySelector(Selectors.LINK)
+      if (this.options.linear) {
+        link.addEventListener('click', clickStepLinearListener)
+      } else {
+        link.addEventListener('click', clickStepNonLinearListener)
+      }
+    })
   }
 
   // Public
@@ -115,7 +123,11 @@ class bsStepper {
     if (!this.options.linear) {
       this._steps.forEach(step => {
         const link = step.querySelector(Selectors.LINK)
-        link.removeEventListener('click', clickStepListener)
+        if (this.options.linear) {
+          link.removeEventListener('click', clickStepLinearListener)
+        } else {
+          link.removeEventListener('click', clickStepNonLinearListener)
+        }
       })
     }
 
