@@ -1,15 +1,29 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="h-100">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="A stepper plugin for Bootstrap 4.">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link rel="stylesheet" href="dist/css/bs-stepper.min.css">
+    <style>
+      .no-underline {
+        text-decoration: none !important;
+      }
+    </style>
     <title>bsStepper</title>
   </head>
-  <body>
-    <div class="container">
-      <h1>bsStepper</h1>
+  <body class="d-flex flex-column h-100">
+    <header class="bg-dark text-white py-2 shadow-sm mb-3">
+      <div class="container d-flex align-items-center">
+        <h1 class="mb-0 h5 mr-auto py-1">bsStepper</h1>
+        <a href="https://github.com/Johann-S/bs-stepper" class="text-white ml-3 py-1 no-underline" title="View project on GitHub">
+          <span class="fab fa-github fa-lg d-block" aria-hidden="true"></span>
+        </a>
+      </div>
+    </header>
+    <div class="container flex-grow-1 flex-shrink-0">
       <div class="row">
         <div class="col-md-12 mt-5">
           <h2>Linear stepper</h2>
@@ -97,6 +111,13 @@
         </div>
       </div>
     </div>
+    <footer class="bg-light p-3 mt-4">
+      <div class="container">
+        <p class="text-muted text-center mb-0">
+          Made with <span class="fas fa-heart text-danger" aria-hidden="true"></span><span class="sr-only">love</span> by <a href="https://github.com/Johann-S">Johann-S</a>
+        </p>
+      </div>
+    </footer>
     <script src="dist/js/bs-stepper.min.js"></script>
     <script src="js/main.js"></script>
   </body>
