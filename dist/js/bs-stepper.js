@@ -112,6 +112,7 @@
 
       var stepIndex = stepper._steps.indexOf(step);
 
+      stepper._currentIndex = stepIndex;
       showStep(step, stepper._steps);
       showContent(stepper._stepsContents[stepIndex], stepper._stepsContents);
     }
@@ -176,7 +177,13 @@
 
 
     _proto.next = function next() {
-      this._currentIndex = this._currentIndex + 1 <= this._steps.length - 1 ? this._currentIndex + 1 : 0;
+      this._currentIndex = this._currentIndex + 1 <= this._steps.length - 1 ? this._currentIndex + 1 : this._steps.length - 1;
+      showStep(this._steps[this._currentIndex], this._steps);
+      showContent(this._stepsContents[this._currentIndex], this._stepsContents);
+    };
+
+    _proto.previous = function previous() {
+      this._currentIndex = this._currentIndex - 1 >= 0 ? this._currentIndex - 1 : 0;
       showStep(this._steps[this._currentIndex], this._steps);
       showContent(this._stepsContents[this._currentIndex], this._stepsContents);
     };
