@@ -1,64 +1,8 @@
-import { closest } from './polyfill'
-
-const Selectors = {
-  STEPS: '.step',
-  LINK: 'a',
-  STEPPER: '.bs-stepper'
-}
-
-const ClassName = {
-  ACTIVE: 'active',
-  LINEAR: 'linear'
-}
+import { showContent, showStep, Selectors, ClassName, customProperty } from './util'
+import { clickStepLinearListener, clickStepNonLinearListener } from './listeners'
 
 const DEFAULT_OPTIONS = {
   linear: true
-}
-
-const customProperty = 'bsStepper'
-
-const showStep = (step, stepList) => {
-  if (step.classList.contains(ClassName.ACTIVE)) {
-    return
-  }
-
-  const activeStep = stepList.filter(step => step.classList.contains(ClassName.ACTIVE))
-  if (activeStep.length) {
-    activeStep[0].classList.remove(ClassName.ACTIVE)
-  }
-
-  step.classList.add(ClassName.ACTIVE)
-}
-
-const showContent = (content, contentList) => {
-  if (content.classList.contains(ClassName.ACTIVE)) {
-    return
-  }
-
-  const activeContent = contentList.filter(content => content.classList.contains(ClassName.ACTIVE))
-  if (activeContent.length) {
-    activeContent[0].classList.remove(ClassName.ACTIVE)
-  }
-
-  content.classList.add(ClassName.ACTIVE)
-}
-
-function clickStepLinearListener (event) {
-  event.preventDefault()
-}
-
-function clickStepNonLinearListener (event) {
-  event.preventDefault()
-
-  const step = closest(event.target, Selectors.STEPS)
-  if (step) {
-    const stepperNode = closest(step, Selectors.STEPPER)
-    const stepper = stepperNode[customProperty]
-
-    const stepIndex = stepper._steps.indexOf(step)
-    showStep(step, stepper._steps)
-    showContent(stepper._stepsContents[stepIndex], stepper._stepsContents)
-  }
 }
 
 class bsStepper {
