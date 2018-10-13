@@ -22,12 +22,14 @@
     "deploy": "gh-pages -d docs",
     "docs-build": "npm run build && npm run docs-copy",
     "docs-copy": "shx mkdir -p docs/dist/ && shx cp -r dist/css/ docs/dist/ && shx cp -r dist/js/ docs/dist/",
-    "docs-serve": "http-server docs/ -c-1 -o"
+    "docs-serve": "http-server docs/ -c-1 -o",
+    "changelog": "standard-version"
   },
   "files": [
     "dist/js/*.{js,map}",
     "dist/css/*.{css,map}",
-    "bs-stepper.d.ts"
+    "bs-stepper.d.ts",
+    "CHANGELOG.md"
   ],
   "keywords": [
     "bootstrap",
@@ -56,7 +58,8 @@
     "rollup-plugin-babel": "^4.0.3",
     "rollup-plugin-uglify": "^6.0.0",
     "shx": "^0.3.2",
-    "standard": "^12.0.1"
+    "standard": "^12.0.1",
+    "standard-version": "^4.4.0"
   },
   "standard": {
     "ignore": [
