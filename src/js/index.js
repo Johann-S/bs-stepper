@@ -6,7 +6,7 @@ const DEFAULT_OPTIONS = {
 }
 
 class Stepper {
-  constructor (element, _options) {
+  constructor (element, _options = {}) {
     this._element = element
     this._currentIndex = 0
     this._stepsContents = []

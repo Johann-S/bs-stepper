@@ -136,7 +136,7 @@ Create an instance of `Stepper`, accept two parameters.
 
 Pass your `Stepper` DOMElement
 
-- `options`
+- `options` (optional)
   - default value: `{ linear: true }`
   - type: `Object`
 
