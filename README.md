@@ -14,10 +14,13 @@ You can use it on [React](https://stackblitz.com/edit/bs-stepper-react) and [Ang
 
 [Demo](https://johann-s.github.io/bs-stepper/)
 
+If you want to see our last changes it's here: [https://bs-stepper.netlify.com/](https://bs-stepper.netlify.com/)
+
 Features:
 
 - Linear stepper
 - Non linear stepper
+- Fade effect with `.fade`
 - Works with Bootstrap 4
 - Works without *dependencies* and **jQuery**
 - Built in UMD to be used everywhere
