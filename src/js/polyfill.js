@@ -1,5 +1,6 @@
 let matches = window.Element.prototype.matches
 let closest = (element, selector) => element.closest(selector)
+let WinEvent = (inType, params) => new window.Event(inType, params)
 
 if (!window.Element.prototype.matches) {
   matches = window.Element.prototype.msMatchesSelector ||
@@ -24,6 +25,16 @@ if (!window.Element.prototype.closest) {
   }
 }
 
+if (!window.Event || typeof window.Event !== 'function') {
+  WinEvent = (inType, params) => {
+    params = params || {}
+    const e = document.createEvent('Event')
+    e.initEvent(inType, Boolean(params.bubbles), Boolean(params.cancelable))
+    return e
+  }
+}
+
 export {
-  closest
+  closest,
+  WinEvent
 }

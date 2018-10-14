@@ -39,12 +39,30 @@
   background-color: rgba(0, 0, 0, .06);
 }
 
-.bs-stepper .content {
+.bs-stepper .content.d-block {
+  display: block;
+}
+
+.bs-stepper .content.d-none {
   display: none;
 }
 
-.bs-stepper .content.active {
+.bs-stepper .content:not(.fade) {
+  display: none;
+}
+
+.bs-stepper .content.fade {
+  opacity: 0;
+  transition-duration: .3s;
+  transition-property: opacity;
+}
+
+.bs-stepper .content.active:not(.fade) {
   display: block;
+}
+
+.bs-stepper .content.active {
+  opacity: 1;
 }
 
 .bs-stepper .bs-stepper-circle {

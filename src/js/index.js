@@ -1,4 +1,4 @@
-import { showContent, showStep, Selectors, ClassName, customProperty } from './util'
+import { showContent, showStep, Selectors, ClassName, customProperty, detectFade } from './util'
 import { clickStepLinearListener, clickStepNonLinearListener } from './listeners'
 
 const DEFAULT_OPTIONS = {
@@ -33,6 +33,7 @@ class Stepper {
       showContent(this._stepsContents[this._currentIndex], this._stepsContents)
     }
 
+    detectFade(this._stepsContents)
     this._setLinkListeners()
 
     Object.defineProperty(this._element, customProperty, {

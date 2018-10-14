@@ -85,6 +85,8 @@ Add the following HTML:
 </div>
 ```
 
+If you want to add a `fade` animation, add `.fade` class on your `.content`.
+
 ### JavaScript
 
 In HTML before the end of the `<body>` tag
