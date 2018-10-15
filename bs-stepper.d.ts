@@ -1,5 +1,6 @@
 declare type StepperOptions = {
   linear: boolean,
+  animation: boolean
 };
 
 declare class Stepper {
