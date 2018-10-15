@@ -1,5 +1,5 @@
 /*!
- * bsStepper v1.0.0 (https://github.com/Johann-S/bs-stepper)
+ * bsStepper v1.1.0 (https://github.com/Johann-S/bs-stepper)
  * Copyright 2018 Johann-S <johann.servoire@gmail.com>
  * Licensed under MIT (https://github.com/Johann-S/bs-stepper/blob/master/LICENSE)
  */
@@ -27,53 +27,14 @@
     return _extends.apply(this, arguments);
   }
 
-  var Selectors = {
-    STEPS: '.step',
-    LINK: 'a',
-    STEPPER: '.bs-stepper'
-  };
-  var ClassName = {
-    ACTIVE: 'active',
-    LINEAR: 'linear'
-  };
-  var customProperty = 'bsStepper';
-
-  var showStep = function showStep(step, stepList) {
-    if (step.classList.contains(ClassName.ACTIVE)) {
-      return;
-    }
-
-    var activeStep = stepList.filter(function (step) {
-      return step.classList.contains(ClassName.ACTIVE);
-    });
-
-    if (activeStep.length) {
-      activeStep[0].classList.remove(ClassName.ACTIVE);
-    }
-
-    step.classList.add(ClassName.ACTIVE);
-  };
-
-  var showContent = function showContent(content, contentList) {
-    if (content.classList.contains(ClassName.ACTIVE)) {
-      return;
-    }
-
-    var activeContent = contentList.filter(function (content) {
-      return content.classList.contains(ClassName.ACTIVE);
-    });
-
-    if (activeContent.length) {
-      activeContent[0].classList.remove(ClassName.ACTIVE);
-    }
-
-    content.classList.add(ClassName.ACTIVE);
-  };
-
   var matches = window.Element.prototype.matches;
 
   var closest = function closest(element, selector) {
     return element.closest(selector);
+  };
+
+  var WinEvent = function WinEvent(inType, params) {
+    return new window.Event(inType, params);
   };
 
   if (!window.Element.prototype.matches) {
@@ -98,6 +59,127 @@
     };
   }
 
+  if (!window.Event || typeof window.Event !== 'function') {
+    WinEvent = function WinEvent(inType, params) {
+      params = params || {};
+      var e = document.createEvent('Event');
+      e.initEvent(inType, Boolean(params.bubbles), Boolean(params.cancelable));
+      return e;
+    };
+  }
+
+  var MILLISECONDS_MULTIPLIER = 1000;
+  var Selectors = {
+    STEPS: '.step',
+    LINK: 'a',
+    STEPPER: '.bs-stepper'
+  };
+  var ClassName = {
+    ACTIVE: 'active',
+    LINEAR: 'linear',
+    BLOCK: 'd-block',
+    NONE: 'd-none',
+    FADE: 'fade'
+  };
+  var transitionEndEvent = 'transitionend';
+  var customProperty = 'bsStepper';
+
+  var showStep = function showStep(step, stepList) {
+    if (step.classList.contains(ClassName.ACTIVE)) {
+      return;
+    }
+
+    var activeStep = stepList.filter(function (step) {
+      return step.classList.contains(ClassName.ACTIVE);
+    });
+
+    if (activeStep.length) {
+      activeStep[0].classList.remove(ClassName.ACTIVE);
+    }
+
+    step.classList.add(ClassName.ACTIVE);
+  };
+
+  var showContent = function showContent(content, contentList) {
+    if (content.classList.contains(ClassName.ACTIVE)) {
+      return;
+    }
+
+    function complete() {
+      content.classList.add(ClassName.BLOCK);
+      content.removeEventListener(transitionEndEvent, complete);
+    }
+
+    var activeContent = contentList.filter(function (content) {
+      return content.classList.contains(ClassName.ACTIVE);
+    });
+
+    if (activeContent.length) {
+      activeContent[0].classList.remove(ClassName.ACTIVE);
+      activeContent[0].classList.remove(ClassName.BLOCK);
+    }
+
+    if (content.classList.contains(ClassName.FADE)) {
+      content.classList.remove(ClassName.NONE);
+      var duration = getTransitionDurationFromElement(content);
+      content.addEventListener(transitionEndEvent, complete);
+
+      if (activeContent.length) {
+        activeContent[0].classList.add('d-none');
+      }
+
+      content.classList.add(ClassName.ACTIVE);
+      emulateTransitionEnd(content, duration);
+    } else {
+      content.classList.add(ClassName.ACTIVE);
+    }
+  };
+
+  var getTransitionDurationFromElement = function getTransitionDurationFromElement(element) {
+    if (!element) {
+      return 0;
+    } // Get transition-duration of the element
+
+
+    var transitionDuration = window.getComputedStyle(element).transitionDuration;
+    var floatTransitionDuration = parseFloat(transitionDuration); // Return 0 if element or transition duration is not found
+
+    if (!floatTransitionDuration) {
+      return 0;
+    } // If multiple durations are defined, take the first
+
+
+    transitionDuration = transitionDuration.split(',')[0];
+    return parseFloat(transitionDuration) * MILLISECONDS_MULTIPLIER;
+  };
+
+  var emulateTransitionEnd = function emulateTransitionEnd(element, duration) {
+    var called = false;
+    var durationPadding = 5;
+    var emulatedDuration = duration + durationPadding;
+
+    function listener() {
+      called = true;
+      element.removeEventListener(transitionEndEvent, listener);
+    }
+
+    element.addEventListener(transitionEndEvent, listener);
+    window.setTimeout(function () {
+      if (!called) {
+        element.dispatchEvent(WinEvent(transitionEndEvent));
+      }
+    }, emulatedDuration);
+  };
+
+  var detectAnimation = function detectAnimation(contentList, animation) {
+    if (animation) {
+      contentList.forEach(function (content) {
+        content.classList.add(ClassName.FADE);
+        content.classList.add(ClassName.NONE);
+      });
+    }
+  };
+
   function clickStepLinearListener(event) {
     event.preventDefault();
   }
@@ -119,7 +201,8 @@
   }
 
   var DEFAULT_OPTIONS = {
-    linear: true
+    linear: true,
+    animation: false
   };
 
   var Stepper =
@@ -127,6 +210,10 @@
   function () {
     function Stepper(element, _options) {
       var _this = this;
+
+      if (_options === void 0) {
+        _options = {};
+      }
 
       this._element = element;
       this._currentIndex = 0;
@@ -144,6 +231,8 @@
       if (this.options.linear) {
         this._element.classList.add(ClassName.LINEAR);
       }
+
+      detectAnimation(this._stepsContents, this.options.animation);
 
       if (this._steps.length) {
         showStep(this._steps[this._currentIndex], this._steps);
