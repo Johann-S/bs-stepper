@@ -99,11 +99,12 @@ const emulateTransitionEnd = (element, duration) => {
   }, emulatedDuration)
 }
 
-const detectFade = contentList => {
-  const contentFadeList = contentList.filter(content => content.classList.contains(ClassName.FADE))
-
-  if (contentFadeList.length) {
-    contentFadeList.forEach(content => content.classList.add(ClassName.NONE))
+const detectAnimation = (contentList, animation) => {
+  if (animation) {
+    contentList.forEach(content => {
+      content.classList.add(ClassName.FADE)
+      content.classList.add(ClassName.NONE)
+    })
   }
 }
 
@@ -113,5 +114,5 @@ export {
   Selectors,
   ClassName,
   customProperty,
-  detectFade
+  detectAnimation
 }

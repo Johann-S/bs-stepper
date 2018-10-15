@@ -1,8 +1,9 @@
-import { showContent, showStep, Selectors, ClassName, customProperty, detectFade } from './util'
+import { showContent, showStep, Selectors, ClassName, customProperty, detectAnimation } from './util'
 import { clickStepLinearListener, clickStepNonLinearListener } from './listeners'
 
 const DEFAULT_OPTIONS = {
-  linear: true
+  linear: true,
+  animation: false,
 }
 
 class Stepper {
@@ -28,14 +29,13 @@ class Stepper {
       this._element.classList.add(ClassName.LINEAR)
     }
 
+    detectAnimation(this._stepsContents, this.options.animation)
     if (this._steps.length) {
       showStep(this._steps[this._currentIndex], this._steps)
       showContent(this._stepsContents[this._currentIndex], this._stepsContents)
     }
 
-    detectFade(this._stepsContents)
     this._setLinkListeners()
-
     Object.defineProperty(this._element, customProperty, {
       value: this,
       writable: true

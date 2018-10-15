@@ -88,7 +88,7 @@ Add the following HTML:
 </div>
 ```
 
-If you want to add a `fade` animation, add `.fade` and `.d-none` classes on your `.content`.
+If you want to use the fade `fade` animation, add `.d-none` class on your `.content` and set `animation` to `true`.
 
 ### JavaScript
 
@@ -142,10 +142,10 @@ Create an instance of `Stepper`, accept two parameters.
 Pass your `Stepper` DOMElement
 
 - `options` (optional)
-  - default value: `{ linear: true }`
+  - default value: `{ linear: true, animation: false }`
   - type: `Object`
 
-  Allows you to choose if you want a linear stepper or not
+  Allows you to choose if you want a linear stepper or not and if you want to animate when the content will be displayed.
 
 ### next
 

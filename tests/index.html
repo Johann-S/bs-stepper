@@ -37,15 +37,15 @@
               </div>
             </div>
             <div class="bs-stepper-content">
-              <div id="test-l-1" class="content fade d-none">
+              <div id="test-l-1" class="content d-none">
                 <p class="text-center">test 1</p>
                 <button class="btn btn-primary" onclick="stepper1.next()">Next</button>
               </div>
-              <div id="test-l-2" class="content fade d-none">
+              <div id="test-l-2" class="content d-none">
                 <p class="text-center">test 2</p>
                 <button class="btn btn-primary" onclick="stepper1.next()">Next</button>
               </div>
-              <div id="test-l-3" class="content fade d-none">
+              <div id="test-l-3" class="content d-none">
                 <p class="text-center">test 3</p>
                 <button class="btn btn-primary" onclick="stepper1.next()">Next</button>
                 <button class="btn btn-primary" onclick="stepper1.previous()">Previous</button>
@@ -105,7 +105,8 @@
       document.addEventListener('DOMContentLoaded', function () {
         stepper1 = new Stepper(document.querySelector('#stepper1'))
         stepper2 = new Stepper(document.querySelector('#stepper2'), {
-          linear: false
+          linear: false,
+          animation: true
         })
       })
     </script>

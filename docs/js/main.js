@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
     linear: false
   })
   stepper3 = new Stepper(document.querySelector('#stepper3'), {
-    linear: false
+    linear: false,
+    animation: true
   })
 })
