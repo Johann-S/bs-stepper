@@ -36,6 +36,11 @@ const showContent = (content, contentList) => {
     return
   }
 
+  function complete () {
+    content.classList.add(ClassName.BLOCK)
+    content.removeEventListener(transitionEndEvent, complete)
+  }
+
   const activeContent = contentList.filter(content => content.classList.contains(ClassName.ACTIVE))
   if (activeContent.length) {
     activeContent[0].classList.remove(ClassName.ACTIVE)
@@ -44,12 +49,6 @@ const showContent = (content, contentList) => {
 
   if (content.classList.contains(ClassName.FADE)) {
     content.classList.remove(ClassName.NONE)
-
-    function complete() {
-      content.classList.add(ClassName.BLOCK)
-      content.removeEventListener(transitionEndEvent, complete)
-    }
-
     const duration = getTransitionDurationFromElement(content)
     content.addEventListener(transitionEndEvent, complete)
     if (activeContent.length) {
@@ -87,7 +86,7 @@ const emulateTransitionEnd = (element, duration) => {
   let called = false
   const durationPadding = 5
   const emulatedDuration = duration + durationPadding
-  function listener() {
+  function listener () {
     called = true
     element.removeEventListener(transitionEndEvent, listener)
   }
@@ -114,5 +113,5 @@ export {
   Selectors,
   ClassName,
   customProperty,
-  detectFade,
+  detectFade
 }

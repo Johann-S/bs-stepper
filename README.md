@@ -88,7 +88,7 @@ Add the following HTML:
 </div>
 ```
 
-If you want to add a `fade` animation, add `.fade` class on your `.content`.
+If you want to add a `fade` animation, add `.fade` and `.d-none` classes on your `.content`.
 
 ### JavaScript
 
