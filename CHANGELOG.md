@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.1"></a>
+## 1.1.1 (2018-10-15)
+
+
+### Bug Fixes
+
+* **typing:** missing animation option ([806d2c1](https://github.com/Johann-S/bs-stepper/commit/806d2c1))
+
+
+
 <a name="1.1.0"></a>
 # 1.1.0 (2018-10-15)
 
