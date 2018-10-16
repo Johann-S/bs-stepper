@@ -3,7 +3,7 @@ import { clickStepLinearListener, clickStepNonLinearListener } from './listeners
 
 const DEFAULT_OPTIONS = {
   linear: true,
-  animation: false,
+  animation: false
 }
 
 class Stepper {
