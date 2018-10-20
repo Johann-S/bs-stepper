@@ -160,6 +160,10 @@ stepper.next()
 
 Will navigate to the previous step of your stepper
 
+### reset
+
+Will reset you stepper to the first step (usefull for linear stepper)
+
 ### destroy
 
 Remove stored data relative to your stepper and listeners.
