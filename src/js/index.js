@@ -72,16 +72,14 @@ class Stepper {
   }
 
   destroy () {
-    if (!this.options.linear) {
-      this._steps.forEach(step => {
-        const link = step.querySelector(Selectors.LINK)
-        if (this.options.linear) {
-          link.removeEventListener('click', clickStepLinearListener)
-        } else {
-          link.removeEventListener('click', clickStepNonLinearListener)
-        }
-      })
-    }
+    this._steps.forEach(step => {
+      const link = step.querySelector(Selectors.LINK)
+      if (this.options.linear) {
+        link.removeEventListener('click', clickStepLinearListener)
+      } else {
+        link.removeEventListener('click', clickStepNonLinearListener)
+      }
+    })
 
     delete this._element[customProperty]
     this._element = undefined
