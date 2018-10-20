@@ -21,6 +21,7 @@ Features:
 - Linear stepper
 - Non linear stepper
 - Fade effect with `.fade`
+- Vertical stepper
 - Works with Bootstrap 4
 - Works without *dependencies* and **jQuery**
 - Built in UMD to be used everywhere
@@ -88,7 +89,8 @@ Add the following HTML:
 </div>
 ```
 
-If you want to use the fade `fade` animation, add `.d-none` class on your `.content` and set `animation` to `true`.
+- If you want to use the fade `fade` animation, add `.fade` class on your `.content` and set `animation` to `true`.
+- To create a vertical stepper, just add `.vertical` class on your stepper. All steppers will switch to vertical on small viewports.
 
 ### JavaScript
 

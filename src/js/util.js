@@ -10,8 +10,8 @@ const Selectors = {
 const ClassName = {
   ACTIVE: 'active',
   LINEAR: 'linear',
-  BLOCK: 'd-block',
-  NONE: 'd-none',
+  BLOCK: 'dstepper-block',
+  NONE: 'dstepper-none',
   FADE: 'fade'
 }
 
@@ -52,7 +52,7 @@ const showContent = (content, contentList) => {
     const duration = getTransitionDurationFromElement(content)
     content.addEventListener(transitionEndEvent, complete)
     if (activeContent.length) {
-      activeContent[0].classList.add('d-none')
+      activeContent[0].classList.add(ClassName.NONE)
     }
 
     content.classList.add(ClassName.ACTIVE)
