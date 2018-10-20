@@ -95,17 +95,65 @@
             </div>
           </div>
         </div>
+        <div class="col-md-12 mt-5">
+          <h2>Vertical stepper</h2>
+          <div id="stepper3" class="bs-stepper vertical">
+            <div class="bs-stepper-header">
+              <div class="step" data-target="#test-lv-1">
+                <a href="#">
+                  <span class="bs-stepper-circle">1</span>
+                  <span class="bs-stepper-label">First step</span>
+                </a>
+              </div>
+              <div class="line"></div>
+              <div class="step" data-target="#test-lv-2">
+                <a href="#">
+                  <span class="bs-stepper-circle">2</span>
+                  <span class="bs-stepper-label">Second step</span>
+                </a>
+              </div>
+              <div class="line"></div>
+              <div class="step" data-target="#test-lv-3">
+                <a href="#">
+                  <span class="bs-stepper-circle">3</span>
+                  <span class="bs-stepper-label">Third step</span>
+                </a>
+              </div>
+            </div>
+            <div class="bs-stepper-content">
+              <div id="test-lv-1" class="content">
+                <p class="text-center">test 3</p>
+                <button class="btn btn-primary" onclick="stepper3.next()">Next</button>
+                <button class="btn btn-primary" onclick="stepper3.previous()">Previous</button>
+              </div>
+              <div id="test-lv-2" class="content">
+                <p class="text-center">test 4</p>
+                <button class="btn btn-primary" onclick="stepper3.next()">Next</button>
+                <button class="btn btn-primary" onclick="stepper3.previous()">Previous</button>
+              </div>
+              <div id="test-lv-3" class="content">
+                <p class="text-center">test 5</p>
+                <button class="btn btn-primary" onclick="stepper3.next()">Next</button>
+                <button class="btn btn-primary" onclick="stepper3.previous()">Previous</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <script src="dist/js/bs-stepper.js"></script>
     <script>
       var stepper1 = null
       var stepper2 = null
+      var stepper3 = null
 
       document.addEventListener('DOMContentLoaded', function () {
         stepper1 = new Stepper(document.querySelector('#stepper1'))
         stepper2 = new Stepper(document.querySelector('#stepper2'), {
           linear: false,
+          animation: true
+        })
+        stepper3 = new Stepper(document.querySelector('#stepper3'), {
           animation: true
         })
       })
