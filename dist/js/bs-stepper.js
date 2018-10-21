@@ -1,5 +1,5 @@
 /*!
- * bsStepper v1.1.1 (https://github.com/Johann-S/bs-stepper)
+ * bsStepper v1.2.0 (https://github.com/Johann-S/bs-stepper)
  * Copyright 2018 Johann-S <johann.servoire@gmail.com>
  * Licensed under MIT (https://github.com/Johann-S/bs-stepper/blob/master/LICENSE)
  */
@@ -77,8 +77,8 @@
   var ClassName = {
     ACTIVE: 'active',
     LINEAR: 'linear',
-    BLOCK: 'd-block',
-    NONE: 'd-none',
+    BLOCK: 'dstepper-block',
+    NONE: 'dstepper-none',
     FADE: 'fade'
   };
   var transitionEndEvent = 'transitionend';
@@ -125,7 +125,7 @@
       content.addEventListener(transitionEndEvent, complete);
 
       if (activeContent.length) {
-        activeContent[0].classList.add('d-none');
+        activeContent[0].classList.add(ClassName.NONE);
       }
 
       content.classList.add(ClassName.ACTIVE);
@@ -277,20 +277,24 @@
       showContent(this._stepsContents[this._currentIndex], this._stepsContents);
     };
 
+    _proto.reset = function reset() {
+      this._currentIndex = 0;
+      showStep(this._steps[this._currentIndex], this._steps);
+      showContent(this._stepsContents[this._currentIndex], this._stepsContents);
+    };
+
     _proto.destroy = function destroy() {
       var _this3 = this;
 
-      if (!this.options.linear) {
-        this._steps.forEach(function (step) {
-          var link = step.querySelector(Selectors.LINK);
+      this._steps.forEach(function (step) {
+        var link = step.querySelector(Selectors.LINK);
 
-          if (_this3.options.linear) {
-            link.removeEventListener('click', clickStepLinearListener);
-          } else {
-            link.removeEventListener('click', clickStepNonLinearListener);
-          }
-        });
-      }
+        if (_this3.options.linear) {
+          link.removeEventListener('click', clickStepLinearListener);
+        } else {
+          link.removeEventListener('click', clickStepNonLinearListener);
+        }
+      });
 
       delete this._element[customProperty];
       this._element = undefined;

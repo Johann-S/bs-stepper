@@ -177,22 +177,73 @@
             </div>
             <div class="bs-stepper-content">
               <form onSubmit="return false">
-                <div id="test-nlf-1" class="content d-none">
+                <div id="test-nlf-1" class="content">
                   <div class="form-group">
                     <label for="exampleInputName2">Name</label>
                     <input type="email" class="form-control" id="exampleInputName2" placeholder="Enter your name">
                   </div>
                   <button class="btn btn-primary" onclick="stepper3.next()">Next</button>
                 </div>
-                <div id="test-nlf-2" class="content d-none">
+                <div id="test-nlf-2" class="content">
                   <div class="form-group">
                     <label for="exampleInpuAddress2">Address</label>
                     <input type="email" class="form-control" id="exampleInpuAddress2" placeholder="Enter your address">
                   </div>
                   <button class="btn btn-primary" onclick="stepper3.next()">Next</button>
                 </div>
-                <div id="test-nlf-3" class="content d-none text-center">
+                <div id="test-nlf-3" class="content text-center">
                   <button type="submit" class="btn btn-primary mt-5">Submit</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mt-4">
+          <h3>Vertical linear stepper</h3>
+          <div id="stepper4" class="bs-stepper vertical">
+            <div class="bs-stepper-header">
+              <div class="step" data-target="#test-vl-1">
+                <a href="#">
+                  <span class="bs-stepper-circle">1</span>
+                  <span class="bs-stepper-label">Email</span>
+                </a>
+              </div>
+              <div class="line"></div>
+              <div class="step" data-target="#test-vl-2">
+                <a href="#">
+                  <span class="bs-stepper-circle">2</span>
+                  <span class="bs-stepper-label">Password</span>
+                </a>
+              </div>
+              <div class="line"></div>
+              <div class="step" data-target="#test-vl-3">
+                <a href="#">
+                  <span class="bs-stepper-circle">3</span>
+                  <span class="bs-stepper-label">Validate</span>
+                </a>
+              </div>
+            </div>
+            <div class="bs-stepper-content">
+              <form onSubmit="return false">
+                <div id="test-vl-1" class="content">
+                  <div class="form-group">
+                    <label for="exampleInputEmailV1">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmailV1" placeholder="Enter email">
+                  </div>
+                  <button class="btn btn-primary" onclick="stepper4.next()">Next</button>
+                  <button class="btn btn-primary" onclick="stepper4.previous()">Previous</button>
+                </div>
+                <div id="test-vl-2" class="content">
+                  <div class="form-group">
+                    <label for="exampleInputPasswordV1">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPasswordV1" placeholder="Password">
+                  </div>
+                  <button class="btn btn-primary" onclick="stepper4.next()">Next</button>
+                  <button class="btn btn-primary" onclick="stepper4.previous()">Previous</button>
+                </div>
+                <div id="test-vl-3" class="content">
+                  <button type="submit" class="btn btn-primary mt-5">Submit</button>
+                  <button class="btn btn-primary mt-5" onclick="stepper4.previous()">Previous</button>
                 </div>
               </form>
             </div>
@@ -207,6 +258,7 @@
         </p>
       </div>
     </footer>
+    <script src="https://unpkg.com/bs-breakpoints@1.0.0/dist/bs-breakpoints.min.js"></script>
     <script src="dist/js/bs-stepper.min.js"></script>
     <script src="js/main.js"></script>
   </body>
