@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.2.0"></a>
+# 1.2.0 (2018-10-21)
+
+
+### Bug Fixes
+
+* **index:** remove listeners for linear stepper too ([7a7862d](https://github.com/Johann-S/bs-stepper/commit/7a7862d))
+
+
+### Features
+
+* **core:** add vertical stepper ([eca853a](https://github.com/Johann-S/bs-stepper/commit/eca853a))
+* **index:** add reset method for linear stepper ([a056adc](https://github.com/Johann-S/bs-stepper/commit/a056adc))
+
+
+
 <a name="1.1.1"></a>
 ## 1.1.1 (2018-10-15)
 
