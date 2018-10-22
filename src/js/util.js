@@ -28,10 +28,12 @@ const showStep = (step, stepList) => {
   const activeStep = stepList.filter(step => step.classList.contains(ClassName.ACTIVE))
   if (activeStep.length) {
     activeStep[0].classList.remove(ClassName.ACTIVE)
-    activeStep[0].querySelector(Selectors.LINK).removeAttribute('aria-current')
+  }
+  for (let stepItem in stepList) {
+    stepList[stepItem].querySelector(Selectors.LINK).removeAttribute('aria-current')
     // if stepper is in linear mode, set disabled attribute on button
     if (stepperNode.classList.contains(ClassName.LINEAR)) {
-      activeStep[0].querySelector(Selectors.LINK).setAttribute('disabled', 'disabled')
+      stepList[stepItem].querySelector(Selectors.LINK).setAttribute('disabled', 'disabled')
     }
   }
 
