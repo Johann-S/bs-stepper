@@ -1,5 +1,5 @@
 /*!
- * bsStepper v1.2.0 (https://github.com/Johann-S/bs-stepper)
+ * bsStepper v1.2.1 (https://github.com/Johann-S/bs-stepper)
  * Copyright 2018 Johann-S <johann.servoire@gmail.com>
  * Licensed under MIT (https://github.com/Johann-S/bs-stepper/blob/master/LICENSE)
  */

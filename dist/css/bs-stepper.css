@@ -1,5 +1,5 @@
 /*!
- * bsStepper v1.2.0 (https://github.com/Johann-S/bs-stepper)
+ * bsStepper v1.2.1 (https://github.com/Johann-S/bs-stepper)
  * Copyright 2018 Johann-S <johann.servoire@gmail.com>
  * Licensed under MIT (https://github.com/Johann-S/bs-stepper/blob/master/LICENSE)
  */
@@ -74,7 +74,7 @@
 }
 
 .bs-stepper.vertical .content.fade.dstepper-none {
-  display: inherit;
+  visibility: hidden;
 }
 
 .bs-stepper .content:not(.fade) {
@@ -86,19 +86,23 @@
 }
 
 .bs-stepper .content.fade {
-  opacity: 0;
+  visibility: hidden;
   transition-duration: .3s;
   transition-property: opacity;
 }
 
 .bs-stepper.vertical .content {
-  opacity: 0;
+  visibility: hidden;
   display: inherit;
 }
 
-.bs-stepper .content.fade.active,
-.bs-stepper.vertical .content.active {
+.bs-stepper .content.fade.active {
+  visibility: visible;
   opacity: 1;
+}
+
+.bs-stepper.vertical .content.active {
+  visibility: visible;
 }
 
 .bs-stepper .bs-stepper-circle {
@@ -178,17 +182,14 @@
     margin-left: auto;
   }
 
-  .bs-stepper:not(.vertical) .content.active,
-  .bs-stepper:not(.vertical) .content:not(.active) {
-    display: inherit;
+  .bs-stepper:not(.vertical) .content.active {
+    visibility: visible;
   }
 
-  .bs-stepper:not(.vertical) .content:not(.fade):not(.active) {
-    opacity: 0;
-  }
-
-  .bs-stepper:not(.vertical) .content.active:not(.fade) {
-    opacity: 1;
+  .bs-stepper:not(.vertical) .content:not(.active),
+  .bs-stepper:not(.vertical) .content:not(.fade):not(.active)  {
+    visibility: hidden;
+    display: unset;
   }
 }
 
