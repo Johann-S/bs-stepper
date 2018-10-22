@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.2.1"></a>
+## 1.2.1 (2018-10-22)
+
+
+### Bug Fixes
+
+* **css:** use visibility instead of opacity ([ddd53f2](https://github.com/Johann-S/bs-stepper/commit/ddd53f2))
+
+
+
 <a name="1.2.0"></a>
 # 1.2.0 (2018-10-21)
 
