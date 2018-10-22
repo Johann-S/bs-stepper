@@ -110,18 +110,18 @@
   background-color: #6c757d;
 }
 
-.bs-stepper .step a {
+.bs-stepper .step button {
   text-align: center;
   text-decoration: none;
 }
 
-.bs-stepper .step a .bs-stepper-label {
+.bs-stepper .step button .bs-stepper-label {
   font-weight: 600;
   color: #212529;
   display: inline-block;
 }
 
-.bs-stepper.linear .step:not(.active) a .bs-stepper-label {
+.bs-stepper.linear .step:not(.active) button .bs-stepper-label {
   color: rgba(0, 0, 0, .38);
 }
 
