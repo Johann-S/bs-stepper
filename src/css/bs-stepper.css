@@ -55,6 +55,7 @@
 
 .bs-stepper .step:hover button:not(:disabled) {
   background-color: rgba(0, 0, 0, .06);
+  cursor: pointer;
 }
 
 .bs-stepper .content.dstepper-block {
@@ -112,6 +113,7 @@
 .bs-stepper .step button {
   text-align: center;
   text-decoration: none;
+  padding: 24px;
 }
 
 .bs-stepper .step button .bs-stepper-label {
