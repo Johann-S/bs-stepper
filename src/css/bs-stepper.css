@@ -39,7 +39,6 @@
   align-items: center;
   padding: 0 24px;
   outline: 0;
-  cursor: pointer;
   position: relative;
   box-sizing: content-box;
   -webkit-tap-highlight-color: transparent;
@@ -54,7 +53,7 @@
   background-color: #007bff;
 }
 
-.bs-stepper .step:hover {
+.bs-stepper .step:hover button:not(:disabled) {
   background-color: rgba(0, 0, 0, .06);
 }
 
@@ -110,18 +109,18 @@
   background-color: #6c757d;
 }
 
-.bs-stepper .step a {
+.bs-stepper .step button {
   text-align: center;
   text-decoration: none;
 }
 
-.bs-stepper .step a .bs-stepper-label {
+.bs-stepper .step button .bs-stepper-label {
   font-weight: 600;
   color: #212529;
   display: inline-block;
 }
 
-.bs-stepper.linear .step:not(.active) a .bs-stepper-label {
+.bs-stepper.linear .step:not(.active) button .bs-stepper-label {
   color: rgba(0, 0, 0, .38);
 }
 

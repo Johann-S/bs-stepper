@@ -46,7 +46,7 @@ class Stepper {
 
   _setLinkListeners () {
     this._steps.forEach(step => {
-      const link = step.querySelector(Selectors.LINK)
+      const link = step.querySelector(Selectors.BUTTON)
       if (this.options.linear) {
         link.addEventListener('click', clickStepLinearListener)
       } else {
@@ -79,7 +79,7 @@ class Stepper {
 
   destroy () {
     this._steps.forEach(step => {
-      const link = step.querySelector(Selectors.LINK)
+      const link = step.querySelector(Selectors.BUTTON)
       if (this.options.linear) {
         link.removeEventListener('click', clickStepLinearListener)
       } else {

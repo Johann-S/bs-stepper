@@ -1,9 +1,9 @@
-import { WinEvent } from './polyfill'
+import { WinEvent, closest } from './polyfill'
 
 const MILLISECONDS_MULTIPLIER = 1000
 const Selectors = {
   STEPS: '.step',
-  LINK: 'a',
+  BUTTON: 'button',
   STEPPER: '.bs-stepper'
 }
 
@@ -23,12 +23,27 @@ const showStep = (step, stepList) => {
     return
   }
 
+  const stepperNode = closest(step, Selectors.STEPPER)
   const activeStep = stepList.filter(step => step.classList.contains(ClassName.ACTIVE))
   if (activeStep.length) {
     activeStep[0].classList.remove(ClassName.ACTIVE)
   }
+  stepList.forEach(step => {
+    const button = step.querySelector(Selectors.BUTTON)
+    button.removeAttribute('aria-current')
+    // if stepper is in linear mode, set disabled attribute on button
+    if (stepperNode.classList.contains(ClassName.LINEAR)) {
+      button.setAttribute('disabled', 'disabled')
+    }
+  })
 
   step.classList.add(ClassName.ACTIVE)
+  const currentButton = step.querySelector(Selectors.BUTTON)
+  currentButton.setAttribute('aria-current', 'step')
+  // if stepper is in linear mode, remove disabled attribute on current
+  if (stepperNode.classList.contains(ClassName.LINEAR)) {
+    currentButton.removeAttribute('disabled')
+  }
 }
 
 const showContent = (content, contentList) => {
