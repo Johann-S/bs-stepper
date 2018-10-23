@@ -68,17 +68,17 @@ Add the following HTML:
   <div class="bs-stepper-header">
     <!-- your steps here -->
     <div class="step" data-target="#logins-part">
-      <a href="#">
+      <button type="button" class="btn btn-link">
         <span class="bs-stepper-circle">1</span>
         <span class="bs-stepper-label">Logins</span>
-      </a>
+      </button>
     </div>
     <div class="line"></div>
     <div class="step" data-target="#information-part">
-      <a href="#">
+      <button type="button" class="btn btn-link">
         <span class="bs-stepper-circle">2</span>
         <span class="bs-stepper-label">Various information</span>
-      </a>
+      </button>
     </div>
   </div>
   <div class="bs-stepper-content">
