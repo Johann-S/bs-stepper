@@ -3,7 +3,7 @@ import { WinEvent, closest } from './polyfill'
 const MILLISECONDS_MULTIPLIER = 1000
 const Selectors = {
   STEPS: '.step',
-  BUTTON: 'button',
+  TRIGGER: '.step-trigger, button, a',
   STEPPER: '.bs-stepper'
 }
 
@@ -29,20 +29,20 @@ const showStep = (step, stepList) => {
     activeStep[0].classList.remove(ClassName.ACTIVE)
   }
   stepList.forEach(step => {
-    const button = step.querySelector(Selectors.BUTTON)
-    button.removeAttribute('aria-current')
-    // if stepper is in linear mode, set disabled attribute on button
+    const trigger = step.querySelector(Selectors.TRIGGER)
+    trigger.removeAttribute('aria-current')
+    // if stepper is in linear mode, set disabled attribute on the trigger
     if (stepperNode.classList.contains(ClassName.LINEAR)) {
-      button.setAttribute('disabled', 'disabled')
+      trigger.setAttribute('disabled', 'disabled')
     }
   })
 
   step.classList.add(ClassName.ACTIVE)
-  const currentButton = step.querySelector(Selectors.BUTTON)
-  currentButton.setAttribute('aria-current', 'step')
+  const currentTrigger = step.querySelector(Selectors.TRIGGER)
+  currentTrigger.setAttribute('aria-current', 'step')
   // if stepper is in linear mode, remove disabled attribute on current
   if (stepperNode.classList.contains(ClassName.LINEAR)) {
-    currentButton.removeAttribute('disabled')
+    currentTrigger.removeAttribute('disabled')
   }
 }
 

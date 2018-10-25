@@ -52,9 +52,12 @@
   background-color: #007bff;
 }
 
-.bs-stepper .step:hover button:not(:disabled) {
+.bs-stepper .step:hover button:not(:disabled),
+.bs-stepper .step:hover a:not(:disabled),
+.bs-stepper .step:hover .step-trigger:not(:disabled) {
   background-color: rgba(0, 0, 0, .06);
   cursor: pointer;
+  text-decoration: none;
 }
 
 .bs-stepper .content.dstepper-block {
@@ -109,19 +112,31 @@
   background-color: #6c757d;
 }
 
-.bs-stepper .step button {
+.bs-stepper .step button,
+.bs-stepper .step a,
+.bs-stepper .step .step-trigger {
   text-align: center;
   text-decoration: none;
   padding: 24px;
 }
 
-.bs-stepper .step button .bs-stepper-label {
+.bs-stepper .step button:focus,
+.bs-stepper .step a:focus,
+.bs-stepper .step .step-trigger:focus {
+  text-decoration: none;
+}
+
+.bs-stepper .step button .bs-stepper-label,
+.bs-stepper .step a .bs-stepper-label,
+.bs-stepper .step .step-trigger .bs-stepper-label {
   font-weight: 600;
   color: #212529;
   display: inline-block;
 }
 
-.bs-stepper.linear .step:not(.active) button .bs-stepper-label {
+.bs-stepper.linear .step:not(.active) button .bs-stepper-label,
+.bs-stepper.linear .step:not(.active) a .bs-stepper-label,
+.bs-stepper.linear .step:not(.active) .step-trigger .bs-stepper-label {
   color: rgba(0, 0, 0, .38);
 }
 
