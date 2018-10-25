@@ -87,7 +87,7 @@ class Stepper {
       }
     })
 
-    delete this._element[customProperty]
+    this._element[customProperty] = undefined
     this._element = undefined
     this._currentIndex = undefined
     this._steps = undefined

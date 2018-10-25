@@ -111,6 +111,8 @@ const emulateTransitionEnd = (element, duration) => {
     if (!called) {
       element.dispatchEvent(WinEvent(transitionEndEvent))
     }
+
+    element.removeEventListener(transitionEndEvent, listener)
   }, emulatedDuration)
 }
 
