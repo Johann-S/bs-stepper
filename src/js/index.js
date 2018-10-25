@@ -46,11 +46,11 @@ class Stepper {
 
   _setLinkListeners () {
     this._steps.forEach(step => {
-      const link = step.querySelector(Selectors.BUTTON)
+      const trigger = step.querySelector(Selectors.TRIGGER)
       if (this.options.linear) {
-        link.addEventListener('click', clickStepLinearListener)
+        trigger.addEventListener('click', clickStepLinearListener)
       } else {
-        link.addEventListener('click', clickStepNonLinearListener)
+        trigger.addEventListener('click', clickStepNonLinearListener)
       }
     })
   }
@@ -79,11 +79,11 @@ class Stepper {
 
   destroy () {
     this._steps.forEach(step => {
-      const link = step.querySelector(Selectors.BUTTON)
+      const trigger = step.querySelector(Selectors.TRIGGER)
       if (this.options.linear) {
-        link.removeEventListener('click', clickStepLinearListener)
+        trigger.removeEventListener('click', clickStepLinearListener)
       } else {
-        link.removeEventListener('click', clickStepNonLinearListener)
+        trigger.removeEventListener('click', clickStepNonLinearListener)
       }
     })
 
