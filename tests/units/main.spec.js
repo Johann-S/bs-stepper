@@ -156,8 +156,9 @@ describe('Stepper', function () {
       var stepper = new Stepper(stepperNode)
 
       var trigger2 = document.querySelector('#trigger2')
-      const clickEvent = document.createEvent('Event')
-      clickEvent.initEvent('click')
+      trigger2.removeAttribute('disabled')
+      var clickEvent = document.createEvent('Event')
+      clickEvent.initEvent('click', true, true)
 
       spyOn(clickEvent, 'preventDefault')
 
