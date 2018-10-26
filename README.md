@@ -33,6 +33,7 @@ Features:
 - [Install](#install)
 - [How to use it](#how-to-use-it)
 - [Methods](#methods)
+- [Compatibility](#compatibility)
 - [Support me](#support-me)
 - [Thanks](#thanks)
 - [License](#license)
@@ -171,6 +172,20 @@ Will reset you stepper to the first step (usefull for linear stepper)
 ### destroy
 
 Remove stored data relative to your stepper and listeners.
+
+## Compatibility
+
+bsStepper is compatible with:
+
+- IE10+
+- Edge
+- Firefox
+- Chrome
+- Safari
+- Chrome Android
+- Safari iOS
+
+You can find our BrowserStack list of browsers [here](https://github.com/Johann-S/bs-stepper/blob/master/tests/browsers.js).
 
 ## Support me
 
