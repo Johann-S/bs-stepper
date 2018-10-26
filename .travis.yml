@@ -6,6 +6,15 @@ node_js:
   - "8"
 after_success:
   - npm run coveralls
+stages:
+  - test
+  - name: browser
+    if: type = push
+jobs:
+  include:
+    - stage: browser
+      node_js: 8
+      script: if ! git log --format=%B --no-merges -n 1 | grep '\[skip browser\]'; then npm test && npm run browserstack; fi
 cache:
   directories:
     - "$HOME/.npm"

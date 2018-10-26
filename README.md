@@ -34,6 +34,7 @@ Features:
 - [How to use it](#how-to-use-it)
 - [Methods](#methods)
 - [Support me](#support-me)
+- [Thanks](#thanks)
 - [License](#license)
 
 ## Install
@@ -174,6 +175,12 @@ Remove stored data relative to your stepper and listeners.
 ## Support me
 
 If you want to thank me, you can support me and become my [Patron](https://www.patreon.com/jservoire)
+
+## Thanks
+
+[![BrowserStack Logo](https://www.browserstack.com/images/mail/browserstack-logo-footer.png)](https://www.browserstack.com/)
+
+Thanks to [BrowserStack](https://www.browserstack.com/) for providing the infrastructure that allows us to test in real browsers!
 
 ## License
 

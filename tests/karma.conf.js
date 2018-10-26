@@ -1,5 +1,11 @@
 const path = require('path')
+const ip = require('ip')
+const {
+  browsers,
+  browsersKeys,
+} = require('./browsers')
 const coveragePath = path.resolve(__dirname, 'dist/coverage')
+const browserTest = process.env.browser === 'true'
 
 module.exports = function(config) {
   const conf = {
@@ -8,7 +14,7 @@ module.exports = function(config) {
       'dist/js/*.js',
       'units/*.spec.js'
     ],
-    reporters: ['dots', 'coverage-istanbul'],
+    reporters: ['dots'],
     port: 9876,
     colors: true,
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
@@ -17,7 +23,24 @@ module.exports = function(config) {
     browsers: ['ChromeHeadless'],
     singleRun: true,
     concurrency: Infinity,
-    coverageIstanbulReporter: {
+  }
+
+  if (browserTest) {
+    conf.hostname = ip.address()
+    conf.browserStack = {
+      username: process.env.BROWSER_STACK_USERNAME,
+      accessKey: process.env.BROWSER_STACK_ACCESS_KEY,
+      build: `bsStepper-${new Date().toISOString()}`,
+      project: 'bsStepper',
+      retryLimit: 1,
+    }
+
+    conf.customLaunchers = browsers
+    conf.browsers = browsersKeys
+    conf.reporters.push('BrowserStack')
+  } else {
+    conf.reporters.push('coverage-istanbul')
+    conf.coverageIstanbulReporter = {
       dir: coveragePath,
       reports: ['lcov', 'text-summary'],
       thresholds: {
