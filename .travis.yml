@@ -1,16 +1,13 @@
 sudo: required
-
 git:
   depth: 5
-
 language: node_js
-
 node_js:
   - "8"
-
+after_success:
+  - npm run coveralls
 cache:
   directories:
     - "$HOME/.npm"
-
 notifications:
   email: false
