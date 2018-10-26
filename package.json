@@ -25,7 +25,8 @@
     "docs-build": "npm run build && npm run docs-copy",
     "docs-copy": "shx mkdir -p docs/dist/ && shx cp -r dist/css/ docs/dist/ && shx cp -r dist/js/ docs/dist/",
     "docs-serve": "http-server docs/ -c-1 -o",
-    "changelog": "standard-version"
+    "changelog": "standard-version",
+    "coveralls": "shx cat tests/dist/coverage/lcov.info | coveralls"
   },
   "files": [
     "dist/js/*.{js,map}",
@@ -54,6 +55,7 @@
     "babel-plugin-istanbul": "^5.1.0",
     "bootstrap": "^4.1.3",
     "clean-css-cli": "^4.2.1",
+    "coveralls": "^3.0.2",
     "cross-env": "^5.2.0",
     "gh-pages": "^2.0.1",
     "http-server": "^0.11.1",
