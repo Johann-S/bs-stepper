@@ -30,7 +30,7 @@ const showStep = (step, stepList) => {
   }
   stepList.forEach(step => {
     const trigger = step.querySelector(Selectors.TRIGGER)
-    trigger.removeAttribute('aria-current')
+    trigger.setAttribute('aria-selected', 'false')
     // if stepper is in linear mode, set disabled attribute on the trigger
     if (stepperNode.classList.contains(ClassName.LINEAR)) {
       trigger.setAttribute('disabled', 'disabled')
@@ -39,7 +39,7 @@ const showStep = (step, stepList) => {
 
   step.classList.add(ClassName.ACTIVE)
   const currentTrigger = step.querySelector(Selectors.TRIGGER)
-  currentTrigger.setAttribute('aria-current', 'step')
+  currentTrigger.setAttribute('aria-selected', 'true')
   // if stepper is in linear mode, remove disabled attribute on current
   if (stepperNode.classList.contains(ClassName.LINEAR)) {
     currentTrigger.removeAttribute('disabled')
