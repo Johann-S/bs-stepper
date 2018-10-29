@@ -21,10 +21,10 @@ describe('Stepper', function () {
       fixture.innerHTML = [
         '<div id="myStepper" class="bs-stepper">',
         '  <div class="step" data-target="#test1">',
-        '    <button class="step-trigger">1</button>',
+        '    <button class="step-trigger" id="trigger1">1</button>',
         '  </div>',
         '  <div class="step" data-target="#test2">',
-        '    <button class="step-trigger">2</button>',
+        '    <button class="step-trigger" id="trigger2">2</button>',
         '  </div>',
         '  <div id="test1">1</div>',
         '  <div id="test2">2</div>',
@@ -38,6 +38,8 @@ describe('Stepper', function () {
       expect(stepper._steps.length).toEqual(2)
       expect(stepperNode['bsStepper']).toEqual(stepper)
       expect(document.querySelector('.step').classList.contains('active')).toBe(true)
+      expect(document.getElementById('trigger1').getAttribute('aria-selected')).toEqual('true')
+      expect(document.getElementById('trigger2').getAttribute('aria-selected')).toEqual('false')
       expect(stepper.options).toEqual({
         linear: true,
         animation: false
@@ -108,6 +110,8 @@ describe('Stepper', function () {
 
       expect(document.querySelector('#test1').classList.contains('active')).toBe(false)
       expect(document.querySelector('#test2').classList.contains('active')).toBe(true)
+      expect(document.getElementById('trigger1').getAttribute('aria-selected')).toEqual('false')
+      expect(document.getElementById('trigger2').getAttribute('aria-selected')).toEqual('true')
       expect(stepper._currentIndex).toEqual(1)
     })
 
