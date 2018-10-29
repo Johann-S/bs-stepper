@@ -24,6 +24,7 @@ Features:
 - Fade effect with `.fade`
 - Vertical stepper
 - Works with Bootstrap 4
+- Accessible
 - Works without *dependencies* and **jQuery**
 - Built in UMD to be used everywhere
 - Small, only **2kb** and less if you gzip it

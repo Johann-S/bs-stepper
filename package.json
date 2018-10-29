@@ -40,13 +40,18 @@
     "bootstrap 4",
     "vanillajs",
     "react",
-    "angular"
+    "angular",
+    "stepper"
   ],
   "homepage": "https://github.com/Johann-S/bs-stepper",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Johann-S/bs-stepper.git"
   },
+  "contributors": [
+    "Lausselloic <loic.laussel@orange.com>",
+    "XhmikosR <xhmikosr@gmail.com>"
+  ],
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
