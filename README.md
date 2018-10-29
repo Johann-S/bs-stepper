@@ -40,10 +40,14 @@ Features:
 
 ## Install
 
-### With npm
+### With npm or yarn
 
 ```sh
+// npm
 npm install bs-stepper --save
+
+// yarn
+yarn add bs-stepper
 ```
 
 ### CDN
