@@ -90,7 +90,7 @@ describe('Stepper', function () {
       fixture.innerHTML = [
         '<div id="myStepper" class="bs-stepper">',
         '  <div class="step" data-target="#test1">',
-        '    <button class="step-trigger">1</button>',
+        '    <button id="trigger1" class="step-trigger">1</button>',
         '  </div>',
         '  <div class="step" data-target="#test2">',
         '    <button id="trigger2" class="step-trigger">2</button>',
