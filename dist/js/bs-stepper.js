@@ -1,5 +1,5 @@
 /*!
- * bsStepper v1.2.1 (https://github.com/Johann-S/bs-stepper)
+ * bsStepper v1.3.0 (https://github.com/Johann-S/bs-stepper)
  * Copyright 2018 Johann-S <johann.servoire@gmail.com>
  * Licensed under MIT (https://github.com/Johann-S/bs-stepper/blob/master/LICENSE)
  */
@@ -36,42 +36,48 @@
   var WinEvent = function WinEvent(inType, params) {
     return new window.Event(inType, params);
   };
+  /* istanbul ignore next */
 
-  if (!window.Element.prototype.matches) {
-    matches = window.Element.prototype.msMatchesSelector || window.Element.prototype.webkitMatchesSelector;
-  }
 
-  if (!window.Element.prototype.closest) {
-    closest = function closest(element, selector) {
-      if (!document.documentElement.contains(element)) {
-        return null;
-      }
+  function polyfill() {
+    if (!window.Element.prototype.matches) {
+      matches = window.Element.prototype.msMatchesSelector || window.Element.prototype.webkitMatchesSelector;
+    }
 
-      do {
-        if (matches.call(element, selector)) {
-          return element;
+    if (!window.Element.prototype.closest) {
+      closest = function closest(element, selector) {
+        if (!document.documentElement.contains(element)) {
+          return null;
         }
 
-        element = element.parentElement || element.parentNode;
-      } while (element !== null && element.nodeType === 1);
+        do {
+          if (matches.call(element, selector)) {
+            return element;
+          }
 
-      return null;
-    };
+          element = element.parentElement || element.parentNode;
+        } while (element !== null && element.nodeType === 1);
+
+        return null;
+      };
+    }
+
+    if (!window.Event || typeof window.Event !== 'function') {
+      WinEvent = function WinEvent(inType, params) {
+        params = params || {};
+        var e = document.createEvent('Event');
+        e.initEvent(inType, Boolean(params.bubbles), Boolean(params.cancelable));
+        return e;
+      };
+    }
   }
 
-  if (!window.Event || typeof window.Event !== 'function') {
-    WinEvent = function WinEvent(inType, params) {
-      params = params || {};
-      var e = document.createEvent('Event');
-      e.initEvent(inType, Boolean(params.bubbles), Boolean(params.cancelable));
-      return e;
-    };
-  }
+  polyfill();
 
   var MILLISECONDS_MULTIPLIER = 1000;
   var Selectors = {
     STEPS: '.step',
-    LINK: 'a',
+    TRIGGER: '.step-trigger, a',
     STEPPER: '.bs-stepper'
   };
   var ClassName = {
@@ -89,6 +95,7 @@
       return;
     }
 
+    var stepperNode = closest(step, Selectors.STEPPER);
     var activeStep = stepList.filter(function (step) {
       return step.classList.contains(ClassName.ACTIVE);
     });
@@ -97,7 +104,21 @@
       activeStep[0].classList.remove(ClassName.ACTIVE);
     }
 
+    stepList.forEach(function (step) {
+      var trigger = step.querySelector(Selectors.TRIGGER);
+      trigger.setAttribute('aria-selected', 'false'); // if stepper is in linear mode, set disabled attribute on the trigger
+
+      if (stepperNode.classList.contains(ClassName.LINEAR)) {
+        trigger.setAttribute('disabled', 'disabled');
+      }
+    });
     step.classList.add(ClassName.ACTIVE);
+    var currentTrigger = step.querySelector(Selectors.TRIGGER);
+    currentTrigger.setAttribute('aria-selected', 'true'); // if stepper is in linear mode, remove disabled attribute on current
+
+    if (stepperNode.classList.contains(ClassName.LINEAR)) {
+      currentTrigger.removeAttribute('disabled');
+    }
   };
 
   var showContent = function showContent(content, contentList) {
@@ -168,6 +189,8 @@
       if (!called) {
         element.dispatchEvent(WinEvent(transitionEndEvent));
       }
+
+      element.removeEventListener(transitionEndEvent, listener);
     }, emulatedDuration);
   };
 
@@ -187,17 +210,14 @@
   function clickStepNonLinearListener(event) {
     event.preventDefault();
     var step = closest(event.target, Selectors.STEPS);
+    var stepperNode = closest(step, Selectors.STEPPER);
+    var stepper = stepperNode[customProperty];
 
-    if (step) {
-      var stepperNode = closest(step, Selectors.STEPPER);
-      var stepper = stepperNode[customProperty];
+    var stepIndex = stepper._steps.indexOf(step);
 
-      var stepIndex = stepper._steps.indexOf(step);
-
-      stepper._currentIndex = stepIndex;
-      showStep(step, stepper._steps);
-      showContent(stepper._stepsContents[stepIndex], stepper._stepsContents);
-    }
+    stepper._currentIndex = stepIndex;
+    showStep(step, stepper._steps);
+    showContent(stepper._stepsContents[stepIndex], stepper._stepsContents);
   }
 
   var DEFAULT_OPTIONS = {
@@ -254,12 +274,12 @@
       var _this2 = this;
 
       this._steps.forEach(function (step) {
-        var link = step.querySelector(Selectors.LINK);
+        var trigger = step.querySelector(Selectors.TRIGGER);
 
         if (_this2.options.linear) {
-          link.addEventListener('click', clickStepLinearListener);
+          trigger.addEventListener('click', clickStepLinearListener);
         } else {
-          link.addEventListener('click', clickStepNonLinearListener);
+          trigger.addEventListener('click', clickStepNonLinearListener);
         }
       });
     }; // Public
@@ -287,16 +307,16 @@
       var _this3 = this;
 
       this._steps.forEach(function (step) {
-        var link = step.querySelector(Selectors.LINK);
+        var trigger = step.querySelector(Selectors.TRIGGER);
 
         if (_this3.options.linear) {
-          link.removeEventListener('click', clickStepLinearListener);
+          trigger.removeEventListener('click', clickStepLinearListener);
         } else {
-          link.removeEventListener('click', clickStepNonLinearListener);
+          trigger.removeEventListener('click', clickStepNonLinearListener);
         }
       });
 
-      delete this._element[customProperty];
+      this._element[customProperty] = undefined;
       this._element = undefined;
       this._currentIndex = undefined;
       this._steps = undefined;
