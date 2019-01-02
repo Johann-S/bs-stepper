@@ -10,7 +10,7 @@ const Selectors = {
 const ClassName = {
   ACTIVE: 'active',
   LINEAR: 'linear',
-  BLOCK: 'dstepper-block',
+  BLOCK: 'show',
   NONE: 'dstepper-none',
   FADE: 'fade'
 }

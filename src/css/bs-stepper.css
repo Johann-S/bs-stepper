@@ -4,195 +4,114 @@
  * Licensed under MIT (https://github.com/Johann-S/bs-stepper/blob/master/LICENSE)
  */
 
-.bs-stepper {
-  display: block;
-}
-
-.bs-stepper.vertical {
-  display: flex;
-}
-
-.bs-stepper .bs-stepper-header {
+.bs-stepper-btn {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-weight: 700;
+  color: #6c757d;
+  text-align: center;
+  text-decoration: none;
   white-space: nowrap;
+  background-color: transparent;
+  border: none;
+  transition: background-color .15s ease-out, color .15s ease-out;
+}
+
+.bs-stepper-btn:disabled {
+  pointer-events: none;
+  opacity: .65;
+}
+
+.bs-stepper-btn:focus {
+  color: #007bff;
+  text-decoration: none;
+  outline: none;
+}
+
+@media (max-width: 520px) {
+  .bs-stepper-btn {
+    flex-direction: column;
+    padding: 10px;
+  }
+}
+
+.bs-stepper-label {
+  display: inline-block;
+  margin: .25rem;
+}
+
+.bs-stepper-btn:hover {
+  text-decoration: none;
+  background-color: rgba(0, 0, 0, .06);
+}
+
+.bs-stepper-header {
   display: flex;
   align-items: center;
 }
 
-.bs-stepper.vertical .bs-stepper-header {
-  flex-direction: column;
-  align-items: flex-start;
+@media (max-width: 520px) {
+  .bs-stepper-header {
+    margin: 0 -10px;
+    text-align: center;
+  }
 }
 
-.bs-stepper .bs-stepper-content {
-  overflow: hidden;
-  padding: 0 24px 24px 24px;
+.bs-stepper-line {
+  flex: 1 0 32px;
+  min-width: 1px;
+  min-height: 1px;
+  margin: auto;
+  background-color: rgba(0, 0, 0, .12);
 }
 
-.bs-stepper.vertical .bs-stepper-content {
-  padding: 0 0 0 48px;
+
+@media (max-width: 400px) {
+  .bs-stepper-line {
+    flex-basis: 20px;
+  }
 }
 
-.bs-stepper .step {
-  display: flex;
-  height: 72px;
-  overflow: hidden;
-  align-items: center;
-  outline: 0;
-  position: relative;
-  box-sizing: content-box;
-  -webkit-tap-highlight-color: transparent;
+.bs-stepper-circle {
+  display: inline-flex;
+  align-content: center;
+  justify-content: center;
+  width: 2em;
+  height: 2em;
+  padding: .5em 0;
+  margin: .25rem;
+  line-height: 1em;
+  color: #fff;
+  background-color: #6c757d;
+  border-radius: 1em;
 }
 
-.bs-stepper.vertical .step {
-  width: 100%;
-  padding: 0 12px;
-}
-
-.bs-stepper .step.active .bs-stepper-circle {
+.active .bs-stepper-circle {
   background-color: #007bff;
 }
 
-.bs-stepper .step:hover button:not(:disabled),
-.bs-stepper .step:hover a:not(:disabled),
-.bs-stepper .step:hover .step-trigger:not(:disabled) {
-  background-color: rgba(0, 0, 0, .06);
-  cursor: pointer;
-  text-decoration: none;
+.bs-stepper-content {
+  padding: 0 20px 20px;
 }
 
-.bs-stepper .content.dstepper-block {
+@media (max-width: 520px) {
+  .bs-stepper-content {
+    padding: 0;
+  }
+}
+
+.bs-stepper-vertical {
+  display: flex;
+}
+
+.bs-stepper-vertical .bs-stepper-header {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.bs-stepper-vertical .bs-stepper-pane {
   display: block;
-}
-
-.bs-stepper .content.dstepper-none {
-  display: none;
-}
-
-.bs-stepper.vertical .content.fade.dstepper-none {
-  visibility: hidden;
-}
-
-.bs-stepper .content:not(.fade) {
-  display: none;
-}
-
-.bs-stepper .content.active:not(.fade) {
-  display: block;
-}
-
-.bs-stepper .content.fade {
-  visibility: hidden;
-  transition-duration: .3s;
-  transition-property: opacity;
-}
-
-.bs-stepper.vertical .content {
-  visibility: hidden;
-  display: inherit;
-}
-
-.bs-stepper .content.fade.active {
-  visibility: visible;
-  opacity: 1;
-}
-
-.bs-stepper.vertical .content.active {
-  visibility: visible;
-}
-
-.bs-stepper .bs-stepper-circle {
-  display: inline-block;
-  color: #fff;
-  border-radius: 50%;
-  width: 32px;
-  height: 32px;
-  margin-right: 16px;
-  text-align: center;
-  line-height: 29px;
-  background-color: #6c757d;
-}
-
-.bs-stepper .step button,
-.bs-stepper .step a,
-.bs-stepper .step .step-trigger {
-  text-align: center;
-  text-decoration: none;
-  padding: 24px;
-}
-
-.bs-stepper .step button:focus,
-.bs-stepper .step a:focus,
-.bs-stepper .step .step-trigger:focus {
-  text-decoration: none;
-}
-
-.bs-stepper .step button .bs-stepper-label,
-.bs-stepper .step a .bs-stepper-label,
-.bs-stepper .step .step-trigger .bs-stepper-label {
-  font-weight: 600;
-  color: #212529;
-  display: inline-block;
-}
-
-.bs-stepper.linear .step:not(.active) button .bs-stepper-label,
-.bs-stepper.linear .step:not(.active) a .bs-stepper-label,
-.bs-stepper.linear .step:not(.active) .step-trigger .bs-stepper-label {
-  color: rgba(0, 0, 0, .38);
-}
-
-.bs-stepper .line {
-  border-top: 1px solid rgba(0, 0, 0, 0.12);
-  flex: auto;
-  height: 0;
-  min-width: 32px;
-}
-
-.bs-stepper.vertical .line {
-  min-height: 32px;
-  width: 0;
-  min-width: 0;
-  border-top: none;
-  border-left: 1px solid rgba(0, 0, 0, 0.12);
-  margin-right: auto;
-  margin-left: auto;
-}
-
-@media (max-width: 768px) {
-  .bs-stepper:not(.vertical) {
-    display: flex;
-  }
-
-  .bs-stepper:not(.vertical) .bs-stepper-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .bs-stepper:not(.vertical) .bs-stepper-content {
-    padding: 0 0 0 48px;
-  }
-
-  .bs-stepper:not(.vertical) .step {
-    width: 100%;
-    padding: 0 12px;
-  }
-
-  .bs-stepper:not(.vertical) .line {
-    min-height: 32px;
-    width: 0;
-    min-width: 0;
-    border-top: none;
-    border-left: 1px solid rgba(0, 0, 0, 0.12);
-    margin-right: auto;
-    margin-left: auto;
-  }
-
-  .bs-stepper:not(.vertical) .content.active {
-    visibility: visible;
-  }
-
-  .bs-stepper:not(.vertical) .content:not(.active),
-  .bs-stepper:not(.vertical) .content:not(.fade):not(.active)  {
-    visibility: hidden;
-    display: unset;
-  }
 }
