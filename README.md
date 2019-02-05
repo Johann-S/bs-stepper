@@ -55,9 +55,8 @@ yarn add bs-stepper
 
 CDN | Link
 ------------ | -------------
-unpkg | [`https://unpkg.com/bs-stepper`](https://unpkg.com/bs-stepper)
-unpkg, js minified | [`https://unpkg.com/bs-stepper/dist/js/bs-stepper.min.js`](https://unpkg.com/bs-stepper/dist/js/bs-stepper.min.js)
-unpkg, css minified | [`https://unpkg.com/bs-stepper/dist/css/bs-stepper.min.css`](https://unpkg.com/bs-stepper/dist/css/bs-stepper.min.css)
+jsDelivr, js minified | [`https://cdn.jsdelivr.net/npm/bs-stepper/dist/js/bs-stepper.min.js`](https://cdn.jsdelivr.net/npm/bs-stepper/dist/js/bs-stepper.min.js)
+jsDelivr, css minified | [`https://cdn.jsdelivr.net/npm/bs-stepper/dist/css/bs-stepper.min.css`](https://cdn.jsdelivr.net/npm/bs-stepper/dist/css/bs-stepper.min.css)
 
 ## How to use it
 
