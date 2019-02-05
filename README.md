@@ -169,6 +169,17 @@ stepper.next()
 
 Will navigate to the previous step of your stepper
 
+### to
+
+Will navigate to a step of your stepper.
+
+```js
+var stepper = new Stepper(document.querySelector('.bs-stepper'))
+
+/// Will navigate to the second step
+stepper.to(2)
+```
+
 ### reset
 
 Will reset you stepper to the first step (usefull for linear stepper)

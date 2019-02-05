@@ -338,6 +338,70 @@ describe('Stepper', function () {
     })
   })
 
+  describe('to', function () {
+    it('should go to the step number', function () {
+      fixture.innerHTML = [
+        '<div id="myStepper" class="bs-stepper">',
+        '  <div class="step" data-target="#test1">',
+        '    <button class="step-trigger">1</button>',
+        '  </div>',
+        '  <div class="step" data-target="#test2">',
+        '    <button class="step-trigger">2</button>',
+        '  </div>',
+        '  <div id="test1">1</div>',
+        '  <div id="test2">2</div>',
+        '</div>'
+      ].join('')
+
+      var stepperNode = document.getElementById('myStepper')
+      var stepper = new Stepper(stepperNode)
+      var test1 = document.querySelector('#test1')
+      var test2 = document.querySelector('#test2')
+
+      stepper.to(2)
+
+      expect(test1.classList.contains('active')).toBe(false)
+      expect(test2.classList.contains('active')).toBe(true)
+    })
+
+    it('should handle wrong inputs', function () {
+      fixture.innerHTML = [
+        '<div id="myStepper" class="bs-stepper">',
+        '  <div class="step" data-target="#test1">',
+        '    <button class="step-trigger">1</button>',
+        '  </div>',
+        '  <div class="step" data-target="#test2">',
+        '    <button class="step-trigger">2</button>',
+        '  </div>',
+        '  <div class="step" data-target="#test3">',
+        '    <button class="step-trigger">3</button>',
+        '  </div>',
+        '  <div id="test1">1</div>',
+        '  <div id="test2">2</div>',
+        '  <div id="test3">2</div>',
+        '</div>'
+      ].join('')
+
+      var stepperNode = document.getElementById('myStepper')
+      var stepper = new Stepper(stepperNode)
+      var test1 = document.querySelector('#test1')
+      var test2 = document.querySelector('#test2')
+      var test3 = document.querySelector('#test3')
+
+      stepper.to(-5)
+
+      expect(test1.classList.contains('active')).toBe(true)
+      expect(test2.classList.contains('active')).toBe(false)
+      expect(test3.classList.contains('active')).toBe(false)
+
+      stepper.to(2)
+
+      expect(test1.classList.contains('active')).toBe(false)
+      expect(test2.classList.contains('active')).toBe(true)
+      expect(test3.classList.contains('active')).toBe(false)
+    })
+  })
+
   describe('reset', function () {
     it('should return to the first step', function () {
       fixture.innerHTML = [
