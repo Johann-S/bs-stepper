@@ -15,7 +15,7 @@ const conf = {
     banner:
 `/*!
  * bsStepper v${pkg.version} (${pkg.homepage})
- * Copyright ${year} ${pkg.author}
+ * Copyright 2018 - ${year} ${pkg.author}
  * Licensed under MIT (https://github.com/Johann-S/bs-stepper/blob/master/LICENSE)
  */`,
     file: './dist/js/bs-stepper.js',
