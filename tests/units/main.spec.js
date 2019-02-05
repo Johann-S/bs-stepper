@@ -399,6 +399,12 @@ describe('Stepper', function () {
       expect(test1.classList.contains('active')).toBe(false)
       expect(test2.classList.contains('active')).toBe(true)
       expect(test3.classList.contains('active')).toBe(false)
+
+      stepper.to(stepper._steps.length + 1)
+
+      expect(test1.classList.contains('active')).toBe(true)
+      expect(test2.classList.contains('active')).toBe(false)
+      expect(test3.classList.contains('active')).toBe(false)
     })
   })
 

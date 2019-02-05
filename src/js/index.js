@@ -71,9 +71,9 @@ class Stepper {
     showContent(this._stepsContents[this._currentIndex], this._stepsContents)
   }
 
-  to(stepNumber) {
+  to (stepNumber) {
     const tempIndex = stepNumber - 1
-    this._currentIndex = tempIndex >= 0 && tempIndex <= this._steps.length
+    this._currentIndex = tempIndex >= 0 && tempIndex < this._steps.length
       ? tempIndex
       : 0
 
