@@ -15,6 +15,7 @@
   text-align: center;
   text-decoration: none;
   white-space: nowrap;
+  cursor: pointer;
   background-color: transparent;
   border: none;
   transition: background-color .15s ease-out, color .15s ease-out;
@@ -113,5 +114,9 @@
 }
 
 .bs-stepper-vertical .bs-stepper-pane {
+  display: block;
+}
+
+.dstepper-block {
   display: block;
 }
