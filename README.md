@@ -75,14 +75,14 @@ Add the following HTML:
   <div class="bs-stepper-header" role="tablist">
     <!-- your steps here -->
     <div class="step" data-target="#logins-part">
-      <button type="button" class="btn bs-stepper-trigger" role="tab" aria-controls="logins-part" id="logins-part-trigger">
+      <button type="button" class="btn step-trigger" role="tab" aria-controls="logins-part" id="logins-part-trigger">
         <span class="bs-stepper-circle">1</span>
         <span class="bs-stepper-label">Logins</span>
       </button>
     </div>
     <div class="line"></div>
     <div class="step" data-target="#information-part">
-      <button type="button" class="btn bs-stepper-trigger" role="tab" aria-controls="information-part" id="information-part-trigger">
+      <button type="button" class="btn step-trigger" role="tab" aria-controls="information-part" id="information-part-trigger">
         <span class="bs-stepper-circle">2</span>
         <span class="bs-stepper-label">Various information</span>
       </button>

@@ -3,14 +3,14 @@ import { WinEvent, closest } from './polyfill'
 const MILLISECONDS_MULTIPLIER = 1000
 const Selectors = {
   STEPS: '.step',
-  TRIGGER: '.bs-stepper-trigger, a',
+  TRIGGER: '.step-trigger, a',
   STEPPER: '.bs-stepper'
 }
 
 const ClassName = {
   ACTIVE: 'active',
   LINEAR: 'linear',
-  BLOCK: 'bs-stepper-shown',
+  BLOCK: 'dstepper-block',
   NONE: 'dstepper-none',
   FADE: 'fade'
 }
