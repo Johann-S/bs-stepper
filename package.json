@@ -91,8 +91,7 @@
   "standard-version": {
     "scripts": {
       "postbump": "node scripts/bump-css.js && npm run build",
-      "precommit": "git add dist",
-      "posttag": "node scripts/restore-css.js"
+      "precommit": "node scripts/restore-css.js"
     }
   }
 }
