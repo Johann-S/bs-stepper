@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [1.4.0](https://github.com/Johann-S/bs-stepper/compare/v1.3.0...v1.4.0) (2019-02-26)
+
+
+### Bug Fixes
+
+* **build:** bump css too ([c135bd5](https://github.com/Johann-S/bs-stepper/commit/c135bd5))
+* **build:** do not try to add dist during the process ([c89e165](https://github.com/Johann-S/bs-stepper/commit/c89e165))
+* **core:** adjust css for retro compatibility ([0402870](https://github.com/Johann-S/bs-stepper/commit/0402870))
+* **html:** remove btn class which isn't needed ([b46e048](https://github.com/Johann-S/bs-stepper/commit/b46e048))
+* **linear:** fade effet wasn't applied ([5c6ce96](https://github.com/Johann-S/bs-stepper/commit/5c6ce96))
+* **to:** should handle higher value ([55bcb2a](https://github.com/Johann-S/bs-stepper/commit/55bcb2a))
+
+
+### Features
+
+* **build:** improve banners ([6021e03](https://github.com/Johann-S/bs-stepper/commit/6021e03))
+* **build:** improve build process ([75c62ca](https://github.com/Johann-S/bs-stepper/commit/75c62ca))
+* **core:** rewrite css smartly ([30d895c](https://github.com/Johann-S/bs-stepper/commit/30d895c))
+* **to:** add a method to navigate to a specific step ([f7e1add](https://github.com/Johann-S/bs-stepper/commit/f7e1add))
+
+
+
 <a name="1.3.0"></a>
 # [1.3.0](https://github.com/Johann-S/bs-stepper/compare/v1.2.1...v1.3.0) (2018-10-29)
 
