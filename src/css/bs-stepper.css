@@ -168,7 +168,7 @@
   display: none;
 }
 
-.bs-stepper.vertical .bs-stepper-pane.fade.dstepper-none,
-.bs-stepper.vertical .content.fade.dstepper-none {
+.vertical .bs-stepper-pane.fade.dstepper-none,
+.vertical .content.fade.dstepper-none {
   visibility: hidden;
 }
