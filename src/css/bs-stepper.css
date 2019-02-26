@@ -135,25 +135,40 @@
   display: block;
 }
 
-.bs-stepper-pane,
-.bs-stepper .content {
+.bs-stepper-pane:not(.fade),
+.bs-stepper .content:not(.fade) {
   display: none;
-  opacity: 0;
-}
-
-.bs-stepper-pane.active,
-.bs-stepper .content.active {
-  display: block;
-  opacity: 1;
-}
-
-.bs-stepper-pane.dstepper-block,
-.bs-stepper .content.dstepper-block {
-  opacity: 1;
 }
 
 .bs-stepper .content.fade,
 .bs-stepper-pane.fade {
+  visibility: hidden;
   transition-duration: .3s;
   transition-property: opacity;
+}
+
+.bs-stepper-pane.fade.active,
+.bs-stepper .content.fade.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.bs-stepper-pane.active:not(.fade),
+.bs-stepper .content.active:not(.fade) {
+  display: block;
+}
+
+.bs-stepper-pane.dstepper-block,
+.bs-stepper .content.dstepper-block {
+  display: block;
+}
+
+.bs-stepper:not(.vertical) .bs-stepper-pane.dstepper-none,
+.bs-stepper:not(.vertical) .content.dstepper-none {
+  display: none;
+}
+
+.bs-stepper.vertical .bs-stepper-pane.fade.dstepper-none,
+.bs-stepper.vertical .content.fade.dstepper-none {
+  visibility: hidden;
 }
