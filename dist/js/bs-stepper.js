@@ -1,13 +1,13 @@
 /*!
  * bsStepper v1.3.0 (https://github.com/Johann-S/bs-stepper)
- * Copyright 2018 Johann-S <johann.servoire@gmail.com>
+ * Copyright 2018 - 2019 Johann-S <johann.servoire@gmail.com>
  * Licensed under MIT (https://github.com/Johann-S/bs-stepper/blob/master/LICENSE)
  */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
-  (global.Stepper = factory());
-}(this, (function () { 'use strict';
+  (global = global || self, global.Stepper = factory());
+}(this, function () { 'use strict';
 
   function _extends() {
     _extends = Object.assign || function (target) {
@@ -282,8 +282,8 @@
           trigger.addEventListener('click', clickStepNonLinearListener);
         }
       });
-    }; // Public
-
+    } // Public
+    ;
 
     _proto.next = function next() {
       this._currentIndex = this._currentIndex + 1 <= this._steps.length - 1 ? this._currentIndex + 1 : this._steps.length - 1;
@@ -293,6 +293,13 @@
 
     _proto.previous = function previous() {
       this._currentIndex = this._currentIndex - 1 >= 0 ? this._currentIndex - 1 : 0;
+      showStep(this._steps[this._currentIndex], this._steps);
+      showContent(this._stepsContents[this._currentIndex], this._stepsContents);
+    };
+
+    _proto.to = function to(stepNumber) {
+      var tempIndex = stepNumber - 1;
+      this._currentIndex = tempIndex >= 0 && tempIndex < this._steps.length ? tempIndex : 0;
       showStep(this._steps[this._currentIndex], this._steps);
       showContent(this._stepsContents[this._currentIndex], this._stepsContents);
     };
@@ -328,5 +335,5 @@
 
   return Stepper;
 
-})));
+}));
 //# sourceMappingURL=bs-stepper.js.map
