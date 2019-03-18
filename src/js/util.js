@@ -3,7 +3,7 @@ import { WinEvent, closest } from './polyfill'
 const MILLISECONDS_MULTIPLIER = 1000
 const Selectors = {
   STEPS: '.step',
-  TRIGGER: '.step-trigger, a',
+  TRIGGER: '.step-trigger',
   STEPPER: '.bs-stepper'
 }
 

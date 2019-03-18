@@ -115,33 +115,6 @@ describe('Stepper', function () {
       expect(stepper._currentIndex).toEqual(1)
     })
 
-    it('should go to the next step when user click on a <a> tags which is a trigger', function () {
-      fixture.innerHTML = [
-        '<div id="myStepper" class="bs-stepper">',
-        '  <div class="step" data-target="#test1">',
-        '    <a>1</a>',
-        '  </div>',
-        '  <div class="step" data-target="#test2">',
-        '    <a id="trigger2">2</a>',
-        '  </div>',
-        '  <div id="test1">1</div>',
-        '  <div id="test2">2</div>',
-        '</div>'
-      ].join('')
-
-      var stepperNode = document.getElementById('myStepper')
-      var stepper = new Stepper(stepperNode, {
-        linear: false
-      })
-
-      var trigger2 = document.querySelector('#trigger2')
-      trigger2.click()
-
-      expect(document.querySelector('#test1').classList.contains('active')).toBe(false)
-      expect(document.querySelector('#test2').classList.contains('active')).toBe(true)
-      expect(stepper._currentIndex).toEqual(1)
-    })
-
     it('should call preventDefault when user click on a step for linear stepper', function () {
       fixture.innerHTML = [
         '<div id="myStepper" class="bs-stepper">',
