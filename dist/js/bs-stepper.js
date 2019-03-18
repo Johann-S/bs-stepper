@@ -1,5 +1,5 @@
 /*!
- * bsStepper v1.4.0 (https://github.com/Johann-S/bs-stepper)
+ * bsStepper v1.4.1 (https://github.com/Johann-S/bs-stepper)
  * Copyright 2018 - 2019 Johann-S <johann.servoire@gmail.com>
  * Licensed under MIT (https://github.com/Johann-S/bs-stepper/blob/master/LICENSE)
  */
@@ -77,7 +77,7 @@
   var MILLISECONDS_MULTIPLIER = 1000;
   var Selectors = {
     STEPS: '.step',
-    TRIGGER: '.step-trigger, a',
+    TRIGGER: '.step-trigger',
     STEPPER: '.bs-stepper'
   };
   var ClassName = {
