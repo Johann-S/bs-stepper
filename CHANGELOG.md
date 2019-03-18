@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.1](https://github.com/Johann-S/bs-stepper/compare/v1.4.0...v1.4.1) (2019-03-18)
+
+
+### Bug Fixes
+
+* **selector:** remove a selector ([e80d3e3](https://github.com/Johann-S/bs-stepper/commit/e80d3e3))
+
+
+### BREAKING CHANGES
+
+* **selector:** simple <a> tags won't trigger step change, you have to
+use .step-trigger to allow that
+
+
+
 # [1.4.0](https://github.com/Johann-S/bs-stepper/compare/v1.3.0...v1.4.0) (2019-02-26)
 
 
