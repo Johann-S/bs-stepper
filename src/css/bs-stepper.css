@@ -4,8 +4,7 @@
  * Licensed under MIT (https://github.com/Johann-S/bs-stepper/blob/master/LICENSE)
  */
 
-.bs-stepper .step-trigger,
-.bs-stepper a {
+.bs-stepper .step-trigger {
   display: inline-flex;
   flex-wrap: wrap;
   align-items: center;
@@ -26,34 +25,28 @@
   transition: background-color .15s ease-out, color .15s ease-out;
 }
 
-.bs-stepper .step-trigger:not(:disabled):not(.disabled),
-.bs-stepper a:not(:disabled):not(.disabled) {
+.bs-stepper .step-trigger:not(:disabled):not(.disabled) {
   cursor: pointer;
 }
 
 .bs-stepper .step-trigger:disabled,
-.bs-stepper .step-trigger.disabled,
-.bs-stepper a:disabled,
-.bs-stepper .disabled:not(.step-trigger) {
+.bs-stepper .step-trigger.disabled {
   pointer-events: none;
   opacity: .65;
 }
 
-.bs-stepper .step-trigger:focus,
-.bs-stepper a:focus {
+.bs-stepper .step-trigger:focus {
   color: #007bff;
   outline: none;
 }
 
-.bs-stepper .step-trigger:hover,
-.bs-stepper a:hover {
+.bs-stepper .step-trigger:hover {
   text-decoration: none;
   background-color: rgba(0, 0, 0, .06);
 }
 
 @media (max-width: 520px) {
-  .bs-stepper .step-trigger,
-  .bs-stepper a {
+  .bs-stepper .step-trigger {
     flex-direction: column;
     padding: 10px;
   }
