@@ -1,6 +1,11 @@
 let matches = window.Element.prototype.matches
 let closest = (element, selector) => element.closest(selector)
 let WinEvent = (inType, params) => new window.Event(inType, params)
+let createCustomEvent = (eventName, params) => {
+  const cEvent = new window.CustomEvent(eventName, params)
+
+  return cEvent
+}
 
 /* istanbul ignore next */
 function polyfill () {
@@ -35,11 +40,35 @@ function polyfill () {
       return e
     }
   }
+
+  if (typeof window.CustomEvent !== 'function') {
+    const originPreventDefault = window.Event.prototype.preventDefault
+
+    createCustomEvent = (eventName, params) => {
+      const evt = document.createEvent('CustomEvent')
+
+      params = params || { bubbles: false, cancelable: false, detail: null }
+      evt.initCustomEvent(eventName, params.bubbles, params.cancelable, params.detail)
+      evt.preventDefault = function () {
+        if (!this.cancelable) {
+          return
+        }
+
+        originPreventDefault.call(this)
+        Object.defineProperty(this, 'defaultPrevented', {
+          get: function () { return true }
+        })
+      }
+
+      return evt
+    }
+  }
 }
 
 polyfill()
 
 export {
   closest,
-  WinEvent
+  WinEvent,
+  createCustomEvent
 }

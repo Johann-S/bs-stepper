@@ -1,4 +1,4 @@
-import { showContent, showStep, Selectors, ClassName, customProperty, detectAnimation } from './util'
+import { show, Selectors, ClassName, customProperty, detectAnimation } from './util'
 import { clickStepLinearListener, clickStepNonLinearListener } from './listeners'
 
 const DEFAULT_OPTIONS = {
@@ -30,16 +30,15 @@ class Stepper {
     }
 
     detectAnimation(this._stepsContents, this.options.animation)
-    if (this._steps.length) {
-      showStep(this._steps[this._currentIndex], this._steps)
-      showContent(this._stepsContents[this._currentIndex], this._stepsContents)
-    }
-
     this._setLinkListeners()
     Object.defineProperty(this._element, customProperty, {
       value: this,
       writable: true
     })
+
+    if (this._steps.length) {
+      show(this._element, this._currentIndex)
+    }
   }
 
   // Private
@@ -60,36 +59,34 @@ class Stepper {
   next () {
     this._currentIndex = (this._currentIndex + 1) <= this._steps.length - 1 ? this._currentIndex + 1 : (this._steps.length - 1)
 
-    showStep(this._steps[this._currentIndex], this._steps)
-    showContent(this._stepsContents[this._currentIndex], this._stepsContents)
+    show(this._element, this._currentIndex)
   }
 
   previous () {
     this._currentIndex = (this._currentIndex - 1) >= 0 ? this._currentIndex - 1 : 0
 
-    showStep(this._steps[this._currentIndex], this._steps)
-    showContent(this._stepsContents[this._currentIndex], this._stepsContents)
+    show(this._element, this._currentIndex)
   }
 
   to (stepNumber) {
     const tempIndex = stepNumber - 1
+
     this._currentIndex = tempIndex >= 0 && tempIndex < this._steps.length
       ? tempIndex
       : 0
 
-    showStep(this._steps[this._currentIndex], this._steps)
-    showContent(this._stepsContents[this._currentIndex], this._stepsContents)
+    show(this._element, this._currentIndex)
   }
 
   reset () {
     this._currentIndex = 0
-    showStep(this._steps[this._currentIndex], this._steps)
-    showContent(this._stepsContents[this._currentIndex], this._stepsContents)
+    show(this._element, this._currentIndex)
   }
 
   destroy () {
     this._steps.forEach(step => {
       const trigger = step.querySelector(Selectors.TRIGGER)
+
       if (this.options.linear) {
         trigger.removeEventListener('click', clickStepLinearListener)
       } else {

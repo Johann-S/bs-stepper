@@ -205,7 +205,7 @@ describe('Stepper', function () {
   })
 
   describe('next', function () {
-    it('should go to the next step', function () {
+    it('should go to the next step', function (done) {
       fixture.innerHTML = [
         '<div id="myStepper" class="bs-stepper">',
         '  <div class="step" data-target="#test1">',
@@ -222,10 +222,56 @@ describe('Stepper', function () {
       var stepperNode = document.getElementById('myStepper')
       var stepper = new Stepper(stepperNode)
 
-      stepper.next()
+      stepperNode.addEventListener('show.bs-stepper', function (event) {
+        expect(event.detail.indexStep).toEqual(1)
+      })
+      stepperNode.addEventListener('shown.bs-stepper', function (event) {
+        expect(event.detail.indexStep).toEqual(1)
+        expect(document.querySelector('#test1').classList.contains('active')).toBe(false)
+        expect(document.querySelector('#test2').classList.contains('active')).toBe(true)
+        done()
+      })
 
-      expect(document.querySelector('#test1').classList.contains('active')).toBe(false)
-      expect(document.querySelector('#test2').classList.contains('active')).toBe(true)
+      stepper.next()
+    })
+
+    it('should not go to the next step if the show event is default prevented', function (done) {
+      fixture.innerHTML = [
+        '<div id="myStepper" class="bs-stepper">',
+        '  <div class="step" data-target="#test1">',
+        '    <button class="step-trigger">1</button>',
+        '  </div>',
+        '  <div class="step" data-target="#test2">',
+        '    <button class="step-trigger">2</button>',
+        '  </div>',
+        '  <div id="test1">1</div>',
+        '  <div id="test2">2</div>',
+        '</div>'
+      ].join('')
+
+      var stepperNode = document.getElementById('myStepper')
+      var stepper = new Stepper(stepperNode)
+      var listeners = {
+        show: function (event) {
+          event.preventDefault()
+          expect(event.detail.indexStep).toEqual(1)
+
+          setTimeout(function () {
+            expect(listeners.shown).not.toHaveBeenCalled()
+            done()
+          }, 10)
+        },
+        shown: function (event) {
+          console.warn('shown called but it should not be the case')
+        }
+      }
+
+      spyOn(listeners, 'shown')
+
+      stepperNode.addEventListener('show.bs-stepper', listeners.show)
+      stepperNode.addEventListener('shown.bs-stepper', listeners.shown)
+
+      stepper.next()
     })
 
     it('should stay at the end if we call next', function () {
