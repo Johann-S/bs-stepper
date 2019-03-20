@@ -34,6 +34,7 @@ Features:
 - [Install](#install)
 - [How to use it](#how-to-use-it)
 - [Methods](#methods)
+- [Events](#events)
 - [Compatibility](#compatibility)
 - [Support me](#support-me)
 - [Thanks](#thanks)
@@ -158,7 +159,8 @@ Pass your `Stepper` DOMElement
 
 ### next
 
-Will navigate to the next step of your stepper
+Will navigate to the next step of your stepper. This method also emit `show.bs-stepper` before showing the step and
+`shown.bs-stepper` when the step is displayed.
 
 ```js
 var stepper = new Stepper(document.querySelector('.bs-stepper'))
@@ -167,11 +169,13 @@ stepper.next()
 
 ### previous
 
-Will navigate to the previous step of your stepper
+Will navigate to the previous step of your stepper. This method also emit `show.bs-stepper` before showing the step and
+`shown.bs-stepper` when the step is displayed.
 
 ### to
 
-Will navigate to a step of your stepper.
+Will navigate to a step of your stepper. This method also emit `show.bs-stepper` before showing the step and
+`shown.bs-stepper` when the step is displayed.
 
 ```js
 var stepper = new Stepper(document.querySelector('.bs-stepper'))
@@ -182,11 +186,39 @@ stepper.to(2)
 
 ### reset
 
-Will reset you stepper to the first step (usefull for linear stepper)
+Will reset you stepper to the first step (usefull for linear stepper). This method also emit `show.bs-stepper` before showing the step and
+`shown.bs-stepper` when the step is displayed.
 
 ### destroy
 
 Remove stored data relative to your stepper and listeners.
+
+## Events
+
+The methods which trigger a step change trigger two events:
+ - `show.bs-stepper`
+ - `shown.bs-stepper`
+
+You can listen on those events like that:
+
+```js
+var stepperEl = document.getElementById('stepper')
+var stepper = new Stepper(stepperEl)
+
+stepperEl.addEventListener('show.bs-stepper', function (event) {
+  // You can call prevent to stop the rendering of your step
+  // event.preventDefault()
+
+  // indexStep contains the id of the step which will be displayed
+  console.warn(event.detail.indexStep)
+})
+
+stepperEl.addEventListener('shown.bs-stepper', function (event) {
+  console.warn('step shown')
+})
+```
+
+If you need to prevent the display of a step, you have to call `preventDefault` on the `show.bs-stepper` listener.
 
 ## Compatibility
 
