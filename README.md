@@ -236,7 +236,9 @@ You can find our BrowserStack list of browsers [here](https://github.com/Johann-
 
 ## Support me
 
-If you want to thank me, you can support me and become my [Patron](https://www.patreon.com/jservoire)
+If you want to thank me or supporting my work:
+ - You can become my [Patron](https://www.patreon.com/jservoire)
+ - Or buy me a coffee: [PayPal](https://www.paypal.me/jservoire)
 
 ## Thanks
 
