@@ -1,6 +1,6 @@
 const path = require('path')
 const babel = require('rollup-plugin-babel')
-const { uglify } = require('rollup-plugin-uglify')
+const { terser } = require('rollup-plugin-terser')
 
 const pkg = require(path.resolve(__dirname, 'package.json'))
 const year = new Date().getFullYear()
@@ -43,7 +43,7 @@ if (buildDev) {
 
 if (buildProd) {
   conf.output.file = './dist/js/bs-stepper.min.js'
-  conf.plugins.push(uglify({
+  conf.plugins.push(terser({
     compress: {
       typeofs: false
     },
