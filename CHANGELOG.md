@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [1.5.0](https://github.com/Johann-S/bs-stepper/compare/v1.4.1...v1.5.0) (2019-03-22)
+
+
+### Features
+
+* **events:** dispatch show events (show and shown) ([8b49845](https://github.com/Johann-S/bs-stepper/commit/8b49845))
+
+
+
 ## [1.4.1](https://github.com/Johann-S/bs-stepper/compare/v1.4.0...v1.4.1) (2019-03-18)
 
 
