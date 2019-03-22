@@ -1,5 +1,5 @@
 /*!
- * bsStepper v1.4.1 (https://github.com/Johann-S/bs-stepper)
+ * bsStepper v1.5.0 (https://github.com/Johann-S/bs-stepper)
  * Copyright 2018 - 2019 Johann-S <johann.servoire@gmail.com>
  * Licensed under MIT (https://github.com/Johann-S/bs-stepper/blob/master/LICENSE)
  */
@@ -36,6 +36,11 @@
   var WinEvent = function WinEvent(inType, params) {
     return new window.Event(inType, params);
   };
+
+  var createCustomEvent = function createCustomEvent(eventName, params) {
+    var cEvent = new window.CustomEvent(eventName, params);
+    return cEvent;
+  };
   /* istanbul ignore next */
 
 
@@ -70,6 +75,35 @@
         return e;
       };
     }
+
+    if (typeof window.CustomEvent !== 'function') {
+      var originPreventDefault = window.Event.prototype.preventDefault;
+
+      createCustomEvent = function createCustomEvent(eventName, params) {
+        var evt = document.createEvent('CustomEvent');
+        params = params || {
+          bubbles: false,
+          cancelable: false,
+          detail: null
+        };
+        evt.initCustomEvent(eventName, params.bubbles, params.cancelable, params.detail);
+
+        evt.preventDefault = function () {
+          if (!this.cancelable) {
+            return;
+          }
+
+          originPreventDefault.call(this);
+          Object.defineProperty(this, 'defaultPrevented', {
+            get: function get() {
+              return true;
+            }
+          });
+        };
+
+        return evt;
+      };
+    }
   }
 
   polyfill();
@@ -90,20 +124,47 @@
   var transitionEndEvent = 'transitionend';
   var customProperty = 'bsStepper';
 
-  var showStep = function showStep(step, stepList) {
-    if (step.classList.contains(ClassName.ACTIVE)) {
+  var show = function show(stepperNode, indexStep) {
+    var stepper = stepperNode[customProperty];
+
+    if (stepper._steps[indexStep].classList.contains(ClassName.ACTIVE) || stepper._stepsContents[indexStep].classList.contains(ClassName.ACTIVE)) {
       return;
     }
 
-    var stepperNode = closest(step, Selectors.STEPPER);
-    var activeStep = stepList.filter(function (step) {
+    var showEvent = createCustomEvent('show.bs-stepper', {
+      cancelable: true,
+      detail: {
+        indexStep: indexStep
+      }
+    });
+    stepperNode.dispatchEvent(showEvent);
+
+    var activeStep = stepper._steps.filter(function (step) {
       return step.classList.contains(ClassName.ACTIVE);
     });
+
+    var activeContent = stepper._stepsContents.filter(function (content) {
+      return content.classList.contains(ClassName.ACTIVE);
+    });
+
+    if (showEvent.defaultPrevented) {
+      return;
+    }
 
     if (activeStep.length) {
       activeStep[0].classList.remove(ClassName.ACTIVE);
     }
 
+    if (activeContent.length) {
+      activeContent[0].classList.remove(ClassName.ACTIVE);
+      activeContent[0].classList.remove(ClassName.BLOCK);
+    }
+
+    showStep(stepperNode, stepper._steps[indexStep], stepper._steps);
+    showContent(stepperNode, stepper._stepsContents[indexStep], stepper._stepsContents, activeContent);
+  };
+
+  var showStep = function showStep(stepperNode, step, stepList) {
     stepList.forEach(function (step) {
       var trigger = step.querySelector(Selectors.TRIGGER);
       trigger.setAttribute('aria-selected', 'false'); // if stepper is in linear mode, set disabled attribute on the trigger
@@ -121,23 +182,18 @@
     }
   };
 
-  var showContent = function showContent(content, contentList) {
-    if (content.classList.contains(ClassName.ACTIVE)) {
-      return;
-    }
+  var showContent = function showContent(stepperNode, content, contentList, activeContent) {
+    var shownEvent = createCustomEvent('shown.bs-stepper', {
+      cancelable: true,
+      detail: {
+        indexStep: contentList.indexOf(content)
+      }
+    });
 
     function complete() {
       content.classList.add(ClassName.BLOCK);
       content.removeEventListener(transitionEndEvent, complete);
-    }
-
-    var activeContent = contentList.filter(function (content) {
-      return content.classList.contains(ClassName.ACTIVE);
-    });
-
-    if (activeContent.length) {
-      activeContent[0].classList.remove(ClassName.ACTIVE);
-      activeContent[0].classList.remove(ClassName.BLOCK);
+      stepperNode.dispatchEvent(shownEvent);
     }
 
     if (content.classList.contains(ClassName.FADE)) {
@@ -153,6 +209,7 @@
       emulateTransitionEnd(content, duration);
     } else {
       content.classList.add(ClassName.ACTIVE);
+      stepperNode.dispatchEvent(shownEvent);
     }
   };
 
@@ -216,8 +273,7 @@
     var stepIndex = stepper._steps.indexOf(step);
 
     stepper._currentIndex = stepIndex;
-    showStep(step, stepper._steps);
-    showContent(stepper._stepsContents[stepIndex], stepper._stepsContents);
+    show(stepperNode, stepIndex);
   }
 
   var DEFAULT_OPTIONS = {
@@ -254,17 +310,16 @@
 
       detectAnimation(this._stepsContents, this.options.animation);
 
-      if (this._steps.length) {
-        showStep(this._steps[this._currentIndex], this._steps);
-        showContent(this._stepsContents[this._currentIndex], this._stepsContents);
-      }
-
       this._setLinkListeners();
 
       Object.defineProperty(this._element, customProperty, {
         value: this,
         writable: true
       });
+
+      if (this._steps.length) {
+        show(this._element, this._currentIndex);
+      }
     } // Private
 
 
@@ -287,27 +342,23 @@
 
     _proto.next = function next() {
       this._currentIndex = this._currentIndex + 1 <= this._steps.length - 1 ? this._currentIndex + 1 : this._steps.length - 1;
-      showStep(this._steps[this._currentIndex], this._steps);
-      showContent(this._stepsContents[this._currentIndex], this._stepsContents);
+      show(this._element, this._currentIndex);
     };
 
     _proto.previous = function previous() {
       this._currentIndex = this._currentIndex - 1 >= 0 ? this._currentIndex - 1 : 0;
-      showStep(this._steps[this._currentIndex], this._steps);
-      showContent(this._stepsContents[this._currentIndex], this._stepsContents);
+      show(this._element, this._currentIndex);
     };
 
     _proto.to = function to(stepNumber) {
       var tempIndex = stepNumber - 1;
       this._currentIndex = tempIndex >= 0 && tempIndex < this._steps.length ? tempIndex : 0;
-      showStep(this._steps[this._currentIndex], this._steps);
-      showContent(this._stepsContents[this._currentIndex], this._stepsContents);
+      show(this._element, this._currentIndex);
     };
 
     _proto.reset = function reset() {
       this._currentIndex = 0;
-      showStep(this._steps[this._currentIndex], this._steps);
-      showContent(this._stepsContents[this._currentIndex], this._stepsContents);
+      show(this._element, this._currentIndex);
     };
 
     _proto.destroy = function destroy() {
