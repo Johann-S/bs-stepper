@@ -1,9 +1,21 @@
-import { show, Selectors, ClassName, customProperty, detectAnimation } from './util'
-import { clickStepLinearListener, clickStepNonLinearListener } from './listeners'
+import { show, customProperty, detectAnimation } from './util'
+import { buildClickStepLinearListener, buildClickStepNonLinearListener } from './listeners'
 
 const DEFAULT_OPTIONS = {
   linear: true,
-  animation: false
+  animation: false,
+  selectors: {
+    steps: '.step',
+    trigger: '.step-trigger',
+    stepper: '.bs-stepper'
+  },
+  classNames: {
+    active: 'active',
+    linear: 'linear',
+    block: 'dstepper-block',
+    none: 'dstepper-none',
+    fade: 'fade'
+  }
 }
 
 class Stepper {
@@ -11,7 +23,17 @@ class Stepper {
     this._element = element
     this._currentIndex = 0
     this._stepsContents = []
-    this._steps = [].slice.call(this._element.querySelectorAll(Selectors.STEPS))
+
+    this.options = {
+      ...DEFAULT_OPTIONS,
+      ..._options
+    }
+
+    if (this.options.linear) {
+      this._element.classList.add(this.options.classNames.linear)
+    }
+
+    this._steps = [].slice.call(this._element.querySelectorAll(this.options.selectors.steps))
       .filter(step => step.hasAttribute('data-target'))
 
     this._steps.forEach(step => {
@@ -20,16 +42,7 @@ class Stepper {
       )
     })
 
-    this.options = {
-      ...DEFAULT_OPTIONS,
-      ..._options
-    }
-
-    if (this.options.linear) {
-      this._element.classList.add(ClassName.LINEAR)
-    }
-
-    detectAnimation(this._stepsContents, this.options.animation)
+    detectAnimation(this._stepsContents, this.options)
     this._setLinkListeners()
     Object.defineProperty(this._element, customProperty, {
       value: this,
@@ -37,7 +50,7 @@ class Stepper {
     })
 
     if (this._steps.length) {
-      show(this._element, this._currentIndex)
+      show(this._element, this._currentIndex, this.options)
     }
   }
 
@@ -45,11 +58,13 @@ class Stepper {
 
   _setLinkListeners () {
     this._steps.forEach(step => {
-      const trigger = step.querySelector(Selectors.TRIGGER)
+      const trigger = step.querySelector(this.options.selectors.trigger)
       if (this.options.linear) {
-        trigger.addEventListener('click', clickStepLinearListener)
+        this._clickStepLinearListener = buildClickStepLinearListener(this.options)
+        trigger.addEventListener('click', this._clickStepLinearListener)
       } else {
-        trigger.addEventListener('click', clickStepNonLinearListener)
+        this._clickStepNonLinearListener = buildClickStepNonLinearListener(this.options)
+        trigger.addEventListener('click', this._clickStepNonLinearListener)
       }
     })
   }
@@ -59,13 +74,13 @@ class Stepper {
   next () {
     this._currentIndex = (this._currentIndex + 1) <= this._steps.length - 1 ? this._currentIndex + 1 : (this._steps.length - 1)
 
-    show(this._element, this._currentIndex)
+    show(this._element, this._currentIndex, this.options)
   }
 
   previous () {
     this._currentIndex = (this._currentIndex - 1) >= 0 ? this._currentIndex - 1 : 0
 
-    show(this._element, this._currentIndex)
+    show(this._element, this._currentIndex, this.options)
   }
 
   to (stepNumber) {
@@ -75,22 +90,26 @@ class Stepper {
       ? tempIndex
       : 0
 
-    show(this._element, this._currentIndex)
+    show(this._element, this._currentIndex, this.options)
   }
 
   reset () {
     this._currentIndex = 0
-    show(this._element, this._currentIndex)
+    show(this._element, this._currentIndex, this.options)
   }
 
   destroy () {
     this._steps.forEach(step => {
-      const trigger = step.querySelector(Selectors.TRIGGER)
+      const trigger = step.querySelector(this.options.selectors.trigger)
 
       if (this.options.linear) {
-        trigger.removeEventListener('click', clickStepLinearListener)
+        if (this._clickStepLinearListener) {
+          trigger.removeEventListener('click', this._clickStepLinearListener)
+        }
       } else {
-        trigger.removeEventListener('click', clickStepNonLinearListener)
+        if (this._clickStepNonLinearListener) {
+          trigger.removeEventListener('click', this._clickStepNonLinearListener)
+        }
       }
     })
 
@@ -99,6 +118,8 @@ class Stepper {
     this._currentIndex = undefined
     this._steps = undefined
     this._stepsContents = undefined
+    this._clickStepLinearListener = undefined
+    this._clickStepNonLinearListener = undefined
   }
 }
 
