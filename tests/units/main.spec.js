@@ -42,7 +42,19 @@ describe('Stepper', function () {
       expect(document.getElementById('trigger2').getAttribute('aria-selected')).toEqual('false')
       expect(stepper.options).toEqual({
         linear: true,
-        animation: false
+        animation: false,
+        selectors: {
+          steps: '.step',
+          trigger: '.step-trigger',
+          stepper: '.bs-stepper'
+        },
+        classNames: {
+          active: 'active',
+          linear: 'linear',
+          block: 'dstepper-block',
+          none: 'dstepper-none',
+          fade: 'fade'
+        }
       })
     })
 
@@ -82,7 +94,19 @@ describe('Stepper', function () {
       expect(stepperNode['bsStepper']).toEqual(stepper)
       expect(stepper.options).toEqual({
         linear: false,
-        animation: false
+        animation: false,
+        selectors: {
+          steps: '.step',
+          trigger: '.step-trigger',
+          stepper: '.bs-stepper'
+        },
+        classNames: {
+          active: 'active',
+          linear: 'linear',
+          block: 'dstepper-block',
+          none: 'dstepper-none',
+          fade: 'fade'
+        }
       })
     })
 
@@ -167,7 +191,19 @@ describe('Stepper', function () {
       setTimeout(function () {
         expect(stepper.options).toEqual({
           linear: true,
-          animation: true
+          animation: true,
+          selectors: {
+            steps: '.step',
+            trigger: '.step-trigger',
+            stepper: '.bs-stepper'
+          },
+          classNames: {
+            active: 'active',
+            linear: 'linear',
+            block: 'dstepper-block',
+            none: 'dstepper-none',
+            fade: 'fade'
+          }
         })
         expect(document.querySelector('#test1').classList.contains('fade')).toBe(true)
         expect(document.querySelector('#test2').classList.contains('fade')).toBe(true)
