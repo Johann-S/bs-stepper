@@ -92,6 +92,8 @@ describe('Stepper', function () {
       expect(stepper._steps.length).toEqual(2)
       expect(document.querySelector('.step').classList.contains('active')).toBe(true)
       expect(stepperNode['bsStepper']).toEqual(stepper)
+      expect(stepper._clickStepLinearListener).toBeUndefined()
+      expect(stepper._clickStepNonLinearListener).toBeTruthy()
       expect(stepper.options).toEqual({
         linear: false,
         animation: false,
@@ -518,6 +520,8 @@ describe('Stepper', function () {
       expect(stepper._currentIndex).toEqual(0)
       expect(stepper._steps.length).toEqual(2)
       expect(stepper._stepsContents.length).toEqual(2)
+      expect(stepper._clickStepLinearListener).toBeTruthy()
+      expect(stepper._clickStepNonLinearListener).toBeUndefined()
 
       stepper.destroy()
 
@@ -526,6 +530,8 @@ describe('Stepper', function () {
       expect(stepper._currentIndex).toBeUndefined()
       expect(stepper._steps).toBeUndefined()
       expect(stepper._stepsContents).toBeUndefined()
+      expect(stepper._clickStepLinearListener).toBeUndefined()
+      expect(stepper._clickStepNonLinearListener).toBeUndefined()
     })
 
     it('should remove event listeners on triggers', function () {
