@@ -29,6 +29,17 @@ class Stepper {
       ..._options
     }
 
+    // FIXME(ioxua-os): Find a better alternative to deep copy objects
+    this.options.selectors = {
+      ...DEFAULT_OPTIONS.selectors,
+      ...this.options.selectors
+    }
+
+    this.options.classNames = {
+      ...DEFAULT_OPTIONS.classNames,
+      ...this.options.classNames
+    }
+
     if (this.options.linear) {
       this._element.classList.add(this.options.classNames.linear)
     }
