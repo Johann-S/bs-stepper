@@ -1,4 +1,4 @@
-import { show, customProperty, detectAnimation } from './util'
+import { show, customProperty, detectAnimation, ClassName } from './util'
 import { buildClickStepLinearListener, buildClickStepNonLinearListener } from './listeners'
 
 const DEFAULT_OPTIONS = {
@@ -8,13 +8,6 @@ const DEFAULT_OPTIONS = {
     steps: '.step',
     trigger: '.step-trigger',
     stepper: '.bs-stepper'
-  },
-  classNames: {
-    active: 'active',
-    linear: 'linear',
-    block: 'dstepper-block',
-    none: 'dstepper-none',
-    fade: 'fade'
   }
 }
 
@@ -35,13 +28,8 @@ class Stepper {
       ...this.options.selectors
     }
 
-    this.options.classNames = {
-      ...DEFAULT_OPTIONS.classNames,
-      ...this.options.classNames
-    }
-
     if (this.options.linear) {
-      this._element.classList.add(this.options.classNames.linear)
+      this._element.classList.add(ClassName.LINEAR)
     }
 
     this._steps = [].slice.call(this._element.querySelectorAll(this.options.selectors.steps))

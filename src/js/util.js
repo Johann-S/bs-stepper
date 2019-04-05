@@ -2,13 +2,21 @@ import { WinEvent, createCustomEvent } from './polyfill'
 
 const MILLISECONDS_MULTIPLIER = 1000
 
+const ClassName = {
+  ACTIVE: 'active',
+  LINEAR: 'linear',
+  BLOCK: 'dstepper-block',
+  NONE: 'dstepper-none',
+  FADE: 'fade'
+}
+
 const transitionEndEvent = 'transitionend'
 const customProperty = 'bsStepper'
 
 const show = (stepperNode, indexStep, options) => {
   const stepper = stepperNode[customProperty]
 
-  if (stepper._steps[indexStep].classList.contains(options.classNames.active) || stepper._stepsContents[indexStep].classList.contains(options.classNames.active)) {
+  if (stepper._steps[indexStep].classList.contains(ClassName.ACTIVE) || stepper._stepsContents[indexStep].classList.contains(ClassName.ACTIVE)) {
     return
   }
 
@@ -20,19 +28,19 @@ const show = (stepperNode, indexStep, options) => {
   })
   stepperNode.dispatchEvent(showEvent)
 
-  const activeStep = stepper._steps.filter(step => step.classList.contains(options.classNames.active))
-  const activeContent = stepper._stepsContents.filter(content => content.classList.contains(options.classNames.active))
+  const activeStep = stepper._steps.filter(step => step.classList.contains(ClassName.ACTIVE))
+  const activeContent = stepper._stepsContents.filter(content => content.classList.contains(ClassName.ACTIVE))
 
   if (showEvent.defaultPrevented) {
     return
   }
 
   if (activeStep.length) {
-    activeStep[0].classList.remove(options.classNames.active)
+    activeStep[0].classList.remove(ClassName.ACTIVE)
   }
   if (activeContent.length) {
-    activeContent[0].classList.remove(options.classNames.active)
-    activeContent[0].classList.remove(options.classNames.block)
+    activeContent[0].classList.remove(ClassName.ACTIVE)
+    activeContent[0].classList.remove(ClassName.BLOCK)
   }
 
   showStep(stepperNode, stepper._steps[indexStep], stepper._steps, options)
@@ -45,17 +53,17 @@ const showStep = (stepperNode, step, stepList, options) => {
 
     trigger.setAttribute('aria-selected', 'false')
     // if stepper is in linear mode, set disabled attribute on the trigger
-    if (stepperNode.classList.contains(options.classNames.linear)) {
+    if (stepperNode.classList.contains(ClassName.LINEAR)) {
       trigger.setAttribute('disabled', 'disabled')
     }
   })
 
-  step.classList.add(options.classNames.active)
+  step.classList.add(ClassName.ACTIVE)
   const currentTrigger = step.querySelector(options.selectors.trigger)
 
   currentTrigger.setAttribute('aria-selected', 'true')
   // if stepper is in linear mode, remove disabled attribute on current
-  if (stepperNode.classList.contains(options.classNames.linear)) {
+  if (stepperNode.classList.contains(ClassName.LINEAR)) {
     currentTrigger.removeAttribute('disabled')
   }
 }
@@ -69,24 +77,24 @@ const showContent = (stepperNode, content, contentList, activeContent, options) 
   })
 
   function complete () {
-    content.classList.add(options.classNames.block)
+    content.classList.add(ClassName.BLOCK)
     content.removeEventListener(transitionEndEvent, complete)
     stepperNode.dispatchEvent(shownEvent)
   }
 
-  if (content.classList.contains(options.classNames.fade)) {
-    content.classList.remove(options.classNames.none)
+  if (content.classList.contains(ClassName.FADE)) {
+    content.classList.remove(ClassName.NONE)
     const duration = getTransitionDurationFromElement(content)
 
     content.addEventListener(transitionEndEvent, complete)
     if (activeContent.length) {
-      activeContent[0].classList.add(options.classNames.none)
+      activeContent[0].classList.add(ClassName.NONE)
     }
 
-    content.classList.add(options.classNames.active)
+    content.classList.add(ClassName.ACTIVE)
     emulateTransitionEnd(content, duration)
   } else {
-    content.classList.add(options.classNames.active)
+    content.classList.add(ClassName.ACTIVE)
     stepperNode.dispatchEvent(shownEvent)
   }
 }
@@ -133,14 +141,15 @@ const emulateTransitionEnd = (element, duration) => {
 const detectAnimation = (contentList, options) => {
   if (options.animation) {
     contentList.forEach(content => {
-      content.classList.add(options.classNames.fade)
-      content.classList.add(options.classNames.none)
+      content.classList.add(ClassName.FADE)
+      content.classList.add(ClassName.NONE)
     })
   }
 }
 
 export {
   show,
+  ClassName,
   customProperty,
   detectAnimation
 }

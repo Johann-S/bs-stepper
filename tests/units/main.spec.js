@@ -47,13 +47,6 @@ describe('Stepper', function () {
           steps: '.step',
           trigger: '.step-trigger',
           stepper: '.bs-stepper'
-        },
-        classNames: {
-          active: 'active',
-          linear: 'linear',
-          block: 'dstepper-block',
-          none: 'dstepper-none',
-          fade: 'fade'
         }
       })
     })
@@ -101,13 +94,6 @@ describe('Stepper', function () {
           steps: '.step',
           trigger: '.step-trigger',
           stepper: '.bs-stepper'
-        },
-        classNames: {
-          active: 'active',
-          linear: 'linear',
-          block: 'dstepper-block',
-          none: 'dstepper-none',
-          fade: 'fade'
         }
       })
     })
@@ -198,13 +184,6 @@ describe('Stepper', function () {
             steps: '.step',
             trigger: '.step-trigger',
             stepper: '.bs-stepper'
-          },
-          classNames: {
-            active: 'active',
-            linear: 'linear',
-            block: 'dstepper-block',
-            none: 'dstepper-none',
-            fade: 'fade'
           }
         })
         expect(document.querySelector('#test1').classList.contains('fade')).toBe(true)

@@ -5,13 +5,6 @@ declare type StepperOptions = {
     steps: string,
     trigger: string,
     stepper: string
-  },
-  classNames: {
-    active: string,
-    linear: string,
-    block: string,
-    none: string,
-    fade: string
   }
 };
 
