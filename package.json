@@ -57,7 +57,7 @@
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.4.0",
-    "@babel/preset-env": "^7.4.2",
+    "@babel/preset-env": "^7.4.5",
     "autoprefixer": "^9.5.0",
     "babel-plugin-istanbul": "^5.1.4",
     "bootstrap": "^4.3.1",
