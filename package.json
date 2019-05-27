@@ -59,7 +59,7 @@
     "@babel/core": "^7.4.0",
     "@babel/preset-env": "^7.4.2",
     "autoprefixer": "^9.5.0",
-    "babel-plugin-istanbul": "^5.1.1",
+    "babel-plugin-istanbul": "^5.1.4",
     "bootstrap": "^4.3.1",
     "clean-css-cli": "^4.2.1",
     "coveralls": "^3.0.3",
