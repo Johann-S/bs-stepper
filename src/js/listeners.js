@@ -1,13 +1,13 @@
 import { closest } from './polyfill'
 import { customProperty, show } from './util'
 
-function buildClickStepLinearListener (options) {
+const buildClickStepLinearListener = (options) => {
   return function clickStepLinearListener (event) {
     event.preventDefault()
   }
 }
 
-function buildClickStepNonLinearListener (options) {
+const buildClickStepNonLinearListener = (options) => {
   return function clickStepNonLinearListener (event) {
     event.preventDefault()
 
