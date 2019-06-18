@@ -219,6 +219,40 @@ describe('Stepper', function () {
       expect(trigger2.addEventListener).toHaveBeenCalled()
       expect(stepperNode['bsStepper']).toEqual(stepper)
     })
+
+    it('should allow CSS selector configuration', function () {
+      fixture.innerHTML = [
+        '<div id="myStepper" class="custom-bs-stepper">',
+        '  <div class="custom-step" data-target="#test1">',
+        '    <button id="trigger1" class="custom-step-trigger">1</button>',
+        '  </div>',
+        '  <div class="custom-step" data-target="#test2">',
+        '    <button id="trigger2" class="custom-step-trigger">2</button>',
+        '  </div>',
+        '  <div id="test1">1</div>',
+        '  <div id="test2">2</div>',
+        '</div>'
+      ].join('')
+
+      var stepperNode = document.getElementById('myStepper')
+      var stepper = new Stepper(stepperNode, {
+        selectors: {
+          steps: '.custom-step',
+          trigger: '.custom-step-trigger',
+          stepper: '.custom-bs-stepper'
+        }
+      })
+
+      expect(stepper.options).toEqual({
+        linear: true,
+        animation: false,
+        selectors: {
+          steps: '.custom-step',
+          trigger: '.custom-step-trigger',
+          stepper: '.custom-bs-stepper'
+        }
+      })
+    })
   })
 
   describe('next', function () {
