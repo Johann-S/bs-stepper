@@ -219,6 +219,46 @@ describe('Stepper', function () {
       expect(trigger2.addEventListener).toHaveBeenCalled()
       expect(stepperNode['bsStepper']).toEqual(stepper)
     })
+
+    it('should allow CSS selector configuration', function () {
+      fixture.innerHTML = [
+        '<div id="myStepper" class="custom-bs-stepper">',
+        '  <div class="custom-step" data-target="#test1">',
+        '    <button id="trigger1" class="custom-step-trigger">1</button>',
+        '  </div>',
+        '  <div class="custom-step" data-target="#test2">',
+        '    <button id="trigger2" class="custom-step-trigger">2</button>',
+        '  </div>',
+        '  <div id="test1">1</div>',
+        '  <div id="test2">2</div>',
+        '</div>'
+      ].join('')
+
+      var stepperNode = document.getElementById('myStepper')
+      var stepper = new Stepper(stepperNode, {
+        selectors: {
+          steps: '.custom-step',
+          trigger: '.custom-step-trigger',
+          stepper: '.custom-bs-stepper'
+        }
+      })
+
+      expect(stepperNode.classList.contains('linear')).toBe(true)
+      expect(stepper._steps.length).toEqual(2)
+      expect(stepperNode['bsStepper']).toEqual(stepper)
+      expect(document.querySelector('.custom-step[data-target="#test1"]').classList.contains('active')).toBe(true)
+      expect(document.getElementById('trigger1').getAttribute('aria-selected')).toEqual('true')
+      expect(document.getElementById('trigger2').getAttribute('aria-selected')).toEqual('false')
+      expect(stepper.options).toEqual({
+        linear: true,
+        animation: false,
+        selectors: {
+          steps: '.custom-step',
+          trigger: '.custom-step-trigger',
+          stepper: '.custom-bs-stepper'
+        }
+      })
+    })
   })
 
   describe('next', function () {
