@@ -13,8 +13,9 @@ const buildClickStepNonLinearListener = options => function clickStepNonLinearLi
   const stepper = stepperNode[customProperty]
   const stepIndex = stepper._steps.indexOf(step)
 
-  stepper._currentIndex = stepIndex
-  show(stepperNode, stepIndex, options)
+  show(stepperNode, stepIndex, options, () => {
+    stepper._currentIndex = stepIndex
+  })
 }
 
 export {

@@ -355,6 +355,7 @@ describe('Stepper', () => {
 
           setTimeout(() => {
             expect(listeners.shown).not.toHaveBeenCalled()
+            expect(stepper._currentIndex).toEqual(0)
             done()
           }, 10)
         },
@@ -455,7 +456,7 @@ describe('Stepper', () => {
   })
 
   describe('to', () => {
-    it('should go to the step number', () => {
+    it('should go to the step number', done => {
       fixture.innerHTML = [
         '<div id="myStepper" class="bs-stepper">',
         '  <div class="step" data-target="#test1">',
@@ -474,10 +475,13 @@ describe('Stepper', () => {
       const test1 = document.querySelector('#test1')
       const test2 = document.querySelector('#test2')
 
-      stepper.to(2)
+      stepperNode.addEventListener('shown.bs-stepper', () => {
+        expect(test1.classList.contains('active')).toBe(false)
+        expect(test2.classList.contains('active')).toBe(true)
+        done()
+      })
 
-      expect(test1.classList.contains('active')).toBe(false)
-      expect(test2.classList.contains('active')).toBe(true)
+      stepper.to(2)
     })
 
     it('should handle wrong inputs', () => {

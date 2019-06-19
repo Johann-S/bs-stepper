@@ -48,7 +48,7 @@ class Stepper {
     })
 
     if (this._steps.length) {
-      show(this._element, this._currentIndex, this.options)
+      show(this._element, this._currentIndex, this.options, () => {})
     }
   }
 
@@ -71,30 +71,36 @@ class Stepper {
   // Public
 
   next () {
-    this._currentIndex = (this._currentIndex + 1) <= this._steps.length - 1 ? this._currentIndex + 1 : (this._steps.length - 1)
+    const nextStep = (this._currentIndex + 1) <= this._steps.length - 1 ? this._currentIndex + 1 : (this._steps.length - 1)
 
-    show(this._element, this._currentIndex, this.options)
+    show(this._element, nextStep, this.options, () => {
+      this._currentIndex = nextStep
+    })
   }
 
   previous () {
-    this._currentIndex = (this._currentIndex - 1) >= 0 ? this._currentIndex - 1 : 0
+    const previousStep = (this._currentIndex - 1) >= 0 ? this._currentIndex - 1 : 0
 
-    show(this._element, this._currentIndex, this.options)
+    show(this._element, previousStep, this.options, () => {
+      this._currentIndex = previousStep
+    })
   }
 
   to (stepNumber) {
     const tempIndex = stepNumber - 1
-
-    this._currentIndex = tempIndex >= 0 && tempIndex < this._steps.length
+    const nextStep = tempIndex >= 0 && tempIndex < this._steps.length
       ? tempIndex
       : 0
 
-    show(this._element, this._currentIndex, this.options)
+    show(this._element, nextStep, this.options, () => {
+      this._currentIndex = nextStep
+    })
   }
 
   reset () {
-    this._currentIndex = 0
-    show(this._element, this._currentIndex, this.options)
+    show(this._element, 0, this.options, () => {
+      this._currentIndex = 0
+    })
   }
 
   destroy () {

@@ -13,7 +13,7 @@ const ClassName = {
 const transitionEndEvent = 'transitionend'
 const customProperty = 'bsStepper'
 
-const show = (stepperNode, indexStep, options) => {
+const show = (stepperNode, indexStep, options, done) => {
   const stepper = stepperNode[customProperty]
 
   if (stepper._steps[indexStep].classList.contains(ClassName.ACTIVE) || stepper._stepsContents[indexStep].classList.contains(ClassName.ACTIVE)) {
@@ -44,7 +44,7 @@ const show = (stepperNode, indexStep, options) => {
   }
 
   showStep(stepperNode, stepper._steps[indexStep], stepper._steps, options)
-  showContent(stepperNode, stepper._stepsContents[indexStep], stepper._stepsContents, activeContent, options)
+  showContent(stepperNode, stepper._stepsContents[indexStep], stepper._stepsContents, activeContent, done)
 }
 
 const showStep = (stepperNode, step, stepList, options) => {
@@ -68,7 +68,7 @@ const showStep = (stepperNode, step, stepList, options) => {
   }
 }
 
-const showContent = (stepperNode, content, contentList, activeContent) => {
+const showContent = (stepperNode, content, contentList, activeContent, done) => {
   const shownEvent = createCustomEvent('shown.bs-stepper', {
     cancelable: true,
     detail: {
@@ -80,6 +80,7 @@ const showContent = (stepperNode, content, contentList, activeContent) => {
     content.classList.add(ClassName.BLOCK)
     content.removeEventListener(transitionEndEvent, complete)
     stepperNode.dispatchEvent(shownEvent)
+    done()
   }
 
   if (content.classList.contains(ClassName.FADE)) {
@@ -96,6 +97,7 @@ const showContent = (stepperNode, content, contentList, activeContent) => {
   } else {
     content.classList.add(ClassName.ACTIVE)
     stepperNode.dispatchEvent(shownEvent)
+    done()
   }
 }
 
