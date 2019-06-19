@@ -25,9 +25,9 @@ Features:
 - Vertical stepper
 - Works with Bootstrap 4
 - Accessible
-- Works without *dependencies* and **jQuery**
+- Works without *dependencies* (so no **jQuery** needed)
 - Built in UMD to be used everywhere
-- Small, only **2kb** and less if you gzip it
+- Small, only **2kb**
 
 ## Table of contents
 
