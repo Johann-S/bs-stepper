@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.6.1](https://github.com/Johann-S/bs-stepper/compare/v1.6.0...v1.6.1) (2019-06-19)
+
+
+### Bug Fixes
+
+* **docs:** update docs about config default values ([e545b03](https://github.com/Johann-S/bs-stepper/commit/e545b03))
+
+
+
 ## [1.6.0](https://github.com/Johann-S/bs-stepper/compare/v1.5.0...v1.6.0) (2019-06-19)
 
 
