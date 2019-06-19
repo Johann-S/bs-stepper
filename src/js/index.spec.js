@@ -349,7 +349,7 @@ describe('Stepper', () => {
       const stepperNode = document.getElementById('myStepper')
       const stepper = new Stepper(stepperNode)
       const listeners = {
-        show(event) {
+        show (event) {
           event.preventDefault()
           expect(event.detail.indexStep).toEqual(1)
 
@@ -358,7 +358,7 @@ describe('Stepper', () => {
             done()
           }, 10)
         },
-        shown() {
+        shown () {
           console.warn('shown called but it should not be the case')
         }
       }
