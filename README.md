@@ -152,10 +152,22 @@ Create an instance of `Stepper`, accept two parameters.
 Pass your `Stepper` DOMElement
 
 - `options` (optional)
-  - default value: `{ linear: true, animation: false }`
   - type: `Object`
 
-  Allows you to choose if you want a linear stepper or not and if you want to animate when the content will be displayed.
+  default value:
+  ```js
+  {
+    linear: true,
+    animation: false,
+    selectors: {
+      steps: '.step',
+      trigger: '.step-trigger',
+      stepper: '.bs-stepper'
+    }
+  }
+  ```
+
+  Allows you to customize the stepper selectors and it's behaviour.
 
 ### next
 
