@@ -157,7 +157,7 @@ describe('Stepper', () => {
       expect(stepper._currentIndex).toEqual(0)
     })
 
-    it('should create a stepper with fade animation', function (done) {
+    it('should create a stepper with fade animation', done => {
       fixture.innerHTML = [
         '<div id="myStepper" class="bs-stepper">',
         '  <div class="step" data-target="#test1">',
@@ -220,7 +220,7 @@ describe('Stepper', () => {
       expect(stepperNode['bsStepper']).toEqual(stepper)
     })
 
-    it('should allow CSS selector configuration', () => {
+    it('should allow css selector configuration', () => {
       fixture.innerHTML = [
         '<div id="myStepper" class="custom-bs-stepper">',
         '  <div class="custom-step" data-target="#test1">',
@@ -256,7 +256,7 @@ describe('Stepper', () => {
   })
 
   describe('next', () => {
-    it('should go to the next step', function (done) {
+    it('should go to the next step', done => {
       fixture.innerHTML = [
         '<div id="myStepper" class="bs-stepper">',
         '  <div class="step" data-target="#test1">',
@@ -286,7 +286,53 @@ describe('Stepper', () => {
       stepper.next()
     })
 
-    it('should not go to the next step if the show event is default prevented', function (done) {
+    it('should go to the next step with css selector configuration', done => {
+      fixture.innerHTML = [
+        '<div id="myStepper" class="custom-bs-stepper">',
+        '  <div class="custom-step" data-target="#test1">',
+        '    <button id="trigger1" class="custom-step-trigger">1</button>',
+        '  </div>',
+        '  <div class="custom-step" data-target="#test2">',
+        '    <button id="trigger2" class="custom-step-trigger">2</button>',
+        '  </div>',
+        '  <div id="test1">1</div>',
+        '  <div id="test2">2</div>',
+        '</div>'
+      ].join('')
+
+      const stepperNode = document.getElementById('myStepper')
+      const stepper = new Stepper(stepperNode, {
+        selectors: {
+          steps: '.custom-step',
+          trigger: '.custom-step-trigger',
+          stepper: '.custom-bs-stepper'
+        }
+      })
+
+      expect(stepper.options).toEqual({
+        linear: true,
+        animation: false,
+        selectors: {
+          steps: '.custom-step',
+          trigger: '.custom-step-trigger',
+          stepper: '.custom-bs-stepper'
+        }
+      })
+
+      stepperNode.addEventListener('show.bs-stepper', function (event) {
+        expect(event.detail.indexStep).toEqual(1)
+      })
+      stepperNode.addEventListener('shown.bs-stepper', function (event) {
+        expect(event.detail.indexStep).toEqual(1)
+        expect(document.querySelector('#test1').classList.contains('active')).toBe(false)
+        expect(document.querySelector('#test2').classList.contains('active')).toBe(true)
+        done()
+      })
+
+      stepper.next()
+    })
+
+    it('should not go to the next step if the show event is default prevented', done => {
       fixture.innerHTML = [
         '<div id="myStepper" class="bs-stepper">',
         '  <div class="step" data-target="#test1">',
