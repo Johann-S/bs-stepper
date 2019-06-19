@@ -42,7 +42,12 @@ describe('Stepper', function () {
       expect(document.getElementById('trigger2').getAttribute('aria-selected')).toEqual('false')
       expect(stepper.options).toEqual({
         linear: true,
-        animation: false
+        animation: false,
+        selectors: {
+          steps: '.step',
+          trigger: '.step-trigger',
+          stepper: '.bs-stepper'
+        }
       })
     })
 
@@ -80,9 +85,16 @@ describe('Stepper', function () {
       expect(stepper._steps.length).toEqual(2)
       expect(document.querySelector('.step').classList.contains('active')).toBe(true)
       expect(stepperNode['bsStepper']).toEqual(stepper)
+      expect(stepper._clickStepLinearListener).toBeUndefined()
+      expect(stepper._clickStepNonLinearListener).toBeTruthy()
       expect(stepper.options).toEqual({
         linear: false,
-        animation: false
+        animation: false,
+        selectors: {
+          steps: '.step',
+          trigger: '.step-trigger',
+          stepper: '.bs-stepper'
+        }
       })
     })
 
@@ -167,7 +179,12 @@ describe('Stepper', function () {
       setTimeout(function () {
         expect(stepper.options).toEqual({
           linear: true,
-          animation: true
+          animation: true,
+          selectors: {
+            steps: '.step',
+            trigger: '.step-trigger',
+            stepper: '.bs-stepper'
+          }
         })
         expect(document.querySelector('#test1').classList.contains('fade')).toBe(true)
         expect(document.querySelector('#test2').classList.contains('fade')).toBe(true)
@@ -201,6 +218,40 @@ describe('Stepper', function () {
       expect(trigger1.addEventListener).toHaveBeenCalled()
       expect(trigger2.addEventListener).toHaveBeenCalled()
       expect(stepperNode['bsStepper']).toEqual(stepper)
+    })
+
+    it('should allow CSS selector configuration', function () {
+      fixture.innerHTML = [
+        '<div id="myStepper" class="custom-bs-stepper">',
+        '  <div class="custom-step" data-target="#test1">',
+        '    <button id="trigger1" class="custom-step-trigger">1</button>',
+        '  </div>',
+        '  <div class="custom-step" data-target="#test2">',
+        '    <button id="trigger2" class="custom-step-trigger">2</button>',
+        '  </div>',
+        '  <div id="test1">1</div>',
+        '  <div id="test2">2</div>',
+        '</div>'
+      ].join('')
+
+      var stepperNode = document.getElementById('myStepper')
+      var stepper = new Stepper(stepperNode, {
+        selectors: {
+          steps: '.custom-step',
+          trigger: '.custom-step-trigger',
+          stepper: '.custom-bs-stepper'
+        }
+      })
+
+      expect(stepper.options).toEqual({
+        linear: true,
+        animation: false,
+        selectors: {
+          steps: '.custom-step',
+          trigger: '.custom-step-trigger',
+          stepper: '.custom-bs-stepper'
+        }
+      })
     })
   })
 
@@ -482,6 +533,8 @@ describe('Stepper', function () {
       expect(stepper._currentIndex).toEqual(0)
       expect(stepper._steps.length).toEqual(2)
       expect(stepper._stepsContents.length).toEqual(2)
+      expect(stepper._clickStepLinearListener).toBeTruthy()
+      expect(stepper._clickStepNonLinearListener).toBeUndefined()
 
       stepper.destroy()
 
@@ -490,6 +543,8 @@ describe('Stepper', function () {
       expect(stepper._currentIndex).toBeUndefined()
       expect(stepper._steps).toBeUndefined()
       expect(stepper._stepsContents).toBeUndefined()
+      expect(stepper._clickStepLinearListener).toBeUndefined()
+      expect(stepper._clickStepNonLinearListener).toBeUndefined()
     })
 
     it('should remove event listeners on triggers', function () {

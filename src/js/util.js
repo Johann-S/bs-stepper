@@ -1,11 +1,6 @@
 import { WinEvent, createCustomEvent } from './polyfill'
 
 const MILLISECONDS_MULTIPLIER = 1000
-const Selectors = {
-  STEPS: '.step',
-  TRIGGER: '.step-trigger',
-  STEPPER: '.bs-stepper'
-}
 
 const ClassName = {
   ACTIVE: 'active',
@@ -18,7 +13,7 @@ const ClassName = {
 const transitionEndEvent = 'transitionend'
 const customProperty = 'bsStepper'
 
-const show = (stepperNode, indexStep) => {
+const show = (stepperNode, indexStep, options) => {
   const stepper = stepperNode[customProperty]
 
   if (stepper._steps[indexStep].classList.contains(ClassName.ACTIVE) || stepper._stepsContents[indexStep].classList.contains(ClassName.ACTIVE)) {
@@ -48,13 +43,13 @@ const show = (stepperNode, indexStep) => {
     activeContent[0].classList.remove(ClassName.BLOCK)
   }
 
-  showStep(stepperNode, stepper._steps[indexStep], stepper._steps)
-  showContent(stepperNode, stepper._stepsContents[indexStep], stepper._stepsContents, activeContent)
+  showStep(stepperNode, stepper._steps[indexStep], stepper._steps, options)
+  showContent(stepperNode, stepper._stepsContents[indexStep], stepper._stepsContents, activeContent, options)
 }
 
-const showStep = (stepperNode, step, stepList) => {
+const showStep = (stepperNode, step, stepList, options) => {
   stepList.forEach(step => {
-    const trigger = step.querySelector(Selectors.TRIGGER)
+    const trigger = step.querySelector(options.selectors.trigger)
 
     trigger.setAttribute('aria-selected', 'false')
     // if stepper is in linear mode, set disabled attribute on the trigger
@@ -64,7 +59,7 @@ const showStep = (stepperNode, step, stepList) => {
   })
 
   step.classList.add(ClassName.ACTIVE)
-  const currentTrigger = step.querySelector(Selectors.TRIGGER)
+  const currentTrigger = step.querySelector(options.selectors.trigger)
 
   currentTrigger.setAttribute('aria-selected', 'true')
   // if stepper is in linear mode, remove disabled attribute on current
@@ -73,7 +68,7 @@ const showStep = (stepperNode, step, stepList) => {
   }
 }
 
-const showContent = (stepperNode, content, contentList, activeContent) => {
+const showContent = (stepperNode, content, contentList, activeContent, options) => {
   const shownEvent = createCustomEvent('shown.bs-stepper', {
     cancelable: true,
     detail: {
@@ -143,8 +138,8 @@ const emulateTransitionEnd = (element, duration) => {
   }, emulatedDuration)
 }
 
-const detectAnimation = (contentList, animation) => {
-  if (animation) {
+const detectAnimation = (contentList, options) => {
+  if (options.animation) {
     contentList.forEach(content => {
       content.classList.add(ClassName.FADE)
       content.classList.add(ClassName.NONE)
@@ -154,7 +149,6 @@ const detectAnimation = (contentList, animation) => {
 
 export {
   show,
-  Selectors,
   ClassName,
   customProperty,
   detectAnimation

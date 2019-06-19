@@ -1,6 +1,11 @@
 declare type StepperOptions = {
   linear: boolean,
-  animation: boolean
+  animation: boolean,
+  selectors: {
+    steps: string,
+    trigger: string,
+    stepper: string
+  }
 };
 
 declare class Stepper {
