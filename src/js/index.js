@@ -32,13 +32,13 @@ class Stepper {
     }
 
     this._steps = [].slice.call(this._element.querySelectorAll(this.options.selectors.steps))
-      .filter(step => step.hasAttribute('data-target'))
 
-    this._steps.forEach(step => {
-      this._stepsContents.push(
-        this._element.querySelector(step.getAttribute('data-target'))
-      )
-    })
+    this._steps.filter(step => step.hasAttribute('data-target'))
+      .forEach(step => {
+        this._stepsContents.push(
+          this._element.querySelector(step.getAttribute('data-target'))
+        )
+      })
 
     detectAnimation(this._stepsContents, this.options)
     this._setLinkListeners()
@@ -57,6 +57,7 @@ class Stepper {
   _setLinkListeners () {
     this._steps.forEach(step => {
       const trigger = step.querySelector(this.options.selectors.trigger)
+
       if (this.options.linear) {
         this._clickStepLinearListener = buildClickStepLinearListener(this.options)
         trigger.addEventListener('click', this._clickStepLinearListener)

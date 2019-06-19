@@ -68,7 +68,7 @@ const showStep = (stepperNode, step, stepList, options) => {
   }
 }
 
-const showContent = (stepperNode, content, contentList, activeContent, options) => {
+const showContent = (stepperNode, content, contentList, activeContent) => {
   const shownEvent = createCustomEvent('shown.bs-stepper', {
     cancelable: true,
     detail: {
