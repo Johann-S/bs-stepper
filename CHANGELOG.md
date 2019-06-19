@@ -1,6 +1,23 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [1.6.0](https://github.com/Johann-S/bs-stepper/compare/v1.5.0...v1.6.0) (2019-06-19)
+
+
+### Bug Fixes
+
+* **core:** add unit test with custom selectors ([af31361](https://github.com/Johann-S/bs-stepper/commit/af31361))
+* **events:** do not modified current step if events are prevented ([5cd49d3](https://github.com/Johann-S/bs-stepper/commit/5cd49d3))
+* **typing:** improve typescript typing ([ae2f687](https://github.com/Johann-S/bs-stepper/commit/ae2f687))
+
+
+### Features
+
+* **core:** allow to customize stepper internal css classes  ([#28](https://github.com/Johann-S/bs-stepper/issues/28)) ([b39db02](https://github.com/Johann-S/bs-stepper/commit/b39db02))
+* **docs:** add a link to the change log ([7215d95](https://github.com/Johann-S/bs-stepper/commit/7215d95))
+
+
 
 # [1.5.0](https://github.com/Johann-S/bs-stepper/compare/v1.4.1...v1.5.0) (2019-03-22)
 
