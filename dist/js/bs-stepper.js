@@ -1,5 +1,5 @@
 /*!
- * bsStepper v1.5.0 (https://github.com/Johann-S/bs-stepper)
+ * bsStepper v1.6.1 (https://github.com/Johann-S/bs-stepper)
  * Copyright 2018 - 2019 Johann-S <johann.servoire@gmail.com>
  * Licensed under MIT (https://github.com/Johann-S/bs-stepper/blob/master/LICENSE)
  */
@@ -109,11 +109,6 @@
   polyfill();
 
   var MILLISECONDS_MULTIPLIER = 1000;
-  var Selectors = {
-    STEPS: '.step',
-    TRIGGER: '.step-trigger',
-    STEPPER: '.bs-stepper'
-  };
   var ClassName = {
     ACTIVE: 'active',
     LINEAR: 'linear',
@@ -124,7 +119,7 @@
   var transitionEndEvent = 'transitionend';
   var customProperty = 'bsStepper';
 
-  var show = function show(stepperNode, indexStep) {
+  var show = function show(stepperNode, indexStep, options, done) {
     var stepper = stepperNode[customProperty];
 
     if (stepper._steps[indexStep].classList.contains(ClassName.ACTIVE) || stepper._stepsContents[indexStep].classList.contains(ClassName.ACTIVE)) {
@@ -160,13 +155,13 @@
       activeContent[0].classList.remove(ClassName.BLOCK);
     }
 
-    showStep(stepperNode, stepper._steps[indexStep], stepper._steps);
-    showContent(stepperNode, stepper._stepsContents[indexStep], stepper._stepsContents, activeContent);
+    showStep(stepperNode, stepper._steps[indexStep], stepper._steps, options);
+    showContent(stepperNode, stepper._stepsContents[indexStep], stepper._stepsContents, activeContent, done);
   };
 
-  var showStep = function showStep(stepperNode, step, stepList) {
+  var showStep = function showStep(stepperNode, step, stepList, options) {
     stepList.forEach(function (step) {
-      var trigger = step.querySelector(Selectors.TRIGGER);
+      var trigger = step.querySelector(options.selectors.trigger);
       trigger.setAttribute('aria-selected', 'false'); // if stepper is in linear mode, set disabled attribute on the trigger
 
       if (stepperNode.classList.contains(ClassName.LINEAR)) {
@@ -174,7 +169,7 @@
       }
     });
     step.classList.add(ClassName.ACTIVE);
-    var currentTrigger = step.querySelector(Selectors.TRIGGER);
+    var currentTrigger = step.querySelector(options.selectors.trigger);
     currentTrigger.setAttribute('aria-selected', 'true'); // if stepper is in linear mode, remove disabled attribute on current
 
     if (stepperNode.classList.contains(ClassName.LINEAR)) {
@@ -182,7 +177,7 @@
     }
   };
 
-  var showContent = function showContent(stepperNode, content, contentList, activeContent) {
+  var showContent = function showContent(stepperNode, content, contentList, activeContent, done) {
     var shownEvent = createCustomEvent('shown.bs-stepper', {
       cancelable: true,
       detail: {
@@ -194,6 +189,7 @@
       content.classList.add(ClassName.BLOCK);
       content.removeEventListener(transitionEndEvent, complete);
       stepperNode.dispatchEvent(shownEvent);
+      done();
     }
 
     if (content.classList.contains(ClassName.FADE)) {
@@ -210,6 +206,7 @@
     } else {
       content.classList.add(ClassName.ACTIVE);
       stepperNode.dispatchEvent(shownEvent);
+      done();
     }
   };
 
@@ -251,8 +248,8 @@
     }, emulatedDuration);
   };
 
-  var detectAnimation = function detectAnimation(contentList, animation) {
-    if (animation) {
+  var detectAnimation = function detectAnimation(contentList, options) {
+    if (options.animation) {
       contentList.forEach(function (content) {
         content.classList.add(ClassName.FADE);
         content.classList.add(ClassName.NONE);
@@ -260,25 +257,35 @@
     }
   };
 
-  function clickStepLinearListener(event) {
-    event.preventDefault();
-  }
+  var buildClickStepLinearListener = function buildClickStepLinearListener() {
+    return function clickStepLinearListener(event) {
+      event.preventDefault();
+    };
+  };
 
-  function clickStepNonLinearListener(event) {
-    event.preventDefault();
-    var step = closest(event.target, Selectors.STEPS);
-    var stepperNode = closest(step, Selectors.STEPPER);
-    var stepper = stepperNode[customProperty];
+  var buildClickStepNonLinearListener = function buildClickStepNonLinearListener(options) {
+    return function clickStepNonLinearListener(event) {
+      event.preventDefault();
+      var step = closest(event.target, options.selectors.steps);
+      var stepperNode = closest(step, options.selectors.stepper);
+      var stepper = stepperNode[customProperty];
 
-    var stepIndex = stepper._steps.indexOf(step);
+      var stepIndex = stepper._steps.indexOf(step);
 
-    stepper._currentIndex = stepIndex;
-    show(stepperNode, stepIndex);
-  }
+      show(stepperNode, stepIndex, options, function () {
+        stepper._currentIndex = stepIndex;
+      });
+    };
+  };
 
   var DEFAULT_OPTIONS = {
     linear: true,
-    animation: false
+    animation: false,
+    selectors: {
+      steps: '.step',
+      trigger: '.step-trigger',
+      stepper: '.bs-stepper'
+    }
   };
 
   var Stepper =
@@ -294,21 +301,22 @@
       this._element = element;
       this._currentIndex = 0;
       this._stepsContents = [];
-      this._steps = [].slice.call(this._element.querySelectorAll(Selectors.STEPS)).filter(function (step) {
-        return step.hasAttribute('data-target');
-      });
-
-      this._steps.forEach(function (step) {
-        _this._stepsContents.push(_this._element.querySelector(step.getAttribute('data-target')));
-      });
-
       this.options = _extends({}, DEFAULT_OPTIONS, _options);
+      this.options.selectors = _extends({}, DEFAULT_OPTIONS.selectors, this.options.selectors);
 
       if (this.options.linear) {
         this._element.classList.add(ClassName.LINEAR);
       }
 
-      detectAnimation(this._stepsContents, this.options.animation);
+      this._steps = [].slice.call(this._element.querySelectorAll(this.options.selectors.steps));
+
+      this._steps.filter(function (step) {
+        return step.hasAttribute('data-target');
+      }).forEach(function (step) {
+        _this._stepsContents.push(_this._element.querySelector(step.getAttribute('data-target')));
+      });
+
+      detectAnimation(this._stepsContents, this.options);
 
       this._setLinkListeners();
 
@@ -318,7 +326,7 @@
       });
 
       if (this._steps.length) {
-        show(this._element, this._currentIndex);
+        show(this._element, this._currentIndex, this.options, function () {});
       }
     } // Private
 
@@ -329,48 +337,65 @@
       var _this2 = this;
 
       this._steps.forEach(function (step) {
-        var trigger = step.querySelector(Selectors.TRIGGER);
+        var trigger = step.querySelector(_this2.options.selectors.trigger);
 
         if (_this2.options.linear) {
-          trigger.addEventListener('click', clickStepLinearListener);
+          _this2._clickStepLinearListener = buildClickStepLinearListener(_this2.options);
+          trigger.addEventListener('click', _this2._clickStepLinearListener);
         } else {
-          trigger.addEventListener('click', clickStepNonLinearListener);
+          _this2._clickStepNonLinearListener = buildClickStepNonLinearListener(_this2.options);
+          trigger.addEventListener('click', _this2._clickStepNonLinearListener);
         }
       });
     } // Public
     ;
 
     _proto.next = function next() {
-      this._currentIndex = this._currentIndex + 1 <= this._steps.length - 1 ? this._currentIndex + 1 : this._steps.length - 1;
-      show(this._element, this._currentIndex);
+      var _this3 = this;
+
+      var nextStep = this._currentIndex + 1 <= this._steps.length - 1 ? this._currentIndex + 1 : this._steps.length - 1;
+      show(this._element, nextStep, this.options, function () {
+        _this3._currentIndex = nextStep;
+      });
     };
 
     _proto.previous = function previous() {
-      this._currentIndex = this._currentIndex - 1 >= 0 ? this._currentIndex - 1 : 0;
-      show(this._element, this._currentIndex);
+      var _this4 = this;
+
+      var previousStep = this._currentIndex - 1 >= 0 ? this._currentIndex - 1 : 0;
+      show(this._element, previousStep, this.options, function () {
+        _this4._currentIndex = previousStep;
+      });
     };
 
     _proto.to = function to(stepNumber) {
+      var _this5 = this;
+
       var tempIndex = stepNumber - 1;
-      this._currentIndex = tempIndex >= 0 && tempIndex < this._steps.length ? tempIndex : 0;
-      show(this._element, this._currentIndex);
+      var nextStep = tempIndex >= 0 && tempIndex < this._steps.length ? tempIndex : 0;
+      show(this._element, nextStep, this.options, function () {
+        _this5._currentIndex = nextStep;
+      });
     };
 
     _proto.reset = function reset() {
-      this._currentIndex = 0;
-      show(this._element, this._currentIndex);
+      var _this6 = this;
+
+      show(this._element, 0, this.options, function () {
+        _this6._currentIndex = 0;
+      });
     };
 
     _proto.destroy = function destroy() {
-      var _this3 = this;
+      var _this7 = this;
 
       this._steps.forEach(function (step) {
-        var trigger = step.querySelector(Selectors.TRIGGER);
+        var trigger = step.querySelector(_this7.options.selectors.trigger);
 
-        if (_this3.options.linear) {
-          trigger.removeEventListener('click', clickStepLinearListener);
+        if (_this7.options.linear) {
+          trigger.removeEventListener('click', _this7._clickStepLinearListener);
         } else {
-          trigger.removeEventListener('click', clickStepNonLinearListener);
+          trigger.removeEventListener('click', _this7._clickStepNonLinearListener);
         }
       });
 
@@ -379,6 +404,8 @@
       this._currentIndex = undefined;
       this._steps = undefined;
       this._stepsContents = undefined;
+      this._clickStepLinearListener = undefined;
+      this._clickStepNonLinearListener = undefined;
     };
 
     return Stepper;
