@@ -1,23 +1,23 @@
 /* eslint-env jasmine */
-/* globals Stepper */
+import Stepper from './index'
 
-describe('Stepper', function () {
-  var fixture
+describe('Stepper', () => {
+  let fixture
 
-  beforeAll(function () {
-    var fixureNode = document.createElement('div')
+  beforeAll(() => {
+    const fixureNode = document.createElement('div')
     fixureNode.setAttribute('id', 'fixture')
 
     document.body.appendChild(fixureNode)
     fixture = document.getElementById('fixture')
   })
 
-  afterEach(function () {
+  afterEach(() => {
     fixture.innerHTML = ''
   })
 
-  describe('constructor', function () {
-    it('should create a stepper', function () {
+  describe('constructor', () => {
+    it('should create a stepper', () => {
       fixture.innerHTML = [
         '<div id="myStepper" class="bs-stepper">',
         '  <div class="step" data-target="#test1">',
@@ -31,8 +31,8 @@ describe('Stepper', function () {
         '</div>'
       ].join('')
 
-      var stepperNode = document.getElementById('myStepper')
-      var stepper = new Stepper(stepperNode)
+      const stepperNode = document.getElementById('myStepper')
+      const stepper = new Stepper(stepperNode)
 
       expect(stepperNode.classList.contains('linear')).toBe(true)
       expect(stepper._steps.length).toEqual(2)
@@ -51,18 +51,18 @@ describe('Stepper', function () {
       })
     })
 
-    it('should do nothing if there is no step', function () {
+    it('should do nothing if there is no step', () => {
       fixture.innerHTML = '<div id="myStepper" class="bs-stepper"></div>'
 
-      var stepperNode = document.getElementById('myStepper')
-      var stepper = new Stepper(stepperNode)
+      const stepperNode = document.getElementById('myStepper')
+      const stepper = new Stepper(stepperNode)
 
       expect(stepperNode.classList.contains('linear')).toBe(true)
       expect(stepper._steps.length).toEqual(0)
       expect(stepperNode['bsStepper']).toEqual(stepper)
     })
 
-    it('should create a non linear stepper', function () {
+    it('should create a non linear stepper', () => {
       fixture.innerHTML = [
         '<div id="myStepper" class="bs-stepper">',
         '  <div class="step" data-target="#test1">',
@@ -76,8 +76,8 @@ describe('Stepper', function () {
         '</div>'
       ].join('')
 
-      var stepperNode = document.getElementById('myStepper')
-      var stepper = new Stepper(stepperNode, {
+      const stepperNode = document.getElementById('myStepper')
+      const stepper = new Stepper(stepperNode, {
         linear: false
       })
 
@@ -98,7 +98,7 @@ describe('Stepper', function () {
       })
     })
 
-    it('should go to the next step when user click on a step for non linear stepper', function () {
+    it('should go to the next step when user click on a step for non linear stepper', () => {
       fixture.innerHTML = [
         '<div id="myStepper" class="bs-stepper">',
         '  <div class="step" data-target="#test1">',
@@ -112,12 +112,12 @@ describe('Stepper', function () {
         '</div>'
       ].join('')
 
-      var stepperNode = document.getElementById('myStepper')
-      var stepper = new Stepper(stepperNode, {
+      const stepperNode = document.getElementById('myStepper')
+      const stepper = new Stepper(stepperNode, {
         linear: false
       })
 
-      var trigger2 = document.querySelector('#trigger2')
+      const trigger2 = document.querySelector('#trigger2')
       trigger2.click()
 
       expect(document.querySelector('#test1').classList.contains('active')).toBe(false)
@@ -127,7 +127,7 @@ describe('Stepper', function () {
       expect(stepper._currentIndex).toEqual(1)
     })
 
-    it('should call preventDefault when user click on a step for linear stepper', function () {
+    it('should call preventDefault when user click on a step for linear stepper', () => {
       fixture.innerHTML = [
         '<div id="myStepper" class="bs-stepper">',
         '  <div class="step" data-target="#test1">',
@@ -141,12 +141,12 @@ describe('Stepper', function () {
         '</div>'
       ].join('')
 
-      var stepperNode = document.getElementById('myStepper')
-      var stepper = new Stepper(stepperNode)
+      const stepperNode = document.getElementById('myStepper')
+      const stepper = new Stepper(stepperNode)
 
-      var trigger2 = document.querySelector('#trigger2')
+      const trigger2 = document.querySelector('#trigger2')
       trigger2.removeAttribute('disabled')
-      var clickEvent = document.createEvent('Event')
+      const clickEvent = document.createEvent('Event')
       clickEvent.initEvent('click', true, true)
 
       spyOn(clickEvent, 'preventDefault')
@@ -171,12 +171,12 @@ describe('Stepper', function () {
         '</div>'
       ].join('')
 
-      var stepperNode = document.getElementById('myStepper')
-      var stepper = new Stepper(stepperNode, {
+      const stepperNode = document.getElementById('myStepper')
+      const stepper = new Stepper(stepperNode, {
         animation: true
       })
 
-      setTimeout(function () {
+      setTimeout(() => {
         expect(stepper.options).toEqual({
           linear: true,
           animation: true,
@@ -192,7 +192,7 @@ describe('Stepper', function () {
       }, 10)
     })
 
-    it('should add event listeners on triggers', function () {
+    it('should add event listeners on triggers', () => {
       fixture.innerHTML = [
         '<div id="myStepper" class="bs-stepper">',
         '  <div class="step" data-target="#test1">',
@@ -206,21 +206,21 @@ describe('Stepper', function () {
         '</div>'
       ].join('')
 
-      var trigger1 = document.querySelector('#trigger1')
-      var trigger2 = document.querySelector('#trigger2')
+      const trigger1 = document.querySelector('#trigger1')
+      const trigger2 = document.querySelector('#trigger2')
 
       spyOn(trigger1, 'addEventListener')
       spyOn(trigger2, 'addEventListener')
 
-      var stepperNode = document.getElementById('myStepper')
-      var stepper = new Stepper(stepperNode)
+      const stepperNode = document.getElementById('myStepper')
+      const stepper = new Stepper(stepperNode)
 
       expect(trigger1.addEventListener).toHaveBeenCalled()
       expect(trigger2.addEventListener).toHaveBeenCalled()
       expect(stepperNode['bsStepper']).toEqual(stepper)
     })
 
-    it('should allow CSS selector configuration', function () {
+    it('should allow CSS selector configuration', () => {
       fixture.innerHTML = [
         '<div id="myStepper" class="custom-bs-stepper">',
         '  <div class="custom-step" data-target="#test1">',
@@ -234,8 +234,8 @@ describe('Stepper', function () {
         '</div>'
       ].join('')
 
-      var stepperNode = document.getElementById('myStepper')
-      var stepper = new Stepper(stepperNode, {
+      const stepperNode = document.getElementById('myStepper')
+      const stepper = new Stepper(stepperNode, {
         selectors: {
           steps: '.custom-step',
           trigger: '.custom-step-trigger',
@@ -255,7 +255,7 @@ describe('Stepper', function () {
     })
   })
 
-  describe('next', function () {
+  describe('next', () => {
     it('should go to the next step', function (done) {
       fixture.innerHTML = [
         '<div id="myStepper" class="bs-stepper">',
@@ -270,8 +270,8 @@ describe('Stepper', function () {
         '</div>'
       ].join('')
 
-      var stepperNode = document.getElementById('myStepper')
-      var stepper = new Stepper(stepperNode)
+      const stepperNode = document.getElementById('myStepper')
+      const stepper = new Stepper(stepperNode)
 
       stepperNode.addEventListener('show.bs-stepper', function (event) {
         expect(event.detail.indexStep).toEqual(1)
@@ -300,19 +300,19 @@ describe('Stepper', function () {
         '</div>'
       ].join('')
 
-      var stepperNode = document.getElementById('myStepper')
-      var stepper = new Stepper(stepperNode)
-      var listeners = {
-        show: function (event) {
+      const stepperNode = document.getElementById('myStepper')
+      const stepper = new Stepper(stepperNode)
+      const listeners = {
+        show(event) {
           event.preventDefault()
           expect(event.detail.indexStep).toEqual(1)
 
-          setTimeout(function () {
+          setTimeout(() => {
             expect(listeners.shown).not.toHaveBeenCalled()
             done()
           }, 10)
         },
-        shown: function (event) {
+        shown() {
           console.warn('shown called but it should not be the case')
         }
       }
@@ -325,7 +325,7 @@ describe('Stepper', function () {
       stepper.next()
     })
 
-    it('should stay at the end if we call next', function () {
+    it('should stay at the end if we call next', () => {
       fixture.innerHTML = [
         '<div id="myStepper" class="bs-stepper">',
         '  <div class="step" data-target="#test1">',
@@ -339,8 +339,8 @@ describe('Stepper', function () {
         '</div>'
       ].join('')
 
-      var stepperNode = document.getElementById('myStepper')
-      var stepper = new Stepper(stepperNode)
+      const stepperNode = document.getElementById('myStepper')
+      const stepper = new Stepper(stepperNode)
 
       stepper.next()
       stepper.next()
@@ -350,8 +350,8 @@ describe('Stepper', function () {
     })
   })
 
-  describe('previous', function () {
-    it('should return to the previous step', function () {
+  describe('previous', () => {
+    it('should return to the previous step', () => {
       fixture.innerHTML = [
         '<div id="myStepper" class="bs-stepper">',
         '  <div class="step" data-target="#test1">',
@@ -365,10 +365,10 @@ describe('Stepper', function () {
         '</div>'
       ].join('')
 
-      var stepperNode = document.getElementById('myStepper')
-      var stepper = new Stepper(stepperNode)
-      var test1 = document.querySelector('#test1')
-      var test2 = document.querySelector('#test2')
+      const stepperNode = document.getElementById('myStepper')
+      const stepper = new Stepper(stepperNode)
+      const test1 = document.querySelector('#test1')
+      const test2 = document.querySelector('#test2')
 
       stepper.next()
 
@@ -381,7 +381,7 @@ describe('Stepper', function () {
       expect(test2.classList.contains('active')).toBe(false)
     })
 
-    it('should stay at the first step if previous called', function () {
+    it('should stay at the first step if previous called', () => {
       fixture.innerHTML = [
         '<div id="myStepper" class="bs-stepper">',
         '  <div class="step" data-target="#test1">',
@@ -395,11 +395,11 @@ describe('Stepper', function () {
         '</div>'
       ].join('')
 
-      var test1 = document.querySelector('#test1')
-      var test2 = document.querySelector('#test2')
+      const test1 = document.querySelector('#test1')
+      const test2 = document.querySelector('#test2')
 
-      var stepperNode = document.getElementById('myStepper')
-      var stepper = new Stepper(stepperNode)
+      const stepperNode = document.getElementById('myStepper')
+      const stepper = new Stepper(stepperNode)
 
       stepper.previous()
 
@@ -408,8 +408,8 @@ describe('Stepper', function () {
     })
   })
 
-  describe('to', function () {
-    it('should go to the step number', function () {
+  describe('to', () => {
+    it('should go to the step number', () => {
       fixture.innerHTML = [
         '<div id="myStepper" class="bs-stepper">',
         '  <div class="step" data-target="#test1">',
@@ -423,10 +423,10 @@ describe('Stepper', function () {
         '</div>'
       ].join('')
 
-      var stepperNode = document.getElementById('myStepper')
-      var stepper = new Stepper(stepperNode)
-      var test1 = document.querySelector('#test1')
-      var test2 = document.querySelector('#test2')
+      const stepperNode = document.getElementById('myStepper')
+      const stepper = new Stepper(stepperNode)
+      const test1 = document.querySelector('#test1')
+      const test2 = document.querySelector('#test2')
 
       stepper.to(2)
 
@@ -434,7 +434,7 @@ describe('Stepper', function () {
       expect(test2.classList.contains('active')).toBe(true)
     })
 
-    it('should handle wrong inputs', function () {
+    it('should handle wrong inputs', () => {
       fixture.innerHTML = [
         '<div id="myStepper" class="bs-stepper">',
         '  <div class="step" data-target="#test1">',
@@ -452,11 +452,11 @@ describe('Stepper', function () {
         '</div>'
       ].join('')
 
-      var stepperNode = document.getElementById('myStepper')
-      var stepper = new Stepper(stepperNode)
-      var test1 = document.querySelector('#test1')
-      var test2 = document.querySelector('#test2')
-      var test3 = document.querySelector('#test3')
+      const stepperNode = document.getElementById('myStepper')
+      const stepper = new Stepper(stepperNode)
+      const test1 = document.querySelector('#test1')
+      const test2 = document.querySelector('#test2')
+      const test3 = document.querySelector('#test3')
 
       stepper.to(-5)
 
@@ -478,8 +478,8 @@ describe('Stepper', function () {
     })
   })
 
-  describe('reset', function () {
-    it('should return to the first step', function () {
+  describe('reset', () => {
+    it('should return to the first step', () => {
       fixture.innerHTML = [
         '<div id="myStepper" class="bs-stepper">',
         '  <div class="step" data-target="#test1">',
@@ -493,10 +493,10 @@ describe('Stepper', function () {
         '</div>'
       ].join('')
 
-      var stepperNode = document.getElementById('myStepper')
-      var stepper = new Stepper(stepperNode)
-      var test1 = document.querySelector('#test1')
-      var test2 = document.querySelector('#test2')
+      const stepperNode = document.getElementById('myStepper')
+      const stepper = new Stepper(stepperNode)
+      const test1 = document.querySelector('#test1')
+      const test2 = document.querySelector('#test2')
 
       stepper.next()
 
@@ -510,8 +510,8 @@ describe('Stepper', function () {
     })
   })
 
-  describe('destroy', function () {
-    it('should clear properties', function () {
+  describe('destroy', () => {
+    it('should clear properties', () => {
       fixture.innerHTML = [
         '<div id="myStepper" class="bs-stepper">',
         '  <div class="step" data-target="#test1">',
@@ -525,8 +525,8 @@ describe('Stepper', function () {
         '</div>'
       ].join('')
 
-      var stepperNode = document.getElementById('myStepper')
-      var stepper = new Stepper(stepperNode)
+      const stepperNode = document.getElementById('myStepper')
+      const stepper = new Stepper(stepperNode)
 
       expect(stepperNode['bsStepper']).toEqual(stepper)
       expect(stepper._element).toEqual(stepperNode)
@@ -547,7 +547,7 @@ describe('Stepper', function () {
       expect(stepper._clickStepNonLinearListener).toBeUndefined()
     })
 
-    it('should remove event listeners on triggers', function () {
+    it('should remove event listeners on triggers', () => {
       fixture.innerHTML = [
         '<div id="myStepper" class="bs-stepper">',
         '  <div class="step" data-target="#test1">',
@@ -561,11 +561,11 @@ describe('Stepper', function () {
         '</div>'
       ].join('')
 
-      var stepperNode = document.getElementById('myStepper')
-      var stepper = new Stepper(stepperNode, { linear: false })
+      const stepperNode = document.getElementById('myStepper')
+      const stepper = new Stepper(stepperNode, { linear: false })
 
-      var trigger1 = document.querySelector('#trigger1')
-      var trigger2 = document.querySelector('#trigger2')
+      const trigger1 = document.querySelector('#trigger1')
+      const trigger2 = document.querySelector('#trigger2')
 
       spyOn(trigger1, 'removeEventListener')
       spyOn(trigger2, 'removeEventListener')

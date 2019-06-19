@@ -1,28 +1,54 @@
 const path = require('path')
 const ip = require('ip')
+const babel = require('rollup-plugin-babel')
+const istanbul = require('rollup-plugin-istanbul')
+
 const {
   browsers,
   browsersKeys,
 } = require('./browsers')
 const coveragePath = path.resolve(__dirname, 'dist/coverage')
 const browserTest = process.env.browser === 'true'
+const dev = process.env.dev === 'true'
+
+const rollupPreprocessor = {
+  plugins: [
+    istanbul({
+      exclude: ['src/js/**/*.spec.js']
+    }),
+    babel({
+      exclude: 'node_modules/**',
+    }),
+  ],
+  output: {
+    format: 'iife',
+    name: 'bsStepperTest',
+    sourcemap: 'inline'
+  }
+}
 
 module.exports = function(config) {
   const conf = {
+    basePath: '../',
     frameworks: ['jasmine'],
     files: [
-      'dist/js/*.js',
-      'units/*.spec.js'
+      { pattern: 'src/js/**.spec.js', watched: true }
     ],
-    reporters: ['dots'],
+    reporters: ['dots', 'kjhtml'],
     port: 9876,
     colors: true,
-    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
     logLevel: config.LOG_ERROR || config.LOG_WARN,
     autoWatch: false,
     browsers: ['ChromeHeadless'],
     singleRun: true,
     concurrency: Infinity,
+    rollupPreprocessor: rollupPreprocessor,
+    preprocessors: {
+      'src/js/**/*.spec.js': ['rollup']
+    },
+    client: {
+      clearContext: false
+    }
   }
 
   if (browserTest) {
@@ -46,12 +72,18 @@ module.exports = function(config) {
       thresholds: {
         emitWarning: false,
         global: {
-          statements: 96,
-          branches: 89,
+          statements: 97,
+          branches: 90,
           functions: 100,
           lines: 96
         }
       }
+    }
+
+    if (dev) {
+      conf.singleRun = false
+      conf.browsers = ['Chrome']
+      conf.autoWatch = true
     }
   }
 
