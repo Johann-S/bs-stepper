@@ -395,6 +395,29 @@ describe('Stepper', () => {
       expect(document.querySelector('#test1').classList.contains('active')).toBe(false)
       expect(document.querySelector('#test2').classList.contains('active')).toBe(true)
     })
+
+    it('should keep block class on previous steps for vertical stepper without fade', () => {
+      fixture.innerHTML = [
+        '<div id="myStepper" class="bs-stepper vertical">',
+        '  <div class="step" data-target="#test1">',
+        '    <button class="step-trigger">1</button>',
+        '  </div>',
+        '  <div class="step" data-target="#test2">',
+        '    <button class="step-trigger">2</button>',
+        '  </div>',
+        '  <div id="test1">1</div>',
+        '  <div id="test2">2</div>',
+        '</div>'
+      ].join('')
+
+      const stepperNode = document.getElementById('myStepper')
+      const stepper = new Stepper(stepperNode)
+
+      stepper.next()
+
+      expect(document.querySelector('#test2').classList.contains('active')).toBe(true)
+      expect(document.querySelector('#test2').classList.contains('dstepper-block')).toBe(true)
+    })
   })
 
   describe('previous', () => {

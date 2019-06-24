@@ -128,6 +128,12 @@
   display: block;
 }
 
+.bs-stepper.vertical .bs-stepper-pane:not(.fade),
+.bs-stepper.vertical .content:not(.fade) {
+  display: block;
+  visibility: hidden;
+}
+
 .bs-stepper-pane:not(.fade),
 .bs-stepper .content:not(.fade) {
   display: none;
@@ -149,6 +155,7 @@
 .bs-stepper-pane.active:not(.fade),
 .bs-stepper .content.active:not(.fade) {
   display: block;
+  visibility: visible;
 }
 
 .bs-stepper-pane.dstepper-block,

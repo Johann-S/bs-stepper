@@ -7,7 +7,8 @@ const ClassName = {
   LINEAR: 'linear',
   BLOCK: 'dstepper-block',
   NONE: 'dstepper-none',
-  FADE: 'fade'
+  FADE: 'fade',
+  VERTICAL: 'vertical'
 }
 
 const transitionEndEvent = 'transitionend'
@@ -40,7 +41,10 @@ const show = (stepperNode, indexStep, options, done) => {
   }
   if (activeContent.length) {
     activeContent[0].classList.remove(ClassName.ACTIVE)
-    activeContent[0].classList.remove(ClassName.BLOCK)
+
+    if (!stepperNode.classList.contains(ClassName.VERTICAL) && !stepper.options.animation) {
+      activeContent[0].classList.remove(ClassName.BLOCK)
+    }
   }
 
   showStep(stepperNode, stepper._steps[indexStep], stepper._steps, options)
@@ -96,6 +100,7 @@ const showContent = (stepperNode, content, contentList, activeContent, done) => 
     emulateTransitionEnd(content, duration)
   } else {
     content.classList.add(ClassName.ACTIVE)
+    content.classList.add(ClassName.BLOCK)
     stepperNode.dispatchEvent(shownEvent)
     done()
   }
