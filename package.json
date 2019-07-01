@@ -76,7 +76,7 @@
     "karma-rollup-preprocessor": "^7.0.0",
     "postcss-cli": "^6.1.2",
     "rollup": "^1.16.3",
-    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-istanbul": "^2.0.1",
     "rollup-plugin-terser": "^5.0.0",
     "shx": "^0.3.2",
