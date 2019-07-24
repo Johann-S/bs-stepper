@@ -1,5 +1,5 @@
 /*!
- * bsStepper v1.6.1 (https://github.com/Johann-S/bs-stepper)
+ * bsStepper v1.7.0 (https://github.com/Johann-S/bs-stepper)
  * Copyright 2018 - 2019 Johann-S <johann.servoire@gmail.com>
  * Licensed under MIT (https://github.com/Johann-S/bs-stepper/blob/master/LICENSE)
  */
@@ -114,7 +114,8 @@
     LINEAR: 'linear',
     BLOCK: 'dstepper-block',
     NONE: 'dstepper-none',
-    FADE: 'fade'
+    FADE: 'fade',
+    VERTICAL: 'vertical'
   };
   var transitionEndEvent = 'transitionend';
   var customProperty = 'bsStepper';
@@ -129,6 +130,8 @@
     var showEvent = createCustomEvent('show.bs-stepper', {
       cancelable: true,
       detail: {
+        from: stepper._currentIndex,
+        to: indexStep,
         indexStep: indexStep
       }
     });
@@ -152,7 +155,10 @@
 
     if (activeContent.length) {
       activeContent[0].classList.remove(ClassName.ACTIVE);
-      activeContent[0].classList.remove(ClassName.BLOCK);
+
+      if (!stepperNode.classList.contains(ClassName.VERTICAL) && !stepper.options.animation) {
+        activeContent[0].classList.remove(ClassName.BLOCK);
+      }
     }
 
     showStep(stepperNode, stepper._steps[indexStep], stepper._steps, options);
@@ -178,10 +184,14 @@
   };
 
   var showContent = function showContent(stepperNode, content, contentList, activeContent, done) {
+    var stepper = stepperNode[customProperty];
+    var toIndex = contentList.indexOf(content);
     var shownEvent = createCustomEvent('shown.bs-stepper', {
       cancelable: true,
       detail: {
-        indexStep: contentList.indexOf(content)
+        from: stepper._currentIndex,
+        to: toIndex,
+        indexStep: toIndex
       }
     });
 
@@ -205,6 +215,7 @@
       emulateTransitionEnd(content, duration);
     } else {
       content.classList.add(ClassName.ACTIVE);
+      content.classList.add(ClassName.BLOCK);
       stepperNode.dispatchEvent(shownEvent);
       done();
     }
@@ -301,8 +312,8 @@
       this._element = element;
       this._currentIndex = 0;
       this._stepsContents = [];
-      this.options = _extends({}, DEFAULT_OPTIONS, _options);
-      this.options.selectors = _extends({}, DEFAULT_OPTIONS.selectors, this.options.selectors);
+      this.options = _extends({}, DEFAULT_OPTIONS, {}, _options);
+      this.options.selectors = _extends({}, DEFAULT_OPTIONS.selectors, {}, this.options.selectors);
 
       if (this.options.linear) {
         this._element.classList.add(ClassName.LINEAR);

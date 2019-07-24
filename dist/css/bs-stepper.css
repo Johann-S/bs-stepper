@@ -1,5 +1,5 @@
 /*!
- * bsStepper v1.6.1 (https://github.com/Johann-S/bs-stepper)
+ * bsStepper v1.7.0 (https://github.com/Johann-S/bs-stepper)
  * Copyright 2018 - 2019 Johann-S <johann.servoire@gmail.com>
  * Licensed under MIT (https://github.com/Johann-S/bs-stepper/blob/master/LICENSE)
  */
@@ -146,6 +146,12 @@
   display: block;
 }
 
+.bs-stepper.vertical .bs-stepper-pane:not(.fade),
+.bs-stepper.vertical .content:not(.fade) {
+  display: block;
+  visibility: hidden;
+}
+
 .bs-stepper-pane:not(.fade),
 .bs-stepper .content:not(.fade) {
   display: none;
@@ -167,6 +173,7 @@
 .bs-stepper-pane.active:not(.fade),
 .bs-stepper .content.active:not(.fade) {
   display: block;
+  visibility: visible;
 }
 
 .bs-stepper-pane.dstepper-block,
