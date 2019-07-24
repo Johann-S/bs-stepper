@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.7.0](https://github.com/Johann-S/bs-stepper/compare/v1.6.1...v1.7.0) (2019-07-24)
+
+
+### Bug Fixes
+
+* **tests:** undefined event var ([ba557a2](https://github.com/Johann-S/bs-stepper/commit/ba557a2))
+* **vertical:** weird behavior without fade ([3684792](https://github.com/Johann-S/bs-stepper/commit/3684792))
+
+
+### Features
+
+* **events:** add from and to properties in detail ([16b146a](https://github.com/Johann-S/bs-stepper/commit/16b146a))
+
+
+
 ### [1.6.1](https://github.com/Johann-S/bs-stepper/compare/v1.6.0...v1.6.1) (2019-06-19)
 
 
