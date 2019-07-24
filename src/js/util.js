@@ -24,7 +24,9 @@ const show = (stepperNode, indexStep, options, done) => {
   const showEvent = createCustomEvent('show.bs-stepper', {
     cancelable: true,
     detail: {
-      indexStep
+      from: stepper._currentIndex,
+      to: indexStep,
+      indexStep,
     }
   })
   stepperNode.dispatchEvent(showEvent)
@@ -73,10 +75,14 @@ const showStep = (stepperNode, step, stepList, options) => {
 }
 
 const showContent = (stepperNode, content, contentList, activeContent, done) => {
+  const stepper = stepperNode[customProperty]
+  const toIndex = contentList.indexOf(content)
   const shownEvent = createCustomEvent('shown.bs-stepper', {
     cancelable: true,
     detail: {
-      indexStep: contentList.indexOf(content)
+      from: stepper._currentIndex,
+      to: toIndex,
+      indexStep: toIndex
     }
   })
 

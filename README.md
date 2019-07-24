@@ -221,13 +221,21 @@ stepperEl.addEventListener('show.bs-stepper', function (event) {
   // You can call prevent to stop the rendering of your step
   // event.preventDefault()
 
-  // indexStep contains the id of the step which will be displayed
   console.warn(event.detail.indexStep)
 })
 
 stepperEl.addEventListener('shown.bs-stepper', function (event) {
   console.warn('step shown')
 })
+```
+
+The event `detail` object contains the following properties:
+```
+{
+  indexStep: contains the id of the step which will be displayed,
+  to: alias of indexStep,
+  from: previous step id (or current step id)
+}
 ```
 
 If you need to prevent the display of a step, you have to call `preventDefault` on the `show.bs-stepper` listener.

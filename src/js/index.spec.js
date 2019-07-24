@@ -275,9 +275,13 @@ describe('Stepper', () => {
 
       stepperNode.addEventListener('show.bs-stepper', function (event) {
         expect(event.detail.indexStep).toEqual(1)
+        expect(event.detail.to).toEqual(1)
+        expect(event.detail.from).toEqual(0)
       })
       stepperNode.addEventListener('shown.bs-stepper', function (event) {
         expect(event.detail.indexStep).toEqual(1)
+        expect(event.detail.to).toEqual(1)
+        expect(event.detail.from).toEqual(0)
         expect(document.querySelector('#test1').classList.contains('active')).toBe(false)
         expect(document.querySelector('#test2').classList.contains('active')).toBe(true)
         done()
@@ -421,7 +425,7 @@ describe('Stepper', () => {
   })
 
   describe('previous', () => {
-    it('should return to the previous step', () => {
+    it('should return to the previous step', done => {
       fixture.innerHTML = [
         '<div id="myStepper" class="bs-stepper">',
         '  <div class="step" data-target="#test1">',
@@ -445,10 +449,22 @@ describe('Stepper', () => {
       expect(test1.classList.contains('active')).toBe(false)
       expect(test2.classList.contains('active')).toBe(true)
 
-      stepper.previous()
+      stepperNode.addEventListener('show.bs-stepper', function (event) {
+        expect(event.detail.indexStep).toEqual(0)
+        expect(event.detail.to).toEqual(0)
+        expect(event.detail.from).toEqual(1)
+      })
 
-      expect(test1.classList.contains('active')).toBe(true)
-      expect(test2.classList.contains('active')).toBe(false)
+      stepperNode.addEventListener('shown.bs-stepper', function (event) {
+        expect(event.detail.indexStep).toEqual(0)
+        expect(event.detail.to).toEqual(0)
+        expect(event.detail.from).toEqual(1)
+        expect(test1.classList.contains('active')).toBe(true)
+        expect(test2.classList.contains('active')).toBe(false)
+        done()
+      })
+
+      stepper.previous()
     })
 
     it('should stay at the first step if previous called', () => {
@@ -498,7 +514,16 @@ describe('Stepper', () => {
       const test1 = document.querySelector('#test1')
       const test2 = document.querySelector('#test2')
 
+      stepperNode.addEventListener('show.bs-stepper', function (event) {
+        expect(event.detail.indexStep).toEqual(1)
+        expect(event.detail.to).toEqual(1)
+        expect(event.detail.from).toEqual(0)
+      })
+
       stepperNode.addEventListener('shown.bs-stepper', () => {
+        expect(event.detail.indexStep).toEqual(1)
+        expect(event.detail.to).toEqual(1)
+        expect(event.detail.from).toEqual(0)
         expect(test1.classList.contains('active')).toBe(false)
         expect(test2.classList.contains('active')).toBe(true)
         done()
