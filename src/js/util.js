@@ -26,7 +26,7 @@ const show = (stepperNode, indexStep, options, done) => {
     detail: {
       from: stepper._currentIndex,
       to: indexStep,
-      indexStep,
+      indexStep
     }
   })
   stepperNode.dispatchEvent(showEvent)
