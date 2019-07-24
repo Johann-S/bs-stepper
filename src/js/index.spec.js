@@ -514,13 +514,13 @@ describe('Stepper', () => {
       const test1 = document.querySelector('#test1')
       const test2 = document.querySelector('#test2')
 
-      stepperNode.addEventListener('show.bs-stepper', function (event) {
+      stepperNode.addEventListener('show.bs-stepper', event => {
         expect(event.detail.indexStep).toEqual(1)
         expect(event.detail.to).toEqual(1)
         expect(event.detail.from).toEqual(0)
       })
 
-      stepperNode.addEventListener('shown.bs-stepper', () => {
+      stepperNode.addEventListener('shown.bs-stepper', event => {
         expect(event.detail.indexStep).toEqual(1)
         expect(event.detail.to).toEqual(1)
         expect(event.detail.from).toEqual(0)
