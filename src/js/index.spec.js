@@ -36,7 +36,7 @@ describe('Stepper', () => {
 
       expect(stepperNode.classList.contains('linear')).toBe(true)
       expect(stepper._steps.length).toEqual(2)
-      expect(stepperNode['bsStepper']).toEqual(stepper)
+      expect(stepperNode.bsStepper).toEqual(stepper)
       expect(document.querySelector('.step').classList.contains('active')).toBe(true)
       expect(document.getElementById('trigger1').getAttribute('aria-selected')).toEqual('true')
       expect(document.getElementById('trigger2').getAttribute('aria-selected')).toEqual('false')
@@ -59,7 +59,7 @@ describe('Stepper', () => {
 
       expect(stepperNode.classList.contains('linear')).toBe(true)
       expect(stepper._steps.length).toEqual(0)
-      expect(stepperNode['bsStepper']).toEqual(stepper)
+      expect(stepperNode.bsStepper).toEqual(stepper)
     })
 
     it('should create a non linear stepper', () => {
@@ -84,7 +84,7 @@ describe('Stepper', () => {
       expect(stepperNode.classList.contains('linear')).toBe(false)
       expect(stepper._steps.length).toEqual(2)
       expect(document.querySelector('.step').classList.contains('active')).toBe(true)
-      expect(stepperNode['bsStepper']).toEqual(stepper)
+      expect(stepperNode.bsStepper).toEqual(stepper)
       expect(stepper._clickStepLinearListener).toBeUndefined()
       expect(stepper._clickStepNonLinearListener).toBeTruthy()
       expect(stepper.options).toEqual({
@@ -217,7 +217,7 @@ describe('Stepper', () => {
 
       expect(trigger1.addEventListener).toHaveBeenCalled()
       expect(trigger2.addEventListener).toHaveBeenCalled()
-      expect(stepperNode['bsStepper']).toEqual(stepper)
+      expect(stepperNode.bsStepper).toEqual(stepper)
     })
 
     it('should allow css selector configuration', () => {
@@ -626,7 +626,7 @@ describe('Stepper', () => {
       const stepperNode = document.getElementById('myStepper')
       const stepper = new Stepper(stepperNode)
 
-      expect(stepperNode['bsStepper']).toEqual(stepper)
+      expect(stepperNode.bsStepper).toEqual(stepper)
       expect(stepper._element).toEqual(stepperNode)
       expect(stepper._currentIndex).toEqual(0)
       expect(stepper._steps.length).toEqual(2)
