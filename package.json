@@ -21,7 +21,7 @@
     "test:unit:dev": "cross-env dev=true karma start tests/karma.conf.js",
     "test:unit": "karma start tests/karma.conf.js",
     "test": "npm run standard && npm run css-lint && npm run test:unit && npm run build",
-    "standard": "standard src/js/*.js",
+    "standard": "standard",
     "css-lint": "stylelint src/css/bs-stepper.css",
     "deploy": "gh-pages -d docs",
     "docs-build": "shx mkdir -p docs/dist/ && shx cp -r dist/css/ docs/dist/ && shx cp -r dist/js/ docs/dist/",
