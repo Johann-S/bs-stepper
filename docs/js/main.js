@@ -1,22 +1,18 @@
-var stepper1
-var stepper2
-var stepper3
-var stepper4
-var stepperForm
+/* globals Stepper:false */
 
 document.addEventListener('DOMContentLoaded', function () {
-  stepper1 = new Stepper(document.querySelector('#stepper1'))
-  stepper2 = new Stepper(document.querySelector('#stepper2'), {
+  window.stepper1 = new Stepper(document.querySelector('#stepper1'))
+  window.stepper2 = new Stepper(document.querySelector('#stepper2'), {
     linear: false
   })
-  stepper3 = new Stepper(document.querySelector('#stepper3'), {
+  window.stepper3 = new Stepper(document.querySelector('#stepper3'), {
     linear: false,
     animation: true
   })
-  stepper4 = new Stepper(document.querySelector('#stepper4'))
+  window.stepper4 = new Stepper(document.querySelector('#stepper4'))
 
   var stepperFormEl = document.querySelector('#stepperForm')
-  stepperForm = new Stepper(stepperFormEl, {
+  window.stepperForm = new Stepper(stepperFormEl, {
     animation: true
   })
 
@@ -28,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   btnNextList.forEach(function (btn) {
     btn.addEventListener('click', function () {
-      stepperForm.next()
+      window.stepperForm.next()
     })
   })
 
@@ -43,8 +39,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var stepperPan = stepperPanList[currentStep]
 
-    if ((stepperPan.getAttribute('id') === 'test-form-1' && !inputMailForm.value.length)
-    || (stepperPan.getAttribute('id') === 'test-form-2' && !inputPasswordForm.value.length)) {
+    if ((stepperPan.getAttribute('id') === 'test-form-1' && !inputMailForm.value.length) ||
+    (stepperPan.getAttribute('id') === 'test-form-2' && !inputPasswordForm.value.length)) {
       event.preventDefault()
       form.classList.add('was-validated')
     }

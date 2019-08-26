@@ -5,7 +5,7 @@ const istanbul = require('rollup-plugin-istanbul')
 
 const {
   browsers,
-  browsersKeys,
+  browsersKeys
 } = require('./browsers')
 const coveragePath = path.resolve(__dirname, 'dist/coverage')
 const browserTest = process.env.browser === 'true'
@@ -17,8 +17,8 @@ const rollupPreprocessor = {
       exclude: ['src/js/**/*.spec.js']
     }),
     babel({
-      exclude: 'node_modules/**',
-    }),
+      exclude: 'node_modules/**'
+    })
   ],
   output: {
     format: 'iife',
@@ -27,7 +27,7 @@ const rollupPreprocessor = {
   }
 }
 
-module.exports = function(config) {
+module.exports = function (config) {
   const conf = {
     basePath: '../',
     frameworks: ['jasmine'],
@@ -58,7 +58,7 @@ module.exports = function(config) {
       accessKey: process.env.BROWSER_STACK_ACCESS_KEY,
       build: `bsStepper-${new Date().toISOString()}`,
       project: 'bsStepper',
-      retryLimit: 1,
+      retryLimit: 1
     }
 
     conf.customLaunchers = browsers
