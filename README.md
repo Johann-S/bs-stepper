@@ -15,7 +15,7 @@ You can use it on [React](https://stackblitz.com/edit/bs-stepper-react) and [Ang
 
 [Demo](https://johann-s.github.io/bs-stepper/)
 
-If you want to see our last changes it's here: [https://bs-stepper.netlify.com/](https://bs-stepper.netlify.com/)
+If you want to see our latest changes checkout <https://bs-stepper.netlify.com/>
 
 Features:
 
@@ -26,7 +26,7 @@ Features:
 - Works with Bootstrap 4
 - Accessible
 - Works without *dependencies* (so no **jQuery** needed)
-- Built in UMD to be used everywhere
+- Built in UMD so it can be used everywhere
 - Small, only **2kb**
 
 ## Table of contents
@@ -97,8 +97,8 @@ Add the following HTML:
 </div>
 ```
 
-- If you want to use the fade `fade` animation, add `.fade` class on your `.content` and set `animation` to `true`.
-- To create a vertical stepper, just add `.vertical` class on your stepper. All steppers will switch to vertical on small viewports.
+- If you want to use the `fade` animation, add the `.fade` class on your `.content` and set `animation` to `true`.
+- To create a vertical stepper, just add the `.vertical` class on your stepper. All steppers will switch to vertical on small viewports.
 
 ### JavaScript
 
@@ -136,13 +136,13 @@ $(document).ready(function () {
 
 For more examples check out [this file](https://github.com/Johann-S/bs-stepper/blob/master/tests/index.html).
 
-This library is UMD ready so you can use it everywhere.
+This library is UMD-ready so you can use it everywhere.
 
 ## Methods
 
 ### constructor
 
-Create an instance of `Stepper`, accept two parameters.
+Create an instance of `Stepper`, accepts two parameters.
 
 #### Parameters
 
@@ -155,6 +155,7 @@ Pass your `Stepper` DOMElement
   - type: `Object`
 
   default value:
+
   ```js
   {
     linear: true,
@@ -167,12 +168,12 @@ Pass your `Stepper` DOMElement
   }
   ```
 
-  Allows you to customize the stepper selectors and it's behaviour.
+  Allows you to customize the stepper selectors and its behavior.
 
 ### next
 
-Will navigate to the next step of your stepper. This method also emit `show.bs-stepper` before showing the step and
-`shown.bs-stepper` when the step is displayed.
+Will navigate to the next step of your stepper. This method also emits the `show.bs-stepper`
+event before showing the step and the `shown.bs-stepper` even when the step is displayed.
 
 ```js
 var stepper = new Stepper(document.querySelector('.bs-stepper'))
@@ -181,13 +182,13 @@ stepper.next()
 
 ### previous
 
-Will navigate to the previous step of your stepper. This method also emit `show.bs-stepper` before showing the step and
-`shown.bs-stepper` when the step is displayed.
+Will navigate to the previous step of your stepper. This method also emits the `show.bs-stepper`
+event before showing the step and the `shown.bs-stepper` event when the step is displayed.
 
 ### to
 
-Will navigate to a step of your stepper. This method also emit `show.bs-stepper` before showing the step and
-`shown.bs-stepper` when the step is displayed.
+Will navigate to a step of your stepper. This method also emits the `show.bs-stepper` event
+before showing the step and the `shown.bs-stepper` event when the step is displayed.
 
 ```js
 var stepper = new Stepper(document.querySelector('.bs-stepper'))
@@ -198,27 +199,28 @@ stepper.to(2)
 
 ### reset
 
-Will reset you stepper to the first step (usefull for linear stepper). This method also emit `show.bs-stepper` before showing the step and
-`shown.bs-stepper` when the step is displayed.
+Will reset your stepper to the first step (useful for linear stepper). This method also emits
+the `show.bs-stepper` before showing the step and the `shown.bs-stepper` event when the step is displayed.
 
 ### destroy
 
-Remove stored data relative to your stepper and listeners.
+Remove stored data related to your stepper and listeners.
 
 ## Events
 
-The methods which trigger a step change trigger two events:
- - `show.bs-stepper`
- - `shown.bs-stepper`
+The methods which triggers a step change trigger two events:
 
-You can listen on those events like that:
+- `show.bs-stepper`
+- `shown.bs-stepper`
+
+You can listen on those events like this:
 
 ```js
 var stepperEl = document.getElementById('stepper')
 var stepper = new Stepper(stepperEl)
 
 stepperEl.addEventListener('show.bs-stepper', function (event) {
-  // You can call prevent to stop the rendering of your step
+  // You can call preventDefault to stop the rendering of your step
   // event.preventDefault()
 
   console.warn(event.detail.indexStep)
@@ -230,6 +232,7 @@ stepperEl.addEventListener('shown.bs-stepper', function (event) {
 ```
 
 The event `detail` object contains the following properties:
+
 ```
 {
   indexStep: contains the id of the step which will be displayed,
@@ -256,9 +259,10 @@ You can find our BrowserStack list of browsers [here](https://github.com/Johann-
 
 ## Support me
 
-If you want to thank me or supporting my work:
- - You can become my [Patron](https://www.patreon.com/jservoire)
- - Or buy me a coffee: [PayPal](https://www.paypal.me/jservoire)
+If you want to thank me or support my work:
+
+- You can become my [Patron](https://www.patreon.com/jservoire)
+- Or buy me a coffee: [PayPal](https://www.paypal.me/jservoire)
 
 ## Thanks
 
