@@ -62,7 +62,7 @@
     "bootstrap": "^4.3.1",
     "clean-css-cli": "^4.3.0",
     "coveralls": "^3.0.6",
-    "cross-env": "^5.2.0",
+    "cross-env": "^5.2.1",
     "gh-pages": "^2.1.1",
     "ip": "^1.1.5",
     "jasmine-core": "^3.4.0",
