@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/bs-stepper.svg)](https://www.npmjs.com/package/bs-stepper)
 [![dependencies Status](https://img.shields.io/david/Johann-S/bs-stepper.svg)](https://david-dm.org/Johann-S/bs-stepper)
 [![devDependencies Status](https://img.shields.io/david/dev/Johann-S/bs-stepper.svg)](https://david-dm.org/Johann-S/bs-stepper?type=dev)
-[![Build Status](https://img.shields.io/travis/Johann-S/bs-stepper/master.svg)](https://travis-ci.org/Johann-S/bs-stepper)
+[![Build Status](https://github.com/Johann-S/bs-stepper/workflows/Tests/badge.svg)](https://github.com/Johann-S/bs-stepper/actions?workflow=Tests)
 [![Coverage Status](https://img.shields.io/coveralls/github/Johann-S/bs-stepper/master.svg)](https://coveralls.io/github/Johann-S/bs-stepper?branch=master)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com/)
 [![JS gzip size](https://img.badgesize.io/Johann-S/bs-stepper/gh-pages/dist/js/bs-stepper.min.js?compression=gzip&label=JS+gzip+size)](https://github.com/Johann-S/bs-stepper/tree/gh-pages/dist/js/bs-stepper.min.js)
