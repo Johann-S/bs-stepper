@@ -58,7 +58,7 @@
   "devDependencies": {
     "@babel/core": "^7.6.2",
     "@babel/preset-env": "^7.6.2",
-    "autoprefixer": "^9.6.1",
+    "autoprefixer": "^9.6.4",
     "bootstrap": "^4.3.1",
     "clean-css-cli": "^4.3.0",
     "coveralls": "^3.0.6",
@@ -82,8 +82,8 @@
     "shx": "^0.3.2",
     "standard": "^14.3.1",
     "standard-version": "^7.0.0",
-    "stylelint": "^10.1.0",
-    "stylelint-config-twbs-bootstrap": "^0.4.0"
+    "stylelint": "^11.0.0",
+    "stylelint-config-twbs-bootstrap": "^0.6.0"
   },
   "standard": {
     "ignore": [
