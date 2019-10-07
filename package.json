@@ -83,7 +83,7 @@
     "standard": "^14.3.1",
     "standard-version": "^7.0.0",
     "stylelint": "^10.1.0",
-    "stylelint-config-twbs-bootstrap": "^0.4.0"
+    "stylelint-config-twbs-bootstrap": "^0.6.0"
   },
   "standard": {
     "ignore": [
