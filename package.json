@@ -26,8 +26,7 @@
     "deploy": "gh-pages -d docs",
     "docs-build": "shx mkdir -p docs/dist/ && shx cp -r dist/css/ docs/dist/ && shx cp -r dist/js/ docs/dist/",
     "docs-serve": "serve docs/",
-    "changelog": "standard-version -a",
-    "coveralls": "shx cat tests/dist/coverage/lcov.info | coveralls"
+    "changelog": "standard-version -a"
   },
   "files": [
     "dist/js/*.{js,map}",
@@ -61,7 +60,6 @@
     "autoprefixer": "^9.7.1",
     "bootstrap": "^4.3.1",
     "clean-css-cli": "^4.3.0",
-    "coveralls": "^3.0.7",
     "cross-env": "^6.0.3",
     "gh-pages": "^2.1.1",
     "ip": "^1.1.5",
