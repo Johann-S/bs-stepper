@@ -55,7 +55,7 @@
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
-    "@babel/core": "^7.7.2",
+    "@babel/core": "^7.7.5",
     "@babel/preset-env": "^7.7.6",
     "autoprefixer": "^9.7.3",
     "bootstrap": "^4.3.1",
