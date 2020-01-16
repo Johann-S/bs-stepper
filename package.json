@@ -9,7 +9,7 @@
     "url": "https://github.com/Johann-S/bs-stepper/issues"
   },
   "engines": {
-    "node": ">=8"
+    "node": ">=10"
   },
   "scripts": {
     "browserstack": "cross-env browser=true karma start tests/karma.conf.js",
