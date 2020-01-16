@@ -59,7 +59,7 @@ class Stepper {
       const trigger = step.querySelector(this.options.selectors.trigger)
 
       if (this.options.linear) {
-        this._clickStepLinearListener = buildClickStepLinearListener(this.options)
+        this._clickStepLinearListener = buildClickStepLinearListener()
         trigger.addEventListener('click', this._clickStepLinearListener)
       } else {
         this._clickStepNonLinearListener = buildClickStepNonLinearListener(this.options)
