@@ -6,7 +6,6 @@ const year = new Date().getFullYear()
 
 const buildProd = process.env.PROD === 'true'
 const buildDev = process.env.DEV === 'true'
-const buildTest = process.env.TEST === 'true'
 
 const conf = {
   input: './src/js/index.js',
@@ -27,10 +26,6 @@ const conf = {
       exclude: 'node_modules/**'
     })
   ]
-}
-
-if (buildTest) {
-  conf.output.file = './tests/dist/js/bs-stepper.js'
 }
 
 if (buildDev) {
