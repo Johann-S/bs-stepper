@@ -33,8 +33,7 @@ function polyfill () {
   }
 
   if (!window.Event || typeof window.Event !== 'function') {
-    WinEvent = (inType, params) => {
-      params = params || {}
+    WinEvent = (inType, params = {}) => {
       const e = document.createEvent('Event')
       e.initEvent(inType, Boolean(params.bubbles), Boolean(params.cancelable))
       return e
