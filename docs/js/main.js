@@ -1,6 +1,8 @@
 /* globals Stepper:false */
 
-document.addEventListener('DOMContentLoaded', function () {
+(function () {
+  'use strict'
+
   window.stepper1 = new Stepper(document.querySelector('#stepper1'))
   window.stepper2 = new Stepper(document.querySelector('#stepper2'), {
     linear: false
@@ -45,4 +47,4 @@ document.addEventListener('DOMContentLoaded', function () {
       form.classList.add('was-validated')
     }
   })
-})
+})()
