@@ -30,9 +30,6 @@ const conf = {
 
 if (buildDev) {
   conf.output.file = './tests/dist/js/bs-stepper.js'
-  conf.watch = {
-    include: './src/**.js'
-  }
 }
 
 if (buildProd) {
