@@ -1,8 +1,7 @@
-const path = require('path')
 const babel = require('rollup-plugin-babel')
 const { terser } = require('rollup-plugin-terser')
 
-const pkg = require(path.resolve(__dirname, 'package.json'))
+const { version, homepage, author } = require('./package.json')
 const year = new Date().getFullYear()
 
 const buildProd = process.env.PROD === 'true'
@@ -14,8 +13,8 @@ const conf = {
   output: {
     banner:
 `/*!
- * bsStepper v${pkg.version} (${pkg.homepage})
- * Copyright 2018 - ${year} ${pkg.author}
+ * bsStepper v${version} (${homepage})
+ * Copyright 2018 - ${year} ${author}
  * Licensed under MIT (https://github.com/Johann-S/bs-stepper/blob/master/LICENSE)
  */`,
     file: './dist/js/bs-stepper.js',
@@ -37,7 +36,7 @@ if (buildTest) {
 if (buildDev) {
   conf.output.file = './tests/dist/js/bs-stepper.js'
   conf.watch = {
-    include: 'src/**.js'
+    include: './src/**.js'
   }
 }
 
