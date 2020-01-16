@@ -55,37 +55,36 @@
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
-    "@babel/core": "^7.7.7",
+    "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.0",
-    "autoprefixer": "^9.7.3",
+    "autoprefixer": "^9.7.4",
     "bootstrap": "^4.4.1",
     "clean-css-cli": "^4.3.0",
     "cross-env": "^7.0.2",
     "gh-pages": "^2.2.0",
     "ip": "^1.1.5",
-    "jasmine-core": "^3.5.0",
     "karma": "^4.4.1",
     "karma-browserstack-launcher": "1.4.0",
     "karma-chrome-launcher": "^3.1.0",
     "karma-coverage-istanbul-reporter": "^2.1.1",
     "karma-jasmine": "^3.1.1",
-    "karma-jasmine-html-reporter": "^1.5.1",
+    "karma-jasmine-html-reporter": "^1.5.2",
     "karma-rollup-preprocessor": "^7.0.4",
     "postcss-cli": "^7.1.0",
-    "rollup": "1.32.1",
-    "rollup-plugin-babel": "^4.3.3",
+    "rollup": "^2.1.0",
+    "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-istanbul": "^2.0.1",
     "rollup-plugin-terser": "^5.3.0",
     "serve": "^11.3.0",
     "shx": "^0.3.2",
-    "standard": "^14.3.1",
+    "standard": "^14.3.3",
     "standard-version": "^7.1.0",
-    "stylelint": "^12.0.1",
+    "stylelint": "^13.2.1",
     "stylelint-config-twbs-bootstrap": "^2.0.1"
   },
   "standard": {
     "ignore": [
-      "dist/js/*.js"
+      "dist/"
     ]
   },
   "standard-version": {
