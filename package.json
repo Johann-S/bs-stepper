@@ -60,7 +60,7 @@
     "autoprefixer": "^9.7.3",
     "bootstrap": "^4.4.1",
     "clean-css-cli": "^4.3.0",
-    "cross-env": "^6.0.3",
+    "cross-env": "^7.0.0",
     "gh-pages": "^2.1.1",
     "ip": "^1.1.5",
     "jasmine-core": "^3.5.0",
