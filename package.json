@@ -58,7 +58,7 @@
     "@babel/core": "^7.9.6",
     "@babel/preset-env": "^7.9.6",
     "autoprefixer": "^9.7.3",
-    "bootstrap": "^4.4.1",
+    "bootstrap": "^4.5.0",
     "clean-css-cli": "^4.3.0",
     "cross-env": "^7.0.2",
     "gh-pages": "^2.2.0",
