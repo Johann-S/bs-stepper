@@ -1,4 +1,4 @@
-const babel = require('rollup-plugin-babel')
+const { babel } = require('@rollup/plugin-babel')
 const { terser } = require('rollup-plugin-terser')
 
 const { version, homepage, author } = require('./package.json')
@@ -23,7 +23,9 @@ const conf = {
   },
   plugins: [
     babel({
-      exclude: 'node_modules/**'
+      exclude: 'node_modules/**',
+      // Include the helpers in the bundle, at most one copy of each
+      babelHelpers: 'bundled'
     })
   ]
 }

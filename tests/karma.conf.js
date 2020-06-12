@@ -1,6 +1,6 @@
 const path = require('path')
 const ip = require('ip')
-const babel = require('rollup-plugin-babel')
+const { babel } = require('@rollup/plugin-babel')
 const istanbul = require('rollup-plugin-istanbul')
 
 const {
@@ -17,7 +17,9 @@ const rollupPreprocessor = {
       exclude: ['src/js/**/*.spec.js']
     }),
     babel({
-      exclude: 'node_modules/**'
+      exclude: 'node_modules/**',
+      // Include the helpers in the bundle, at most one copy of each
+      babelHelpers: 'bundled'
     })
   ],
   output: {
