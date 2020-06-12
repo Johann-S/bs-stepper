@@ -57,7 +57,7 @@
   "devDependencies": {
     "@babel/core": "^7.9.6",
     "@babel/preset-env": "^7.9.6",
-    "autoprefixer": "^9.7.3",
+    "autoprefixer": "^9.8.0",
     "bootstrap": "^4.4.1",
     "clean-css-cli": "^4.3.0",
     "cross-env": "^7.0.2",
