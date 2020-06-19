@@ -15,7 +15,7 @@ You can use it on [React](https://stackblitz.com/edit/bs-stepper-react) and [Ang
 
 [Demo](https://johann-s.github.io/bs-stepper/)
 
-If you want to see our latest changes checkout <https://bs-stepper.netlify.com/>
+If you want to see our latest changes check out <https://bs-stepper.netlify.com/>
 
 Features:
 
