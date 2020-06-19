@@ -102,7 +102,7 @@ Add the following HTML:
 
 ### JavaScript
 
-In HTML before the end of the `<body>` tag
+Include the script before the end of the `<body>` HTML tag:
 
 ```html
 <script src="bs-stepper.min.js"></script>
