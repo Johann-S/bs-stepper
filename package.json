@@ -80,7 +80,7 @@
     "shx": "^0.3.2",
     "standard": "^14.3.4",
     "standard-version": "^8.0.0",
-    "stylelint": "^13.6.0",
+    "stylelint": "^13.6.1",
     "stylelint-config-twbs-bootstrap": "^2.0.3"
   },
   "standard": {
