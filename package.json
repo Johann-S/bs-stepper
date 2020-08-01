@@ -73,7 +73,7 @@
     "karma-jasmine-html-reporter": "^1.5.4",
     "karma-rollup-preprocessor": "^7.0.5",
     "postcss-cli": "^7.1.1",
-    "rollup": "2.18.2",
+    "rollup": "2.23.0",
     "rollup-plugin-istanbul": "^2.0.1",
     "rollup-plugin-terser": "^6.1.0",
     "serve": "^11.3.2",
