@@ -45,10 +45,10 @@ Features:
 ### With npm or yarn
 
 ```sh
-// npm
+# npm
 npm install bs-stepper --save
 
-// yarn
+# yarn
 yarn add bs-stepper
 ```
 
