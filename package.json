@@ -75,7 +75,7 @@
     "postcss-cli": "^7.1.1",
     "rollup": "2.18.2",
     "rollup-plugin-istanbul": "^2.0.1",
-    "rollup-plugin-terser": "^6.1.0",
+    "rollup-plugin-terser": "^7.0.2",
     "serve": "^11.3.2",
     "shx": "^0.3.2",
     "standard": "^14.3.4",
