@@ -57,7 +57,7 @@
   "devDependencies": {
     "@babel/core": "^7.12.3",
     "@babel/preset-env": "^7.10.4",
-    "@rollup/plugin-babel": "^5.0.4",
+    "@rollup/plugin-babel": "^5.2.1",
     "autoprefixer": "^9.8.6",
     "bootstrap": "^4.5.2",
     "clean-css-cli": "^4.3.0",
@@ -65,23 +65,23 @@
     "gh-pages": "^3.1.0",
     "ip": "^1.1.5",
     "jasmine-core": "^3.6.0",
-    "karma": "^5.1.0",
+    "karma": "^5.2.3",
     "karma-browserstack-launcher": "1.4.0",
     "karma-chrome-launcher": "^3.1.0",
     "karma-coverage-istanbul-reporter": "^3.0.3",
-    "karma-jasmine": "^3.3.1",
+    "karma-jasmine": "^4.0.1",
     "karma-jasmine-html-reporter": "^1.5.4",
     "karma-rollup-preprocessor": "^7.0.5",
-    "postcss-cli": "^7.1.1",
+    "postcss-cli": "^7.1.2",
     "rollup": "2.18.2",
     "rollup-plugin-istanbul": "^2.0.1",
-    "rollup-plugin-terser": "^6.1.0",
+    "rollup-plugin-terser": "^7.0.2",
     "serve": "^11.3.2",
     "shx": "^0.3.2",
     "standard": "^14.3.4",
-    "standard-version": "^8.0.1",
+    "standard-version": "^9.0.0",
     "stylelint": "^13.6.1",
-    "stylelint-config-twbs-bootstrap": "^2.0.3"
+    "stylelint-config-twbs-bootstrap": "^2.1.0"
   },
   "standard": {
     "ignore": [
