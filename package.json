@@ -57,7 +57,7 @@
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
-    "@rollup/plugin-babel": "^5.2.2",
+    "@rollup/plugin-babel": "^5.2.3",
     "autoprefixer": "^10.1.0",
     "bootstrap": "^4.5.3",
     "clean-css-cli": "^4.3.0",
