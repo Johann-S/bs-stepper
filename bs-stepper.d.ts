@@ -10,6 +10,7 @@ declare type StepperOptions = {
 
 declare class Stepper {
   constructor(element: Element, _options?: StepperOptions);
+  actualStep(): number;
   next(): void;
   previous(): void;
   to(stepNumber: number): void;
