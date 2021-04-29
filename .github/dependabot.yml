@@ -1,0 +1,29 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: monthly
+  open-pull-requests-limit: 10
+  versioning-strategy: increase
+  ignore:
+  - dependency-name: karma
+    versions:
+    - 6.0.3
+  - dependency-name: stylelint
+    versions:
+    - 13.9.0
+  - dependency-name: "@rollup/plugin-babel"
+    versions:
+    - 5.2.3
+  - dependency-name: postcss
+    versions:
+    - 8.2.2
+    - 8.2.4
+  - dependency-name: rollup
+    versions:
+    - 2.38.3
+  - dependency-name: standard-version
+    versions:
+    - 9.1.0
+  rebase-strategy: disabled
