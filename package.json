@@ -58,7 +58,7 @@
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
     "@rollup/plugin-babel": "^5.2.2",
-    "autoprefixer": "^10.1.0",
+    "autoprefixer": "^10.2.5",
     "bootstrap": "^4.5.3",
     "clean-css-cli": "^4.3.0",
     "cross-env": "^7.0.3",
