@@ -8,7 +8,8 @@ const ClassName = {
   BLOCK: 'dstepper-block',
   NONE: 'dstepper-none',
   FADE: 'fade',
-  VERTICAL: 'vertical'
+  VERTICAL: 'vertical',
+  COMPLETED: 'completed'
 }
 
 const transitionEndEvent = 'transitionend'
@@ -62,6 +63,7 @@ const showStep = (stepperNode, step, stepList, options) => {
     if (stepperNode.classList.contains(ClassName.LINEAR)) {
       trigger.setAttribute('disabled', 'disabled')
     }
+    step.classList.remove(ClassName.COMPLETED);
   })
 
   step.classList.add(ClassName.ACTIVE)
@@ -72,6 +74,12 @@ const showStep = (stepperNode, step, stepList, options) => {
   if (stepperNode.classList.contains(ClassName.LINEAR)) {
     currentTrigger.removeAttribute('disabled')
   }
+  const stepIndex = stepList.indexOf(step); 
+  stepList.forEach((itm, itmIndex) => {
+    if(itmIndex < stepIndex){
+      itm.classList.add(ClassName.COMPLETED); 
+    }
+  })
 }
 
 const showContent = (stepperNode, content, contentList, activeContent, done) => {
