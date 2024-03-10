@@ -112,6 +112,7 @@ Or with npm
 
 ```js
 import Stepper from 'bs-stepper'
+import 'bs-stepper/dist/css/bs-stepper.min.css'
 ```
 
 ### Create a stepper
